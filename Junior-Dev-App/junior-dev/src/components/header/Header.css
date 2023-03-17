@@ -1,7 +1,42 @@
-.header-list {
-    list-style-type: none;
+
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 100px;
+    border-bottom: 1px solid black;
 }
 
+header h1 {
+    font-weight: 100;
+    margin: 10px;
+}
+header h1 span {
+    color: lightgreen;
+}
+
+.header-list {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+a:hover{
+    border-bottom: 2px solid lightgreen;
+}
+a.active {
+    border-bottom: 2px solid lightgreen;
+    color: rgb(255, 176, 72);
+}
+a.header {
+    border: none;
+    color: grey;
+}
 a {
     text-decoration: none;
+    font-weight: 500;
+    color: grey;
 }
