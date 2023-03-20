@@ -10,6 +10,7 @@ header {
     top: 0px;
     z-index: 1;
     background-color: white;
+    border-bottom: 1px solid black;
 }
 header .img-holder {
     height: 63px;
