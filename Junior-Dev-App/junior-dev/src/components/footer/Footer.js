@@ -46,7 +46,7 @@ export const Footer = () => {
                 </article>
             </section>
 
-            <footer>Copyright © 2018 InTime. All Rights Reserved. <span>InTime</span></footer>
+            <footer>Copyright © 2023 AuctionHouse. <span>Hristo Yonkov@</span><span id='sf-logo'>SoftUni</span> - All Rights Reserved.</footer>
         </div>
     );
 }

@@ -1,0 +1,26 @@
+.home-img-holder {
+    position: relative;
+    display: flex;
+    /* height: 50vh; */
+}
+.home-img-holder img {
+    width: 100%;
+    height: auto;
+}
+.home-img-holder h1 {
+    position: absolute;
+    color: antiquewhite;
+    text-shadow: 5px 5px 20px black;
+    letter-spacing: 1px;
+    font-size: 250%;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%);
+}
+h2 {
+    text-align: center;
+}
+
+.card-holder {
+    /* height: 100vh; */
+}
