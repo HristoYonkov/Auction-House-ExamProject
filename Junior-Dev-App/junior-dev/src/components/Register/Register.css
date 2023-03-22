@@ -2,16 +2,20 @@
     display: flex;
     justify-content: center;
 }
+.register-form a {
+    color: rgb(255, 176, 72);
+}
 
 .register-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 20px;
+    width: 30%;
     align-items: center;
     padding: 0px 50px 50px 50px;
-    margin: 50px;
+    margin: 50px 50px 200px;
     border-radius: 8px;
-    gap: 20px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
@@ -31,6 +35,6 @@
     border: none;
     height: 40px;
     width: 160px;
-    background-color: greenyellow;
+    background-color: rgb(255, 176, 72);
 }
 
