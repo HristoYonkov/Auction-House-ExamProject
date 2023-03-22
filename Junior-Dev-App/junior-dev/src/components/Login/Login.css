@@ -1,6 +1,7 @@
 .login {
     display: flex;
     justify-content: center;
+    background-color: whitesmoke;
 }
 .login-form a {
     color: rgb(255, 176, 72);
@@ -12,11 +13,12 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-    width: 30%;
+    width: 25%;
     padding: 0px 50px 50px 50px;
     margin: 50px 50px 200px;
     border-radius: 8px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: white;
 }
 
 .input-wrapper {
@@ -26,7 +28,7 @@
 }
 
 .login-form button:hover {
-    background-color: red;
+    background-color: green;
 }
 .login-form button {
     padding: 0;
@@ -35,5 +37,5 @@
     border: none;
     height: 40px;
     width: 160px;
-    background-color: rgb(255, 176, 72);
+    background-color: red;
 }
