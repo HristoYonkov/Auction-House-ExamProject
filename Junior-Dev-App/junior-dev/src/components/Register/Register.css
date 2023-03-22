@@ -1,0 +1,36 @@
+.register {
+    display: flex;
+    justify-content: center;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 50px 50px 50px;
+    margin: 50px;
+    border-radius: 8px;
+    gap: 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+.register-form button:hover {
+    background-color: red;
+}
+.register-form button {
+    padding: 0;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    width: 160px;
+    background-color: greenyellow;
+}
+

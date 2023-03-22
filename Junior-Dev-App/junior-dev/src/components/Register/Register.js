@@ -5,31 +5,37 @@ import './Register.css'
 export const Register = () => {
 
 
-    return(
+    return (
         <>
-        <section className="register">
+            <section className="register">
 
-            <form className='register-form'>
-                <h1>Register</h1>
+                <form className='register-form'>
+                    <h1>Register</h1>
 
-                <label htmlFor="username">Username</label>
-                <input type="text" name="username" id='username' placeholder='username' />
+                    <div className='input-wrapper'>
+                        <label htmlFor="username">Username</label>
+                        <input type="text" name="username" id='username' placeholder='username' />
+                    </div>
 
-                <label htmlFor="email">Email</label>
-                <input type="text" name="email" id='email' placeholder='email' />
+                    <div className='input-wrapper'>
+                        <label htmlFor="email">Email</label>
+                        <input type="text" name="email" id='email' placeholder='email' />
+                    </div>
+                    <div className='input-wrapper'>
+                        <label htmlFor="password">Password</label>
+                        <input type="password" name="password" id='password' placeholder='password' />
+                    </div>
+                    <div className='input-wrapper'>
+                        <label htmlFor="repass">Confirm Password</label>
+                        <input type="password" name="repass" id='repass' placeholder='confirm password' />
+                    </div>
 
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" id='password' placeholder='password' />
+                    <p>If you have an account go to <Link to="/login">LOGIN</Link> page!</p>
 
-                <label htmlFor="repass">Confirm Password</label>
-                <input type="password" name="repass" id='repass' placeholder='confirm password' />
+                    <button>Register</button>
+                </form>
 
-                <p>If you have an account go to <Link to="/login">LOGIN</Link> page!</p>
-
-                <button>Register</button>
-            </form>
-
-        </section>
+            </section>
         </>
     );
 }
