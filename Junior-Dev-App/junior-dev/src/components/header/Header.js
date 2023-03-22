@@ -25,6 +25,9 @@ export const Header = () => {
                     <li className="header-list-item">
                         <NavLink to="/register" >REGISTER</NavLink>
                     </li>
+                    <li className="header-list-item">
+                        <NavLink to="/logout" >LOG-OUT</NavLink>
+                    </li>
                 </ul>
             </nav>
         </header>
