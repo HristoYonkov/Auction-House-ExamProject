@@ -8,6 +8,7 @@ import { Home } from './components/home/Home';
 import { Catalog } from './components/catalog/Catalog';
 import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
+import { NotFound } from './components/404/NotFound';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                     <Route path='/catalog' element={<Catalog />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/register' element={<Register />} />
+                    <Route path='*' element={<NotFound />} />
                 </Routes>
 
             </main>
