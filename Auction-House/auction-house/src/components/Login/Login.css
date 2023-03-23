@@ -6,6 +6,10 @@
 .login-form a {
     color: rgb(255, 176, 72);
 }
+.login-form h1 {
+    letter-spacing: 3px;
+    font-size: 30px;
+}
 
 .login-form {
     display: flex;
@@ -26,6 +30,18 @@
     flex-direction: column;
     align-self: flex-start;
 }
+.input-wrapper label {
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: black;
+}
+.input-wrapper input {
+    border-radius: 8px;
+    height: 5vh;
+    width: 20vw;
+    border: 1px solid;
+    font-size: 17px;
+}
 
 .login-form button:hover {
     background-color: green;
@@ -38,4 +54,9 @@
     height: 40px;
     width: 160px;
     background-color: red;
+}
+
+.err-msg {
+    color: red;
+    margin: 0;
 }

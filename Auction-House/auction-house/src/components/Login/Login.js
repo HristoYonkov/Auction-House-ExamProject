@@ -14,13 +14,14 @@ export const Login = () => {
 
                     <div className='input-wrapper'>
                         <label htmlFor="email">Email</label>
-                        <input type="text" name="email" id='email' placeholder='email' />
+                        <input type="email" name="email" id='email' placeholder='email' />
+                        <p className='err-msg'>Invalid E-mail!</p>
                     </div>
 
                     <div className='input-wrapper'>
                         <label htmlFor="password">Password</label>
                         <input type="password" name="password" id='password' placeholder='password' />
-
+                        <p className='err-msg'>Password must be between 3 and 15 character's long!</p>
                     </div>
 
                     <p>If you don't have an account go to <Link to="/register">REGISTER</Link> page!</p>

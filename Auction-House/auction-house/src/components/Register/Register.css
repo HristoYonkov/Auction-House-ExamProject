@@ -6,6 +6,10 @@
 .register-form a {
     color: rgb(255, 176, 72);
 }
+.register-form h1 {
+    letter-spacing: 3px;
+    font-size: 30px;
+}
 
 .register-form {
     display: flex;
@@ -26,7 +30,19 @@
     flex-direction: column;
     align-self: flex-start;
 }
-
+.input-wrapper label {
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: black;
+}
+.input-wrapper input {
+    all: revert;
+    border-radius: 8px;
+    height: 5vh;
+    width: 20vw;
+    border: 1px solid;
+    font-size: 17px;
+}
 .register-form button:hover {
     background-color: green;
 }
@@ -40,3 +56,7 @@
     background-color: red;
 }
 
+.err-msg {
+    color: red;
+    margin: 0;
+}
