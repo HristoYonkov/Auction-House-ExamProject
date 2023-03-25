@@ -55,6 +55,7 @@
     height: 40px;
     width: 160px;
     background-color: red;
+    font-size: 18px;
 }
 
 .err-msg {

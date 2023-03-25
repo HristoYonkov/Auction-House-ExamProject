@@ -1,4 +1,53 @@
 
 .catalog {
     /* height: 50vh; */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 50px;
+    background-color: whitesmoke;
+}
+.catalog-header {
+    text-align: center;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 40vh;
+    width: auto;
+    border-radius: 8px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: antiquewhite;
+}
+.catalog .card h3 {
+    letter-spacing: 1px;
+}
+.catalog .card img {
+    height: 50%;
+    width: auto;
+}
+.catalog .card p {
+    margin: 0 0 5px 10px;
+    align-self: start;
+    font-weight: 500;
+}
+.catalog .card p span {
+    font-weight: 700;
+}
+
+.catalog .card button:hover {
+    background-color: green;
+}
+.catalog .card button {
+    padding: 0;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    width: 160px;
+    background-color: red;
+    font-size: 18px;
+    margin-top: 10px;
 }
