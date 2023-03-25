@@ -1,4 +1,26 @@
 .details {
-    height: 50vh;
+    min-height: 50vh;
     background-color: whitesmoke;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 50px;
+    background-color: whitesmoke;
+}
+.details-header {
+    letter-spacing: 5px;
+    display: inline-block;
+    position: relative;
+    background-color: antiquewhite;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 10px;
+    border-radius: 50%;
+}
+
+/* Article */
+
+.details-content {
+    
 }

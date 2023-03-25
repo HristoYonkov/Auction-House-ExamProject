@@ -9,6 +9,9 @@
 .register-form h1 {
     letter-spacing: 3px;
     font-size: 30px;
+    background-color: antiquewhite;
+    border-radius: 50%;
+    padding: 10px;
 }
 
 .register-form {

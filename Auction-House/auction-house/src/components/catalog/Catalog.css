@@ -9,8 +9,18 @@
     background-color: whitesmoke;
 }
 .catalog-header {
-    text-align: center;
+    letter-spacing: 5px;
+    display: inline-block;
+    position: relative;
+    background-color: antiquewhite;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 10px;
+    border-radius: 50%;
 }
+
+/* Card */
+
 .card {
     display: flex;
     flex-direction: column;
@@ -49,7 +59,7 @@
     width: 160px;
     background-color: red;
     font-size: 18px;
-    margin-top: 10px;
+    margin-top: 15px;
     cursor: pointer;
 }
 .catalog .card button a {

@@ -6,7 +6,7 @@ export const Catalog = () => {
 
     return (
         <>
-            <h1 className='catalog-header'>CATALOG</h1>
+            <h1 className='catalog-header'>Catalog</h1>
             <section className="catalog">
 
                 <article className='card'>
