@@ -1,6 +1,6 @@
 
 .catalog {
-    /* height: 50vh; */
+    min-height: 50vh;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;

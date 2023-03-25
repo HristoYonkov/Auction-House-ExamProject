@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom';
-import './Catalog.css'
+import './Details.css'
 
-export const Catalog = () => {
+export const Details = () => {
 
 
     return (
         <>
-            <h1 className='catalog-header'>CATALOG</h1>
-            <section className="catalog">
+            <section className='details'>
 
-                <article className='card'>
+                <article className='details-content'>
                     <h3>Alpha Romeo</h3>
                     <img src="https://g1-bg.cars.bg/2023-03-24_1/641d60a34ea732938e0fc562o.jpg" alt="car" />
                     <p>Current price: <span>$3000</span></p>
