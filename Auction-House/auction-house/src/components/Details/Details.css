@@ -6,7 +6,6 @@
     gap: 20px;
     justify-content: center;
     padding: 50px;
-    background-color: whitesmoke;
 }
 .details-header {
     letter-spacing: 5px;
@@ -22,5 +21,34 @@
 /* Article */
 
 .details-content {
-    
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: hidden;
+
+}
+
+.details-content-header {
+    display: flex;
+    justify-content: space-around;
+    background-color: antiquewhite;
+}
+.details-content-header h2 {
+    font-weight: 500;
+}
+.details-content-header span {
+    font-weight: 700;
+}
+
+.details-content-middle {
+    display: flex;
+    gap: 20px;
+}
+.details-content-middle img {
+    width: 50%;
+}
+.details-content-middle-inner {
+    width: 50%;
 }

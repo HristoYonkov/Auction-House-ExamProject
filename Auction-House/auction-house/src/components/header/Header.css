@@ -27,7 +27,8 @@ header h1 {
     margin: 10px;
 }
 header h1 span {
-    color: lightgreen;
+    color: purple;
+    font-weight: 700;
 }
 
 .header-list {

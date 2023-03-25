@@ -62,6 +62,6 @@
     margin-top: 15px;
     cursor: pointer;
 }
-.catalog .card button a {
+.catalog .card a {
     all: unset;
 }
