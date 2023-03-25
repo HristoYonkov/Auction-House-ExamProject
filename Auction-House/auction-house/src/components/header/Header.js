@@ -8,7 +8,7 @@ export const Header = () => {
             <NavLink className="header" to="/" >
                 <div className="img-holder">
                     <h1>Auction<span>House</span></h1>
-                    <img src="https://static.vecteezy.com/system/resources/thumbnails/000/626/825/small/031218-28.jpg" alt="ah-hammer" />
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/000/626/825/small/031218-28.jpg" alt="hammer" />
                 </div>
             </NavLink>
             <nav>
