@@ -50,4 +50,8 @@
     background-color: red;
     font-size: 18px;
     margin-top: 10px;
+    cursor: pointer;
+}
+.catalog .card button a {
+    all: unset;
 }

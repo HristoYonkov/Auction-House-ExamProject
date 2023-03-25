@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Catalog.css'
 
 export const Catalog = () => {
@@ -13,7 +14,7 @@ export const Catalog = () => {
                     <img src="https://g1-bg.cars.bg/2023-03-24_1/641d60a34ea732938e0fc562o.jpg" alt="car" />
                     <p>Current price: <span>$3000</span></p>
                     <p>Category: <span>Vehicles</span></p>
-                    <button>Details</button>
+                    <button><Link to="/details">Details</Link></button>
                 </article>
             </section>
         </>
