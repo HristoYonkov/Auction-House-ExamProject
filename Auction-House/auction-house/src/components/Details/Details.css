@@ -48,11 +48,11 @@
 
 .details-content-middle {
     display: flex;
-    gap: 20px;
+    gap: 50px;
 }
 
 .details-content-middle img {
-    max-width: 50%;
+    width: 50%;
 }
 
 .details-content-middle-inner {
@@ -65,7 +65,7 @@
 }
 
 .details-content-middle-inner p {
-    /* color: green; */
+    color: chocolate;
     font-weight: 600;
 }
 
@@ -92,7 +92,7 @@
     border: none;
     height: 40px;
     width: 160px;
-    background-color: red;
+    background-color: brown;
     font-size: 18px;
     margin-top: 15px;
     cursor: pointer;
@@ -121,7 +121,7 @@
     border: none;
     height: 40px;
     width: 160px;
-    background-color: red;
+    background-color: brown;
     font-size: 18px;
     margin-top: 15px;
     cursor: pointer;
