@@ -26,12 +26,13 @@
 }
 
 .input-wrapper {
-    display: flex;
+    display: flex;  
     flex-direction: column;
-    align-self: flex-start;
+    align-self: center;
+    max-width: min-content;
 }
 .input-wrapper label {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     font-size: 20px;
     color: black;
 }

@@ -2,13 +2,13 @@ import { NavLink } from "react-router-dom";
 import './Header.css';
 
 export const Header = () => {
-
+    // https://static.vecteezy.com/system/resources/thumbnails/000/626/825/small/031218-28.jpg
     return (
         <header>
             <NavLink className="header" to="/" >
                 <div className="img-holder">
                     <h1>Auction<span>House</span></h1>
-                    <img src="https://static.vecteezy.com/system/resources/thumbnails/000/626/825/small/031218-28.jpg" alt="" />
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/000/626/825/small/031218-28.jpg" alt="ah-hammer" />
                 </div>
             </NavLink>
             <nav>
