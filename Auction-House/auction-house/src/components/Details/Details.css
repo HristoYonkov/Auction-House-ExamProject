@@ -7,6 +7,7 @@
     justify-content: center;
     padding: 50px;
 }
+
 .details-header {
     letter-spacing: 5px;
     display: inline-block;
@@ -24,6 +25,7 @@
     display: flex;
     flex-direction: column;
     width: 50%;
+    height: 100%;
     border-radius: 8px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     overflow: hidden;
@@ -35,9 +37,11 @@
     justify-content: space-around;
     background-color: antiquewhite;
 }
+
 .details-content-header h2 {
     font-weight: 500;
 }
+
 .details-content-header span {
     font-weight: 700;
 }
@@ -46,9 +50,82 @@
     display: flex;
     gap: 20px;
 }
+
 .details-content-middle img {
+    max-width: 50%;
+}
+
+.details-content-middle-inner {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: left;
     width: 50%;
 }
-.details-content-middle-inner {
+
+.details-content-middle-inner p {
+    /* color: green; */
+    font-weight: 600;
+}
+
+.details-content-middle-inner p span {
+    font-weight: 400;
+    color: black;
+}
+.description-p {
+    align-self: center;
+}
+.details-content-middle-inner p .span-bold {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.details-content-middle-inner button:hover {
+    background-color: green;
+}
+
+.details-content-middle-inner button {
+    padding: 0;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    width: 160px;
+    background-color: red;
+    font-size: 18px;
+    margin-top: 15px;
+    cursor: pointer;
+    align-self: center;
+}
+
+/* Buttons */
+.details-footer {
+    background-color: antiquewhite;
+}
+
+.details-button-wrapper {
+    display: flex;
     width: 50%;
+    /* flex-wrap: wrap; */
+    justify-content: space-around;
+    padding-bottom: 20px;
+}
+.details-button-wrapper button:hover {
+    background-color: green;
+}
+.details-button-wrapper button {
+    padding: 0;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    width: 160px;
+    background-color: red;
+    font-size: 18px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+.details-button-wrapper button a {
+    all: unset;
 }
