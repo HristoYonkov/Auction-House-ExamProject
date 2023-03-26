@@ -9,8 +9,37 @@ export const Login = () => {
         password: '',
     });
 
+    const [formValidations, setFormValidations] = useState({
+        username: false,
+        email: false,
+        password: false,
+        repass: false
+    });
+
     const onChangeHandler = (e) => {
-        setFormData(state => ({ ...state, [e.target.name]: e.target.value }))
+        setFormData(state => ({ ...state, [e.target.name]: e.target.value }));
+        setFormValidations(state => ({ ...state, [e.target.name]: false }));
+    }
+
+    const onBlurHandler = (e) => {
+        if (e.target.name === 'username' &&
+            (e.target.value.length < 2 || e.target.value.length > 10)) {
+            setFormValidations(state => ({ ...state, [e.target.name]: true }))
+
+        } else if (e.target.name === 'email') {
+            const validRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+            if (!e.target.value.match(validRegex)) {
+                setFormValidations(state => ({ ...state, [e.target.name]: true }))
+            }
+
+        } else if (e.target.name === 'password' &&
+            (e.target.value.length < 6 || e.target.value.length > 15)) {
+            setFormValidations(state => ({ ...state, [e.target.name]: true }))
+
+        } else if (e.target.name === 'repass' &&
+            formData.password !== e.target.value) {
+            setFormValidations(state => ({ ...state, [e.target.name]: true }))
+        }
     }
 
     return (
@@ -29,8 +58,11 @@ export const Login = () => {
                             placeholder='email'
                             value={formData.username}
                             onChange={onChangeHandler}
+                            onBlur={onBlurHandler}
                         />
-                        <p className='err-msg'>Invalid E-mail!</p>
+                        {formValidations.email && (
+                            <p className='err-msg'>Invalid E-mail!</p>
+                        )}
                     </div>
 
                     <div className='input-wrapper'>
@@ -42,8 +74,11 @@ export const Login = () => {
                             placeholder='password'
                             value={formData.username}
                             onChange={onChangeHandler}
+                            onBlur={onBlurHandler}
                         />
-                        <p className='err-msg'>Password must be between 3 and 15 character's long!</p>
+                        {formValidations.password && (
+                            <p className='err-msg'>Password must be between 6 and 15 character's long!</p>
+                        )}
                     </div>
 
                     <p>If you don't have an account go to <Link to="/register">REGISTER</Link> page!</p>

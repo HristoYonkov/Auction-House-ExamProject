@@ -16,7 +16,8 @@ export const Register = () => {
         email: false,
         password: false,
         repass: false
-    })
+    });
+    
     const onChangeHandler = (e) => {
         setFormData(state => ({ ...state, [e.target.name]: e.target.value }));
         setFormValidations(state => ({ ...state, [e.target.name]: false }))
