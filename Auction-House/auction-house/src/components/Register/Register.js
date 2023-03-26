@@ -11,8 +11,22 @@ export const Register = () => {
         repass: ''
     });
 
+    const [formValidations, setFormValidations] = useState({
+        username: false,
+        email: false,
+        password: false,
+        repass: false
+    })
     const onChangeHandler = (e) => {
-        setFormData(state => ({ ...state, [e.target.name]: e.target.value }))
+        setFormData(state => ({ ...state, [e.target.name]: e.target.value }));
+        setFormValidations(state => ({...state, [e.target.name]: false}))
+    }
+
+    const onBlurHandler = (e) => {
+        if (e.target.name === 'username' &&
+            (e.target.value.length < 2 || e.target.value.length > 10)) {
+            setFormValidations(state => ({...state, [e.target.name]: true}))
+        }
     }
 
     return (
@@ -30,8 +44,11 @@ export const Register = () => {
                             placeholder='username'
                             value={formData.username}
                             onChange={onChangeHandler}
+                            onBlur={onBlurHandler}
                         />
-                        <p className='err-msg'>Username must be between 2 and 10 characters long!</p>
+                        {formValidations.username && (
+                            <p className='err-msg'>Username must be between 2 and 10 characters long!</p>
+                        )}
                     </div>
 
                     <div className='input-wrapper'>
