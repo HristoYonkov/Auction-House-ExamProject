@@ -1,9 +1,17 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Login.css'
 
 export const Login = () => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+    });
 
+    const onChangeHandler = (e) => {
+        setFormData(state => ({ ...state, [e.target.name]: e.target.value }))
+    }
 
     return (
         <>
@@ -14,13 +22,27 @@ export const Login = () => {
 
                     <div className='input-wrapper'>
                         <label htmlFor="email">Email</label>
-                        <input type="email" name="email" id='email' placeholder='email' />
+                        <input
+                            type="email"
+                            name="email"
+                            id='email'
+                            placeholder='email'
+                            value={formData.username}
+                            onChange={onChangeHandler}
+                        />
                         <p className='err-msg'>Invalid E-mail!</p>
                     </div>
 
                     <div className='input-wrapper'>
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password" id='password' placeholder='password' />
+                        <input
+                            type="password"
+                            name="password"
+                            id='password'
+                            placeholder='password'
+                            value={formData.username}
+                            onChange={onChangeHandler}
+                        />
                         <p className='err-msg'>Password must be between 3 and 15 character's long!</p>
                     </div>
 
