@@ -10,6 +10,7 @@ async function getByUserId(userId) {
 };
 async function getById(id) {
     return Pizza.findById(id).populate('_ownerId')
+    
 };
 
 async function create(data) {

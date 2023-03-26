@@ -1,14 +1,13 @@
 const authController = require('express').Router();
-const { login, register } = require('../services/userService')
+
+const { login, register } = require('../services/userService');
 
 authController.post('/register', async (req, res) => {
     try {
         const token = await register(
             req.body.email,
             req.body.username,
-            req.body.password,
-            req.body.phoneNumber,
-            req.body.profileImg)
+            req.body.password,)
         if (!token) {
             throw new Error('Unable to register with this credential!!!')
         }

@@ -1,6 +1,6 @@
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-const User = require('../models/User')
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
 const secret = 'q-asd231adfas12321kl';
 
@@ -31,7 +31,7 @@ async function login(email, password) {
         throw new Error('Invalid  email or password!!!')
 
     }
-    return createToken(user)
+    return createToken(user);
 }
 
 
