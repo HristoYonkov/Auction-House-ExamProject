@@ -32,7 +32,7 @@
     display: flex;  
     flex-direction: column;
     align-self: center;
-    max-width: min-content;
+    max-width: min-content; 
 }
 .input-wrapper label {
     margin-bottom: 10px;
@@ -47,6 +47,11 @@
     border: 1px solid;
     font-size: 17px;
 }
+.err-msg {
+    color: red;
+    margin: 0;
+}
+
 .register-form button:hover {
     background-color: green;
 }
@@ -60,9 +65,4 @@
     background-color: red;
     font-size: 18px;
     cursor: pointer;
-}
-
-.err-msg {
-    color: red;
-    margin: 0;
 }

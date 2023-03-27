@@ -20,7 +20,7 @@ export const Register = () => {
     
     const onChangeHandler = (e) => {
         setFormData(state => ({ ...state, [e.target.name]: e.target.value }));
-        setFormValidations(state => ({ ...state, [e.target.name]: false }))
+        setFormValidations(state => ({ ...state, [e.target.name]: false }));
     }
 
     const onBlurHandler = (e) => {
