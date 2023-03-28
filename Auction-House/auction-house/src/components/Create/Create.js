@@ -40,8 +40,9 @@ export const Create = () => {
             setFormValidations(state => ({ ...state, [e.target.name]: true }))
 
         } else if (e.target.name === 'price' &&
-            !(Number(formData.price) === Number(formData.price) && formData.price > 0)) {
+            !(Number(formData.price) && formData.price > 0)) {
             setFormValidations(state => ({ ...state, [e.target.name]: true }))
+
         } else if (e.target.name === 'description' &&
             (e.target.value.length < 10 || e.target.value.length > 200)) {
             setFormValidations(state => ({ ...state, [e.target.name]: true }))
