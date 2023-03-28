@@ -1,75 +1,146 @@
+import { useState } from 'react';
 
+import './Edit.css';
 
 export const Edit = () => {
+    const [formData, setFormData] = useState({
+        title: '',
+        category: '',
+        imageUrl: '',
+        price: '',
+        description: '',
+    });
 
+    const [formValidations, setFormValidations] = useState({
+        title: false,
+        category: false,
+        imageUrl: false,
+        price: false,
+        description: false,
+    });
+
+    const onChangeHandler = (e) => {
+        setFormData(state => ({ ...state, [e.target.name]: e.target.value }));
+        setFormValidations(state => ({ ...state, [e.target.name]: false }));
+    }
+
+    const onBlurHandler = (e) => {
+        if (e.target.name === 'title' &&
+            (e.target.value.length < 2 || e.target.value.length > 10)) {
+            setFormValidations(state => ({ ...state, [e.target.name]: true }))
+
+        } else if (e.target.name === 'category') {
+            if (e.target.value === '') {
+                setFormValidations(state => ({ ...state, [e.target.name]: true }))
+            }
+
+        } else if (e.target.name === 'imageUrl' &&
+            !(e.target.value.startsWith('http://') ||
+                e.target.value.startsWith('https://'))) {
+            setFormValidations(state => ({ ...state, [e.target.name]: true }))
+
+        } else if (e.target.name === 'price' &&
+            !(Number(formData.price) === Number(formData.price) && formData.price > 0)) {
+            setFormValidations(state => ({ ...state, [e.target.name]: true }))
+        } else if (e.target.name === 'description' &&
+            (e.target.value.length < 10 || e.target.value.length > 200)) {
+            setFormValidations(state => ({ ...state, [e.target.name]: true }))
+        }
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        console.log(formData);
+    }
 
     return (
         <section className="edit">
 
-            <form className='edit-form'>
-                <h1>Register</h1>
+            <form onSubmit={submitHandler} className='edit-form'>
+                <h1>Edit Auction</h1>
 
                 <div className='edit-input-wrapper'>
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="username">Title</label>
                     <input
-                        type="text" name="username"
-                        id='username'
-                        placeholder='username'
-                        // value={formData.username}
-                        // onChange={onChangeHandler}
-                        // onBlur={onBlurHandler}
+                        type="text"
+                        name="title"
+                        id='title'
+                        placeholder='title'
+                        value={formData.title}
+                        onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
                     />
-                    {/* {formValidations.username && (
-                        <p className='err-msg'>Username must be between 2 and 10 characters long!</p>
-                    )} */}
+                    {formValidations.title && (
+                        <p className='err-msg'>Title must be between 2 and 10 characters long!</p>
+                    )}
                 </div>
 
                 <div className='edit-input-wrapper'>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        id='email'
-                        placeholder='email'
-                        // value={formData.email}
-                        // onChange={onChangeHandler}
-                        // onBlur={onBlurHandler}
-                    />
-                    {/* {formValidations.email && (
-                        <p className='err-msg'>Invalid E-mail!</p>
-                    )} */}
+                    <label htmlFor="category">Category</label>
+                    <select
+                        name="category"
+                        id="category"
+                        value={formData.category}
+                        onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
+                    >
+                        <option value="">Choose option..</option>
+                        <option value="vehicles">Vehicles</option>
+                        <option value="computers">Computers</option>
+                        <option value="home-appliances">Home Appliances</option>
+                    </select>
+                    {formValidations.category && (
+                        <p className='err-msg'>You must choose an option!</p>
+                    )}
                 </div>
 
                 <div className='edit-input-wrapper'>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="imageUrl">ImageUrl</label>
                     <input
-                        type="password"
-                        name="password"
-                        id='password'
-                        placeholder='password'
-                        // value={formData.password}
-                        // onChange={onChangeHandler}
-                        // onBlur={onBlurHandler}
+                        type="text"
+                        name="imageUrl"
+                        id='imageUrl'
+                        placeholder='http:// or https://'
+                        value={formData.imageUrl}
+                        onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
                     />
-                    {/* {formValidations.password && (
-                        <p className='err-msg'>Password must be between 6 and 15 character's long!</p>
-                    )} */}
+                    {formValidations.imageUrl && (
+                        <p className='err-msg'>ImageUrl should start with http:// or https://!</p>
+                    )}
                 </div>
 
                 <div className='edit-input-wrapper'>
-                    <label htmlFor="repass">Confirm Password</label>
+                    <label htmlFor="price">Starting Price</label>
                     <input
-                        type="password"
-                        name="repass"
-                        id='repass'
-                        placeholder='confirm-password'
-                        // value={formData.repass}
-                        // onChange={onChangeHandler}
-                        // onBlur={onBlurHandler}
+                        type="number"
+                        name="price"
+                        id='price'
+                        placeholder='Price must be positive number!'
+                        value={formData.price}
+                        onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
                     />
-                    {/* {formValidations.repass && (
-                        <p className='err-msg'>Password's must match!</p>
-                    )} */}
+                    {formValidations.price && (
+                        <p className='err-msg'>Price should be a positive number!</p>
+                    )}
+                </div>
+
+                <div className='edit-input-wrapper'>
+                    <label htmlFor="description">Description</label>
+                    <textarea
+                        name="description"
+                        id="description"
+                        cols="30" rows="10"
+                        value={formData.description}
+                        onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
+                    ></textarea>
+
+                    {formValidations.description && (
+                        <p className='err-msg'>Field must be between 10 and 15 characters!</p>
+                    )}
                 </div>
 
                 <button>Edit</button>

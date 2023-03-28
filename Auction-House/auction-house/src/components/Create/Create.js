@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import './Create.css'
+import './Create.css';
 
 export const Create = () => {
     const [formData, setFormData] = useState({
@@ -58,7 +58,7 @@ export const Create = () => {
         <section className="create">
 
             <form onSubmit={submitHandler} className='create-form'>
-                <h1>Add New-Auction</h1>
+                <h1>Add New Auction</h1>
 
                 <div className='create-input-wrapper'>
                     <label htmlFor="username">Title</label>

@@ -1,16 +1,16 @@
-.create {
+.edit {
     display: flex;
     justify-content: center;
     background-color: whitesmoke;
 }
-.create-form h1 {
+.edit-form h1 {
     letter-spacing: 3px;
     font-size: 30px;
     background-color: antiquewhite;
     border-radius: 50%;
-    padding: 20px;
+    padding: 15px;
 }
-.create-form {
+.edit-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,18 +24,18 @@
     background-color: white;
 }
 
-.create-input-wrapper {
+.edit-input-wrapper {
     display: flex;  
     flex-direction: column;
     align-self: center;
     max-width: min-content; 
 }
-.create-input-wrapper label {
+.edit-input-wrapper label {
     margin-bottom: 10px;
     font-size: 20px;
     color: black;
 }
-.create-input-wrapper input {
+.edit-input-wrapper input {
     all: revert;
     border-radius: 8px;
     height: 5vh;
@@ -43,7 +43,7 @@
     border: 1px solid;
     font-size: 17px;
 }
-.create-input-wrapper select {
+.edit-input-wrapper select {
     all: revert;
     border-radius: 8px;
     height: 5vh;
@@ -51,7 +51,7 @@
     border: 1px solid;
     font-size: 17px;
 }
-.create-input-wrapper textarea {
+.edit-input-wrapper textarea {
     all: revert;
     border-radius: 8px;
     height: 15vh;
@@ -64,10 +64,10 @@
     margin: 0;
 }
 
-.create-form button:hover {
+.edit-form button:hover {
     background-color: green;
 }
-.create-form button {
+.edit-form button {
     padding: 0;
     color: white;
     border-radius: 5px;
