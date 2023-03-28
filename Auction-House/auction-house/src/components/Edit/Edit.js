@@ -52,7 +52,8 @@ export const Edit = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         let ifErrors = false;
-        if (formData.title === '') {
+        if (formData.title === '' ||
+        (formData.title.length < 2 || formData.title.length > 10)) {
             setFormValidations(state => ({ ...state, title: true }))
             ifErrors = true;
         }
@@ -66,11 +67,13 @@ export const Edit = () => {
             setFormValidations(state => ({ ...state, imageUrl: true }))
             ifErrors = true;
         }
-        if (formData.price === '') {
+        if (formData.price === '' ||
+        !(Number(formData.price) && formData.price > 0)) {
             setFormValidations(state => ({ ...state, price: true }))
             ifErrors = true;
         }
-        if (formData.description === '') {
+        if (formData.description === '' ||
+        (formData.description.length < 10 || formData.description.length > 200)) {
             setFormValidations(state => ({ ...state, description: true }))
             ifErrors = true;
         }
