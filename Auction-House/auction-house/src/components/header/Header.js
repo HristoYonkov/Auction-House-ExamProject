@@ -28,6 +28,9 @@ export const Header = () => {
                     <li className="header-list-item">
                         <NavLink to="/logout" >LOG-OUT</NavLink>
                     </li>
+                    <li className="header-list-item">
+                        <NavLink to="/create" >CREATE</NavLink>
+                    </li>
                 </ul>
             </nav>
         </header>
