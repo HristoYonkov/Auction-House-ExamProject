@@ -12,7 +12,7 @@ authController.post('/register', async (req, res) => {
             req.body.username,
             req.body.password,)
         if (!token) {
-            throw new Error('Unable to register with this credential!!!');
+            throw new Error('Unable to register with this credential!');
         }
         res.status(201).json(token)
         res.end()
