@@ -39,7 +39,8 @@
 }
 .catalog .card img {
     height: 50%;
-    width: auto;
+    /* width: auto; */
+    object-fit: cover;
 }
 .catalog .card p {
     margin: 0 0 5px 10px;
