@@ -29,7 +29,7 @@ export const Register = () => {
             setFormValidations(state => ({ ...state, [e.target.name]: true }))
 
         } else if (e.target.name === 'email') {
-            const validRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+            const validRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
             if (!e.target.value.match(validRegex)) {
                 setFormValidations(state => ({ ...state, [e.target.name]: true }))
             }

@@ -22,12 +22,8 @@ export const Login = () => {
     }
 
     const onBlurHandler = (e) => {
-        if (e.target.name === 'username' &&
-            (e.target.value.length < 2 || e.target.value.length > 10)) {
-            setFormValidations(state => ({ ...state, [e.target.name]: true }))
-
-        } else if (e.target.name === 'email') {
-            const validRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+        if (e.target.name === 'email') {
+            const validRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
             if (!e.target.value.match(validRegex)) {
                 setFormValidations(state => ({ ...state, [e.target.name]: true }))
             }
@@ -36,9 +32,6 @@ export const Login = () => {
             (e.target.value.length < 6 || e.target.value.length > 15)) {
             setFormValidations(state => ({ ...state, [e.target.name]: true }))
 
-        } else if (e.target.name === 'repass' &&
-            formData.password !== e.target.value) {
-            setFormValidations(state => ({ ...state, [e.target.name]: true }))
         }
     }
 
