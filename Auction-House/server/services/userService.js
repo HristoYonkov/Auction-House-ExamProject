@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 const secret = 'q-asd231adfas12321kl';
 
-async function register(username, email, password) {
+async function register(email, username, password) {
     const existing = await User.findOne({ email })
     if (existing) {
         throw new Error('Email is already taken!!!')
@@ -16,7 +16,7 @@ async function register(username, email, password) {
         hashedPassword: await bcrypt.hash(password, 10)
     });
 
-    return createToken(user);
+    return createToken(user)
 }
 
 async function login(email, password) {

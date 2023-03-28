@@ -1,7 +1,15 @@
 const { Schema, model } = require("mongoose");
 
-//todo email validator
+// const EMAIL_PATTERN = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+const emailRegex = /^[a-zA-Z0-9._%+-]{3,}@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const userSchema = new Schema({
+    email: {
+        type: String, required: true, unique: true, validate: {
+            validator: (value) => emailRegex.test(value),
+            message: "Invalid email",
+
+        }
+    },
     username: {
         type: String,
         required: true,
@@ -9,7 +17,6 @@ const userSchema = new Schema({
         minlength: [3, "Username must be at least 3 characters!"],
         maxlength: [10, "Username cannot have more than 10 characters!"],
     },
-    email: { type: String, required: true, unique: true },
     hashedPassword: { type: String, required: true },
 });
 

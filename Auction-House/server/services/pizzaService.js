@@ -32,14 +32,12 @@ async function getMyLikes(id) {
 
 async function update(id, pizza) {
     const existing = await Pizza.findById(id);
-
     existing.name = pizza.name;
     existing.type = pizza.type;
     existing.ingrediants = pizza.ingrediants;
     existing.prepTime = pizza.prepTime;
     existing.cookTime = pizza.cookTime;
     existing.recipe = pizza.recipe;
-    existing.description = pizza.description;
     existing.img = pizza.img;
     return existing.save()
 }
