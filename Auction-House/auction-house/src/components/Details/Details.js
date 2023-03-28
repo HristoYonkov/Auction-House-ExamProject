@@ -30,7 +30,7 @@ export const Details = () => {
                     <div className='details-footer'>
                         <div className='details-button-wrapper'>
                             <button><Link to="/details">Delete</Link></button>
-                            <button><Link to="/edit">Edit</Link></button>
+                            <Link to="/edit"><button>Edit</button></Link>
                         </div>
                     </div>
                 </article>

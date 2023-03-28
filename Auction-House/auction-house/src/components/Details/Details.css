@@ -125,6 +125,6 @@
     margin-top: 15px;
     cursor: pointer;
 }
-.details-button-wrapper button a {
+.details-button-wrapper a {
     all: unset;
 }

@@ -51,7 +51,34 @@ export const Edit = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(formData);
+        let ifErrors = false;
+        if (formData.title === '') {
+            setFormValidations(state => ({ ...state, title: true }))
+            ifErrors = true;
+        }
+        if (formData.category === '') {
+            setFormValidations(state => ({ ...state, category: true }))
+            ifErrors = true;
+        }
+        if (formData.imageUrl === '' ||
+            !(formData.imageUrl.startsWith('http://') ||
+                formData.imageUrl.startsWith('https://'))) {
+            setFormValidations(state => ({ ...state, imageUrl: true }))
+            ifErrors = true;
+        }
+        if (formData.price === '') {
+            setFormValidations(state => ({ ...state, price: true }))
+            ifErrors = true;
+        }
+        if (formData.description === '') {
+            setFormValidations(state => ({ ...state, description: true }))
+            ifErrors = true;
+        }
+        if (ifErrors) {
+            return;
+        }
+
+        console.log(e.target);
     }
 
     return (
