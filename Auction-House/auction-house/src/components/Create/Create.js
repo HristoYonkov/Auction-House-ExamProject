@@ -1,27 +1,79 @@
+import { useState } from 'react';
+
 import './Create.css'
 
 export const Create = () => {
+    const [formData, setFormData] = useState({
+        title: '',
+        category: '',
+        imageUrl: '',
+        price: '',
+        description: '',
+    });
 
+    const [formValidations, setFormValidations] = useState({
+        title: false,
+        category: false,
+        imageUrl: false,
+        price: false,
+        description: false,
+    });
+
+    const onChangeHandler = (e) => {
+        setFormData(state => ({ ...state, [e.target.name]: e.target.value }));
+        setFormValidations(state => ({ ...state, [e.target.name]: false }));
+    }
+
+    const onBlurHandler = (e) => {
+        if (e.target.name === 'title' &&
+            (e.target.value.length < 2 || e.target.value.length > 10)) {
+            setFormValidations(state => ({ ...state, [e.target.name]: true }))
+
+        } else if (e.target.name === 'category') {
+            if (e.target.value === '') {
+                setFormValidations(state => ({ ...state, [e.target.name]: true }))
+            }
+
+        } else if (e.target.name === 'imageUrl' &&
+            !(e.target.value.startsWith('http://') ||
+                e.target.value.startsWith('https://'))) {
+            setFormValidations(state => ({ ...state, [e.target.name]: true }))
+
+        } else if (e.target.name === 'price' &&
+            !(Number(formData.price) === Number(formData.price) && formData.price > 0)) {
+            setFormValidations(state => ({ ...state, [e.target.name]: true }))
+        } else if (e.target.name === 'description' &&
+            (e.target.value.length < 10 || e.target.value.length > 200)) {
+            setFormValidations(state => ({ ...state, [e.target.name]: true }))
+        }
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+
+        console.log(formData);
+    }
 
     return (
         <section className="create">
 
-            <form className='create-form'>
+            <form onSubmit={submitHandler} className='create-form'>
                 <h1>Add New-Auction</h1>
 
                 <div className='create-input-wrapper'>
                     <label htmlFor="username">Title</label>
                     <input
-                        type="text" name="title"
+                        type="text"
+                        name="title"
                         id='title'
                         placeholder='title'
-                    // value={formData.username}
-                    // onChange={onChangeHandler}
-                    // onBlur={onBlurHandler}
+                        value={formData.title}
+                        onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
                     />
-                    {/* {formValidations.username && (
-                        <p className='err-msg'>Username must be between 2 and 10 characters long!</p>
-                    )} */}
+                    {formValidations.title && (
+                        <p className='err-msg'>Title must be between 2 and 10 characters long!</p>
+                    )}
                 </div>
 
                 <div className='create-input-wrapper'>
@@ -29,30 +81,34 @@ export const Create = () => {
                     <select
                         name="category"
                         id="category"
-                    // value={formData.email}
-                    // onChange={onChangeHandler}
-                    // onBlur={onBlurHandler}
+                        value={formData.category}
+                        onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
                     >
+                        <option value="">Choose option..</option>
                         <option value="vehicles">Vehicles</option>
                         <option value="computers">Computers</option>
-                        <option value="appliances">Appliances</option>
+                        <option value="home-appliances">Home Appliances</option>
                     </select>
+                    {formValidations.category && (
+                        <p className='err-msg'>You must choose an option!</p>
+                    )}
                 </div>
 
                 <div className='create-input-wrapper'>
                     <label htmlFor="imageUrl">ImageUrl</label>
                     <input
                         type="text"
-                        name="imgeUrl"
-                        id='imgeUrl'
+                        name="imageUrl"
+                        id='imageUrl'
                         placeholder='http:// or https://'
-                        // value={formData.password}
-                        // onChange={onChangeHandler}
-                        // onBlur={onBlurHandler}
+                        value={formData.imageUrl}
+                        onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
                     />
-                    {/* {formValidations.password && (
-                        <p className='err-msg'>Password must be between 6 and 15 character's long!</p>
-                    )} */}
+                    {formValidations.imageUrl && (
+                        <p className='err-msg'>ImageUrl should start with http:// or https://!</p>
+                    )}
                 </div>
 
                 <div className='create-input-wrapper'>
@@ -62,13 +118,13 @@ export const Create = () => {
                         name="price"
                         id='price'
                         placeholder='Price must be positive number!'
-                    // value={formData.repass}
-                    // onChange={onChangeHandler}
-                    // onBlur={onBlurHandler}
+                        value={formData.price}
+                        onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
                     />
-                    {/* {formValidations.repass && (
-                        <p className='err-msg'>Password's must match!</p>
-                    )} */}
+                    {formValidations.price && (
+                        <p className='err-msg'>Price should be a positive number!</p>
+                    )}
                 </div>
 
                 <div className='create-input-wrapper'>
@@ -77,14 +133,14 @@ export const Create = () => {
                         name="description"
                         id="description"
                         cols="30" rows="10"
-                    // value={formData.repass}
-                    // onChange={onChangeHandler}
-                    // onBlur={onBlurHandler}
+                        value={formData.description}
+                        onChange={onChangeHandler}
+                        onBlur={onBlurHandler}
                     ></textarea>
 
-                    {/* {formValidations.repass && (
-                        <p className='err-msg'>Password's must match!</p>
-                    )} */}
+                    {formValidations.description && (
+                        <p className='err-msg'>Field must be between 10 and 15 characters!</p>
+                    )}
                 </div>
 
                 <button>Create</button>
