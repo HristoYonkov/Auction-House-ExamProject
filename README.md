@@ -2,7 +2,7 @@
 
 SPA  made for SoftUni React course, created with 'React' as FrontEnd, Node.js as BackEnd and MongoDB as Database.
 
-![](/AuctionHouse.PNG)
+![](/AuctionHouse.png)
 
 Informaton:
 
