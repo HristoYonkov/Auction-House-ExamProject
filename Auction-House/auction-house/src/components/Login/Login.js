@@ -1,7 +1,10 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-import './Login.css'
+import { AuthContext } from '../../context/AuthContext';
+import { onLogin } from '../../services/authService';
+
+import './Login.css';
 
 export const Login = () => {
     const [formData, setFormData] = useState({
@@ -35,11 +38,45 @@ export const Login = () => {
         }
     }
 
+    const navigate = useNavigate();
+    const { setUserSession, setServerErrors } = useContext(AuthContext);
+
+    const loginHandler = async (e) => {
+        e.preventDefault();
+        let ifErrors = false;
+        if (formData.email === '' || formData.email !== '') {
+            const validRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+            if (!formData.email.match(validRegex)) {
+                setFormValidations(state => ({ ...state, email: true }))
+                ifErrors = true;
+            }
+        }
+        if (formData.password === '' ||
+        formData.password.length < 6 ||
+        formData.password.length > 15) {
+            setFormValidations(state => ({ ...state, password: true }))
+            ifErrors = true;
+        }
+        if (ifErrors) {
+            return;
+        }
+        
+        const response = await onLogin(formData);
+        if (response?.message) {
+            return setServerErrors(response.message);
+        };
+
+        if (response?._id) {
+            setUserSession(response);
+            navigate('/');
+        }
+    }
+
     return (
         <>
             <section className="login">
 
-                <form className='login-form'>
+                <form onSubmit={loginHandler} className='login-form'>
                     <h1>Login</h1>
 
                     <div className='input-wrapper'>

@@ -8,8 +8,8 @@ authController.post('/register', async (req, res) => {
             throw new Error('Password dismatch');
         }
         const token = await register(
-            req.body.email,
             req.body.username,
+            req.body.email,
             req.body.password,)
         if (!token) {
             throw new Error('Unable to register with this credential!');

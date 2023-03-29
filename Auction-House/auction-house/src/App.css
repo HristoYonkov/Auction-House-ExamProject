@@ -5,3 +5,20 @@
     height: 100vh; */
     /* background-color: whitesmoke; */
 }
+
+.err-box {
+    position: absolute;
+    top: 63px;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: red;
+    color: antiquewhite;
+    min-width: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1;
+}
+.err-box h1 {
+    text-align: center;
+    margin: 0;
+}

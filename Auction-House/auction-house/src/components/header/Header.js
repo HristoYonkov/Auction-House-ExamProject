@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useContext } from 'react';
 
 import './Header.css';
@@ -24,6 +24,9 @@ export const Header = () => {
                     <img src="https://static.vecteezy.com/system/resources/thumbnails/000/626/825/small/031218-28.jpg" alt="hammer" />
                 </div>
             </NavLink>
+            {user.username && (
+                <h4 className="greetings"><span>Hi there</span>: {user.username}</h4>
+            )}
             <nav>
                 <ul className="header-list">
                     <li className="header-list-item">
@@ -32,18 +35,27 @@ export const Header = () => {
                     <li className="header-list-item">
                         <NavLink to="/catalog" >CATALOG</NavLink>
                     </li>
-                    <li className="header-list-item">
-                        <NavLink to="/login" >LOGIN</NavLink>
-                    </li>
-                    <li className="header-list-item">
-                        <NavLink to="/register" >REGISTER</NavLink>
-                    </li>
-                    <li className="header-list-item">
-                        <NavLink to="/" onClick={onLogout} >LOG-OUT</NavLink>
-                    </li>
-                    <li className="header-list-item">
-                        <NavLink to="/create" >CREATE</NavLink>
-                    </li>
+                    {!user.username && (
+                        <>
+                            <li className="header-list-item">
+                                <NavLink to="/login" >LOGIN</NavLink>
+                            </li>
+                            <li className="header-list-item">
+                                <NavLink to="/register" >REGISTER</NavLink>
+                            </li>
+                        </>
+                    )}
+
+                    {user.username && (
+                        <>
+                            <li className="header-list-item">
+                                <NavLink to="/create" >CREATE</NavLink>
+                            </li>
+                            <li className="header-list-item">
+                                <Link to="/" onClick={onLogout} >LOG-OUT</Link>
+                            </li>
+                        </>
+                    )}
                 </ul>
             </nav>
         </header>

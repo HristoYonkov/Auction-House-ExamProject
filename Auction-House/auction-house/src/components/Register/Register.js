@@ -49,7 +49,7 @@ export const Register = () => {
     }
 
     const navigate = useNavigate();
-    const { setUserSession } = useContext(AuthContext);
+    const { setUserSession, setServerErrors } = useContext(AuthContext);
 
     const registerHandler = async (e) => {
         e.preventDefault();
@@ -82,7 +82,7 @@ export const Register = () => {
 
         const response = await onRegister(formData);
         if (response?.message) {
-            return setFormValidations({ ...formValidations, serverError: response.message });
+            return setServerErrors(response.message);
         };
 
         if (response?._id) {

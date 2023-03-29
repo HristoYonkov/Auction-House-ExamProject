@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 
 import './App.css';
 import { useLocalStorage } from './hooks/localStorage';
@@ -18,17 +19,31 @@ import { AuthContext } from './context/AuthContext';
 
 function App() {
     const [user, setUser] = useLocalStorage('user', {})
+    const [errors, setErrors] = useState('');
 
     const setUserSession = (data) => {
         setUser({ ...data })
     }
 
+    const setServerErrors = (errors) => {
+        setErrors(errors);
+        setTimeout(() => {
+            setErrors('');
+        }, 3000)
+    }
+    
     return (
         <>
-            <AuthContext.Provider value={{setUserSession, user}}>
+            <AuthContext.Provider value={{ setUserSession, user, setServerErrors }}>
                 <Header />
 
                 <main id='main'>
+                    {errors.length > 0 &&
+                        <article className='err-box'>
+                            <h1>Server Error</h1>
+                            <p>{errors}</p>
+                        </article>
+                    }
                     <Routes>
                         <Route path='/' element={<Home />} />
                         <Route path='/catalog' element={<Catalog />} />
