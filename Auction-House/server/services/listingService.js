@@ -47,11 +47,11 @@ async function deleteById(id) {
     return Pizza.findByIdAndDelete(id)
 };
 
-// async function getMyPizza(id) {
-//     return await Pizza.find({ _ownerId: id })
+// async function getMyListing(id) {
+//     return await Listing.find({ _ownerId: id })
 // }
 
-async function likePizza(listingId, userId) {
+async function likeListing(listingId, userId) {
     const existing = await Listing.findById(listingId)
     existing.likes.push(userId);
     return existing.save()
@@ -64,6 +64,6 @@ module.exports = {
     update,
     getMyLikes,
     deleteById,
-    // getMyPizza,
+    // getMyListing,
     likeListing
 };

@@ -1,3 +1,6 @@
+.home {
+    background-color: whitesmoke;
+}
 .home-img-holder {
     position: relative;
     display: flex;
@@ -5,15 +8,20 @@
 }
 .home-img-holder img {
     width: 100%;
-    height: auto;
+    height: 45vh;
+    object-fit: cover;
 }
 .home-img-holder h1 {
     position: absolute;
-    color: antiquewhite;
-    text-shadow: 5px 5px 20px black;
-    letter-spacing: 1px;
+    margin: 0;
+    color: green;
+    background-color: white;
+    border-radius: 50%;
+    padding: 25px;
+    text-shadow: 2px 2px 2px black;
+    letter-spacing: 2px;
     font-size: 250%;
-    top: 10%;
+    top: 0px;
     left: 50%;
     transform: translate(-50%);
 }

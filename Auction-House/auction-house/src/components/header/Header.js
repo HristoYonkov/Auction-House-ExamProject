@@ -52,7 +52,7 @@ export const Header = () => {
                                 <NavLink to="/create" >CREATE</NavLink>
                             </li>
                             <li className="header-list-item">
-                                <Link to="/" onClick={onLogout} >LOG-OUT</Link>
+                                <Link className="redLink" to="/" onClick={onLogout} >LOG-OUT</Link>
                             </li>
                         </>
                     )}
