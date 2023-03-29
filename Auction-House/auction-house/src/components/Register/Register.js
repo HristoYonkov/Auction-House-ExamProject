@@ -1,5 +1,9 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+
+import { AuthContext } from '../../context/AuthContext';
+import { onRegister } from '../../services/authService';
 
 import './Register.css'
 
@@ -17,7 +21,7 @@ export const Register = () => {
         password: false,
         repass: false
     });
-    
+
     const onChangeHandler = (e) => {
         setFormData(state => ({ ...state, [e.target.name]: e.target.value }));
         setFormValidations(state => ({ ...state, [e.target.name]: false }));
@@ -44,11 +48,54 @@ export const Register = () => {
         }
     }
 
+    const navigate = useNavigate();
+    const { setUserSession } = useContext(AuthContext);
+
+    const registerHandler = async (e) => {
+        e.preventDefault();
+        let ifErrors = false;
+        if (formData.username === '' ||
+            (formData.username.length < 2 || formData.username.length > 10)) {
+            setFormValidations(state => ({ ...state, username: true }))
+            ifErrors = true;
+        }
+        if (formData.email === '' || formData.email !== '') {
+            const validRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+            if (!formData.email.match(validRegex)) {
+                setFormValidations(state => ({ ...state, email: true }))
+                ifErrors = true;
+            }
+        }
+        if (formData.password === '' ||
+            formData.password.length < 6 ||
+            formData.password.length > 15) {
+            setFormValidations(state => ({ ...state, password: true }))
+            ifErrors = true;
+        }
+        if (formData.repass === '' || formData.repass !== formData.password) {
+            setFormValidations(state => ({ ...state, repass: true }))
+            ifErrors = true;
+        }
+        if (ifErrors) {
+            return;
+        }
+
+        const response = await onRegister(formData);
+        if (response?.message) {
+            return setFormValidations({ ...formValidations, serverError: response.message });
+        };
+
+        if (response?._id) {
+            setUserSession(response);
+            navigate('/');
+        }
+    };
+
     return (
         <>
             <section className="register">
 
-                <form className='register-form'>
+                <form onSubmit={registerHandler} className='register-form'>
                     <h1>Register</h1>
 
                     <div className='input-wrapper'>

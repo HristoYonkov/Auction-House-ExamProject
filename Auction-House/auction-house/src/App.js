@@ -1,6 +1,7 @@
-import './App.css';
-
 import { Routes, Route } from 'react-router-dom';
+
+import './App.css';
+import { useLocalStorage } from './hooks/localStorage';
 
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
@@ -16,10 +17,15 @@ import { AuthContext } from './context/AuthContext';
 
 
 function App() {
+    const [user, setUser] = useLocalStorage('user', {})
+
+    const setUserSession = (data) => {
+        setUser({ ...data })
+    }
 
     return (
         <>
-            <AuthContext.Provider>
+            <AuthContext.Provider value={{setUserSession, user}}>
                 <Header />
 
                 <main id='main'>

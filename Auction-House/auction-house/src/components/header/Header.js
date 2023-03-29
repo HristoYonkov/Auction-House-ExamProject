@@ -1,8 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+
 import './Header.css';
+import { AuthContext } from '../../context/AuthContext';
 
 export const Header = () => {
     // https://static.vecteezy.com/system/resources/thumbnails/000/626/825/small/031218-28.jpg
+
+    const { user, setUserSession } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const onLogout = () => {
+        setUserSession({});
+        localStorage.clear();
+        navigate('/');
+    }
+
     return (
         <header>
             <NavLink className="header" to="/" >
@@ -26,7 +39,7 @@ export const Header = () => {
                         <NavLink to="/register" >REGISTER</NavLink>
                     </li>
                     <li className="header-list-item">
-                        <NavLink to="/logout" >LOG-OUT</NavLink>
+                        <NavLink to="/" onClick={onLogout} >LOG-OUT</NavLink>
                     </li>
                     <li className="header-list-item">
                         <NavLink to="/create" >CREATE</NavLink>
