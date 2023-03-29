@@ -6,7 +6,7 @@ const {
 
 const URL_PATTERN = /https?:\/\/./i;
 
-const pizzaSchema = new Schema({
+const listingSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -53,5 +53,5 @@ const pizzaSchema = new Schema({
     likes: { type: Array, default: [], required: false },
 });
 
-const Pizza = model("Pizza", pizzaSchema);
-module.exports = Pizza;
+const Listing = model("Listing", listingSchema);
+module.exports = Listing;

@@ -1,27 +1,27 @@
-const Pizza = require("../models/Pizza");
+const Listing = require("../models/Listing");
 
 async function getAll() {
-    return Pizza.find({});
+    return Listing.find({});
 }
 
 async function getByUserId(userId) {
-    return Pizza.find({ _ownerId: userId })
+    return Listing.find({ _ownerId: userId })
 
 };
 async function getById(id) {
-    return Pizza.findById(id).populate('_ownerId')
+    return Listing.findById(id).populate('_ownerId')
     
 };
 
 async function create(data) {
     //TODO add user(creator) to pizza
-    return Pizza.create(data)
+    return Listing.create(data);
 };
 
 async function getMyLikes(id) {
-    const pizzas = await Pizza.find({})
+    const listings = await Listing.find({})
     let arr = [];
-    pizzas.map(x => {
+    listings.map(x => {
         if (!!(x.likes.includes(id))) {
             arr.push(x)
         }
@@ -51,8 +51,8 @@ async function deleteById(id) {
 //     return await Pizza.find({ _ownerId: id })
 // }
 
-async function likePizza(pizzaId, userId) {
-    const existing = await Pizza.findById(pizzaId)
+async function likePizza(listingId, userId) {
+    const existing = await Listing.findById(listingId)
     existing.likes.push(userId);
     return existing.save()
 }
@@ -65,5 +65,5 @@ module.exports = {
     getMyLikes,
     deleteById,
     // getMyPizza,
-    likePizza
+    likeListing
 };
