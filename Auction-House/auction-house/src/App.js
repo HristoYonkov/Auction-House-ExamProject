@@ -12,27 +12,30 @@ import { NotFound } from './components/404/NotFound';
 import { Details } from './components/Details/Details';
 import { Create } from './components/Create/Create';
 import { Edit } from './components/Edit/Edit';
+import { AuthContext } from './context/AuthContext';
 
 
 function App() {
-    
+
     return (
         <>
-            <Header />
+            <AuthContext.Provider>
+                <Header />
 
-            <main id='main'>
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/catalog' element={<Catalog />} />
-                    <Route path='/create' element={<Create />} />
-                    <Route path='/edit' element={<Edit />} />
-                    <Route path='/login' element={<Login />} />
-                    <Route path='/register' element={<Register />} />
-                    <Route path='/details' element={<Details />} />
-                    <Route path='*' element={<NotFound />} />
-                </Routes>
+                <main id='main'>
+                    <Routes>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/catalog' element={<Catalog />} />
+                        <Route path='/create' element={<Create />} />
+                        <Route path='/edit' element={<Edit />} />
+                        <Route path='/login' element={<Login />} />
+                        <Route path='/register' element={<Register />} />
+                        <Route path='/details' element={<Details />} />
+                        <Route path='*' element={<NotFound />} />
+                    </Routes>
 
-            </main>
+                </main>
+            </AuthContext.Provider>
 
             <Footer />
         </>
