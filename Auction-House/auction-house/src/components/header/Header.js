@@ -30,18 +30,18 @@ export const Header = () => {
             <nav>
                 <ul className="header-list">
                     <li className="header-list-item">
-                        <NavLink to="/" >HOME</NavLink>
+                        <NavLink to="/" >Home</NavLink>
                     </li>
                     <li className="header-list-item">
-                        <NavLink to="/catalog" >CATALOG</NavLink>
+                        <NavLink to="/catalog" >Catalog</NavLink>
                     </li>
                     {!user.username && (
                         <>
                             <li className="header-list-item">
-                                <NavLink to="/login" >LOGIN</NavLink>
+                                <NavLink to="/login" >Login</NavLink>
                             </li>
                             <li className="header-list-item">
-                                <NavLink to="/register" >REGISTER</NavLink>
+                                <NavLink to="/register" >Register</NavLink>
                             </li>
                         </>
                     )}
@@ -49,10 +49,10 @@ export const Header = () => {
                     {user.username && (
                         <>
                             <li className="header-list-item">
-                                <NavLink to="/create" >CREATE</NavLink>
+                                <NavLink to="/create" >Create</NavLink>
                             </li>
                             <li className="header-list-item">
-                                <Link className="redLink" to="/" onClick={onLogout} >LOG-OUT</Link>
+                                <Link className="redLink" to="/" onClick={onLogout} >Log-Out</Link>
                             </li>
                         </>
                     )}
