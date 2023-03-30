@@ -119,6 +119,7 @@ export const Create = () => {
                         <option value="vehicles">Vehicles</option>
                         <option value="computers">Computers</option>
                         <option value="home-appliances">Home Appliances</option>
+                        <option value="others">Others</option>
                     </select>
                     {formValidations.category && (
                         <p className='err-msg'>You must choose an option!</p>

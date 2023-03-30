@@ -9,6 +9,7 @@
     background-color: antiquewhite;
     border-radius: 50%;
     padding: 20px;
+    width: 300px;
 }
 .create-form {
     display: flex;

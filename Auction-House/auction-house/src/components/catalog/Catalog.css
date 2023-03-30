@@ -28,8 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 45vh;
-    width: auto;
+    height: 350px;
     border-radius: 8px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     background-color: antiquewhite;
@@ -39,7 +38,7 @@
 }
 .catalog .card img {
     height: 50%;
-    /* width: auto; */
+    width: auto;
     object-fit: cover;
 }
 .catalog .card p {

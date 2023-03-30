@@ -5,7 +5,7 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-    padding: 50px;
+    padding: 0px 50px 50px 50px;
 }
 
 .details-header {
@@ -24,7 +24,7 @@
 .details-content {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 1000px;
     height: 100%;
     border-radius: 8px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
