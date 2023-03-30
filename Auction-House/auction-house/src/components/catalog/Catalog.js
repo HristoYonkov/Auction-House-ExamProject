@@ -1,21 +1,24 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
 import './Catalog.css'
+import * as listingService from '../../services/listingService';
+import { OneListing } from './OneListing';
 
 export const Catalog = () => {
-
+    const [allListings, setListing] = useState([]);
+    useEffect(() => {
+        listingService.getAll()
+            .then(listings => setListing(listings));
+    }, []);
 
     return (
         <>
             <h1 className='catalog-header'>Catalog</h1>
             <section className="catalog">
 
-                <article className='card'>
-                    <h3>Alpha Romeo</h3>
-                    <img src="https://g1-bg.cars.bg/2023-03-24_1/641d60a34ea732938e0fc562o.jpg" alt="car" />
-                    <p>Category: <span>Vehicles</span></p>
-                    <p>Current price: <span>$3000</span></p>
-                    <Link type='button' to="/details"><button>Details</button></Link>
-                </article>
+                {allListings.map(listing => 
+                    <OneListing key={listing._id} listing={listing}  />  
+                )}
 
             </section>
         </>

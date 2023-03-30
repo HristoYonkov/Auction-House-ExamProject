@@ -51,7 +51,7 @@ function App() {
                         <Route path='/edit' element={<Edit />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
-                        <Route path='/details' element={<Details />} />
+                        <Route path='/details/:listingId' element={<Details />} />
                         <Route path='*' element={<NotFound />} />
                     </Routes>
 

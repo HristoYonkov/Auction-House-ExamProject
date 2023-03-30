@@ -29,6 +29,7 @@
     flex-direction: column;
     align-items: center;
     height: 350px;
+    width: 250px;
     border-radius: 8px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     background-color: antiquewhite;
@@ -36,9 +37,13 @@
 .catalog .card h3 {
     letter-spacing: 1px;
 }
-.catalog .card img {
+.card-image-holder {
     height: 50%;
-    width: auto;
+    width: 100%;
+}
+.catalog .card img {
+    height: 100%;
+    width: 100%;
     object-fit: cover;
 }
 .catalog .card p {

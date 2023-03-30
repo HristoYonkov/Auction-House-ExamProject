@@ -2,7 +2,7 @@ const baseUrl = 'http://localhost:3030';
 
 export const getAll = async () => {
     try {
-        const response = await fetch(`${baseUrl}/pizza`);
+        const response = await fetch(`${baseUrl}/listing`);
         const result = await response.json();
         return result
     } catch (error) {
