@@ -11,6 +11,20 @@ listingController.get("/", async (req, res) => {
     }
 });
 
+listingController.post("/", async (req, res) => {
+    try {
+        const data = Object.assign({ _ownerId: req.user._id }, req.body)
+        const listing = await create(data);
+        //todo error
+        res.json(listing)
+    } catch (error) {
+        // const message = parseError(err)
+        console.log(error);
+        res.status(400).json({ error: error.message })
+    }
+    res.end()
+});
+
 listingController.get('/my-listings', async (req, res) => {
     const listings = await getByUserId(req.user._id);
     res.status(200).json(listings)
@@ -40,19 +54,6 @@ listingController.get('/:id', async (req, res) => {
     }
 });
 
-listingController.post("/", async (req, res) => {
-    try {
-        const data = Object.assign({ _ownerId: req.user._id }, req.body)
-        const listing = await create(data);
-        //todo error
-        res.json(listing)
-    } catch (error) {
-        // const message = parseError(err)
-        console.log(error);
-        res.status(400).json({ error: error.message })
-    }
-    res.end()
-});
 
 
 listingController.put('/:id', async (req, res) => {

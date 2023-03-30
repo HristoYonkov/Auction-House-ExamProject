@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './Create.css';
+import { AuthContext } from '../../context/AuthContext';
+import * as listingService from '../../services/listingService';
 
 export const Create = () => {
     const [formData, setFormData] = useState({
@@ -26,7 +29,7 @@ export const Create = () => {
 
     const onBlurHandler = (e) => {
         if (e.target.name === 'title' &&
-            (e.target.value.length < 2 || e.target.value.length > 10)) {
+            (e.target.value.length < 2 || e.target.value.length > 15)) {
             setFormValidations(state => ({ ...state, [e.target.name]: true }))
 
         } else if (e.target.name === 'category') {
@@ -49,11 +52,14 @@ export const Create = () => {
         }
     }
 
-    const submitHandler = (e) => {
+    const navigate = useNavigate()
+    const { user, setServerErrors } = useContext(AuthContext);
+
+    const submitHandler = async (e) => {
         e.preventDefault();
         let ifErrors = false;
         if (formData.title === '' ||
-        (formData.title.length < 2 || formData.title.length > 10)) {
+            (formData.title.length < 2 || formData.title.length > 15)) {
             setFormValidations(state => ({ ...state, title: true }))
             ifErrors = true;
         }
@@ -68,20 +74,30 @@ export const Create = () => {
             ifErrors = true;
         }
         if (formData.price === '' ||
-        !(Number(formData.price) && formData.price > 0)) {
+            !(Number(formData.price) && formData.price > 0)) {
             setFormValidations(state => ({ ...state, price: true }))
             ifErrors = true;
         }
         if (formData.description === '' ||
-        (formData.description.length < 10 || formData.description.length > 200)) {
+            (formData.description.length < 10 || formData.description.length > 200)) {
             setFormValidations(state => ({ ...state, description: true }))
             ifErrors = true;
         }
         if (ifErrors) {
             return;
         }
+        console.log(formData.title);
+        const response = await listingService.create(formData, user.accessToken);
 
-        console.log(e.target);
+        if (response?.message) {
+            return setServerErrors(response?.message);
+
+            // return setErrors(state => ({ ...state, ["serverError"]: response.message.split(": ")[2].split(", ")[0] }));
+        };
+
+        if (response?._id) {
+            navigate(`/catalog/details/${response._id}`)
+        }
     }
 
     return (
@@ -102,7 +118,7 @@ export const Create = () => {
                         onBlur={onBlurHandler}
                     />
                     {formValidations.title && (
-                        <p className='err-msg'>Title must be between 2 and 10 characters long!</p>
+                        <p className='err-msg'>Title must be between 2 and 15 characters long!</p>
                     )}
                 </div>
 
@@ -116,10 +132,10 @@ export const Create = () => {
                         onBlur={onBlurHandler}
                     >
                         <option value="">Choose option..</option>
-                        <option value="vehicles">Vehicles</option>
-                        <option value="computers">Computers</option>
-                        <option value="home-appliances">Home Appliances</option>
-                        <option value="others">Others</option>
+                        <option value="Vehicles">Vehicles</option>
+                        <option value="Computers">Computers</option>
+                        <option value="Home Appliances">Home Appliances</option>
+                        <option value="Others">Others</option>
                     </select>
                     {formValidations.category && (
                         <p className='err-msg'>You must choose an option!</p>

@@ -4,6 +4,11 @@ async function getAll() {
     return Listing.find({});
 }
 
+async function create(data) {
+    //TODO add user(creator) to pizza
+    return Listing.create(data);
+};
+
 async function getByUserId(userId) {
     return Listing.find({ _ownerId: userId })
 
@@ -11,11 +16,6 @@ async function getByUserId(userId) {
 async function getById(id) {
     return Listing.findById(id).populate('_ownerId')
     
-};
-
-async function create(data) {
-    //TODO add user(creator) to pizza
-    return Listing.create(data);
 };
 
 async function getMyLikes(id) {
