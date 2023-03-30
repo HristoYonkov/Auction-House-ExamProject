@@ -16,10 +16,14 @@ header .img-holder {
     height: 63px;
     overflow: hidden;
     display: flex;
-    gap: 5%;
+    gap: 10%;
+    padding-right: 50px;
 }
 header .img-holder img {
     transform: scale(1.5);
+}
+header .img-holder img:hover {
+    transform: scale(2);
 }
 header h1 {
     font-weight: 400;

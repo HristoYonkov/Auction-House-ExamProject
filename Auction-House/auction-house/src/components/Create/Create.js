@@ -29,7 +29,7 @@ export const Create = () => {
 
     const onBlurHandler = (e) => {
         if (e.target.name === 'title' &&
-            (e.target.value.length < 2 || e.target.value.length > 15)) {
+            (e.target.value.length < 2 || e.target.value.length > 25)) {
             setFormValidations(state => ({ ...state, [e.target.name]: true }))
 
         } else if (e.target.name === 'category') {
@@ -59,7 +59,7 @@ export const Create = () => {
         e.preventDefault();
         let ifErrors = false;
         if (formData.title === '' ||
-            (formData.title.length < 2 || formData.title.length > 15)) {
+            (formData.title.length < 2 || formData.title.length > 25)) {
             setFormValidations(state => ({ ...state, title: true }))
             ifErrors = true;
         }
@@ -86,7 +86,7 @@ export const Create = () => {
         if (ifErrors) {
             return;
         }
-        console.log(formData.title);
+        
         const response = await listingService.create(formData, user.accessToken);
 
         if (response?.message) {
@@ -96,7 +96,8 @@ export const Create = () => {
         };
 
         if (response?._id) {
-            navigate(`/catalog/details/${response._id}`)
+            navigate(`/details/${response._id}`);
+            // navigate('/catalog');
         }
     }
 

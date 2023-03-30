@@ -11,7 +11,7 @@ const listingSchema = new Schema({
         type: String,
         required: true,
         minlength: [2, "Title must be minimum two characters!"],
-        maxlength: [15, "Title must be maximum fifteen characters!"],
+        maxlength: [25, "Title must be maximum fifteen characters!"],
     },
     category: {
         type: String,

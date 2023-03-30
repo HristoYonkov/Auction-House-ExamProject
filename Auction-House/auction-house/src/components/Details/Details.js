@@ -5,8 +5,8 @@ import * as listingService from '../../services/listingService';
 import './Details.css'
 
 export const Details = () => {
-    const { listingId } = useParams();
     const [listing, setListing] = useState({});
+    const { listingId } = useParams();
 
     useEffect(() => {
         listingService.getOneListing(listingId)
@@ -19,7 +19,7 @@ export const Details = () => {
 
     return (
 
-        <>
+        <div>
             <h1 className='details-header'>Details</h1>
 
             <section className='details'>
@@ -46,12 +46,12 @@ export const Details = () => {
                     <div className='details-footer'>
                         <div className='details-button-wrapper'>
                             <Link to="/catalog"><button>Delete</button></Link>
-                            <Link to="/edit"><button>Edit</button></Link>
+                            <Link to={`/edit/${listingId}`}><button>Edit</button></Link>
                         </div>
                     </div>
                 </article>
 
             </section>
-        </>
+        </div>
     );
 }

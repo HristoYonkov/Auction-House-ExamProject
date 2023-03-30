@@ -9,13 +9,22 @@ async function create(data) {
     return Listing.create(data);
 };
 
+async function getById(id) {
+    return Listing.findById(id).populate('_ownerId');
+};
+
+async function update(id, listing) {
+    const existing = await Listing.findById(id);
+    existing.title = listing.title;
+    existing.category = listing.category;
+    existing.imageUrl = listing.imageUrl;
+    existing.price = listing.price;
+    existing.description = listing.description;
+    return existing.save()
+}
 async function getByUserId(userId) {
     return Listing.find({ _ownerId: userId })
 
-};
-async function getById(id) {
-    return Listing.findById(id).populate('_ownerId')
-    
 };
 
 async function getMyLikes(id) {
@@ -29,19 +38,6 @@ async function getMyLikes(id) {
     return arr;
 
 }
-
-async function update(id, pizza) {
-    const existing = await Pizza.findById(id);
-    existing.name = pizza.name;
-    existing.type = pizza.type;
-    existing.ingrediants = pizza.ingrediants;
-    existing.prepTime = pizza.prepTime;
-    existing.cookTime = pizza.cookTime;
-    existing.recipe = pizza.recipe;
-    existing.img = pizza.img;
-    return existing.save()
-}
-
 
 async function deleteById(id) {
     return Pizza.findByIdAndDelete(id)

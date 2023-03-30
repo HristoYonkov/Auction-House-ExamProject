@@ -33,6 +33,27 @@ export const create = async (listing, token) => {
     }
 };
 
+export const editListing = async (listing, token) => {
+    try {
+        const response = await fetch(`${baseUrl}/listing/${listing._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                'x-authorization': token
+            },
+            body: JSON.stringify(listing)
+        });
+        const result = await response.json();
+        if (response.ok) {
+            return result
+        } else {
+            throw new Error(result.error);
+        }
+    } catch (error) {
+        return error
+    }
+};
+
 export const getOneListing = async (listingId) => {
     const response = await fetch(`${baseUrl}/listing/${listingId}`);
     const result = await response.json();

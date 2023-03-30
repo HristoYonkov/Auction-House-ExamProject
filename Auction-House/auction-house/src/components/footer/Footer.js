@@ -1,5 +1,5 @@
 import './Footer.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 export const Footer = () => {
@@ -15,7 +15,7 @@ export const Footer = () => {
                 </div>
             </section>
 
-            <section className="contacts">
+            {/* <section className="contacts">
                 <article>
                     <h3>Quick Links</h3>
                     <Link><p>Home</p></Link>
@@ -44,7 +44,7 @@ export const Footer = () => {
                         <i className="fa-brands fa-github"></i>
                     </p>
                 </article>
-            </section>
+            </section> */}
 
             <footer>Copyright © 2023 AuctionHouse. <span>Hristo Yonkov@</span><span id='sf-logo'>SoftUni</span> - All Rights Reserved.</footer>
         </div>

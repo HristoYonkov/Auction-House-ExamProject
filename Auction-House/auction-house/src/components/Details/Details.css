@@ -24,18 +24,20 @@
 .details-content {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 1000px;
     height: 500px;
     border-radius: 8px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: hidden;
 }
 
 .details-content-header {
     display: flex;
     justify-content: space-around;
     background-color: antiquewhite;
+    height: 15%;
 }
-
 .details-content-header h2 {
     font-weight: 500;
 }
@@ -47,16 +49,17 @@
 .details-content-middle {
     display: flex;
     gap: 50px;
+    height: 70%;
 }
 
 .details-image-holder {
     width: 50%;
-    height: 100%;
 }
 .details-content-middle img {
+    height: 100%;
     width: 100%;
-    /* height: auto; */
-    object-fit:cover;
+    object-fit: contain;
+    background-color: aliceblue;
 }
 
 .details-content-middle-inner {

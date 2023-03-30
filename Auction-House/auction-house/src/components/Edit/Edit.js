@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import './Edit.css';
+import * as listingService from '../../services/listingService';
+import { AuthContext } from '../../context/AuthContext';
 
 export const Edit = () => {
     const [formData, setFormData] = useState({
@@ -19,6 +22,18 @@ export const Edit = () => {
         description: false,
     });
 
+    const { listingId } = useParams();
+    const { user, setServerErrors } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        listingService.getOneListing(listingId)
+            .then(result => {
+                console.log(result);
+                setFormData(result);
+            })
+    }, [listingId]);
+
     const onChangeHandler = (e) => {
         setFormData(state => ({ ...state, [e.target.name]: e.target.value }));
         setFormValidations(state => ({ ...state, [e.target.name]: false }));
@@ -26,7 +41,7 @@ export const Edit = () => {
 
     const onBlurHandler = (e) => {
         if (e.target.name === 'title' &&
-            (e.target.value.length < 2 || e.target.value.length > 10)) {
+            (e.target.value.length < 2 || e.target.value.length > 25)) {
             setFormValidations(state => ({ ...state, [e.target.name]: true }))
 
         } else if (e.target.name === 'category') {
@@ -49,11 +64,11 @@ export const Edit = () => {
         }
     }
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
         let ifErrors = false;
         if (formData.title === '' ||
-        (formData.title.length < 2 || formData.title.length > 10)) {
+            (formData.title.length < 2 || formData.title.length > 25)) {
             setFormValidations(state => ({ ...state, title: true }))
             ifErrors = true;
         }
@@ -68,12 +83,12 @@ export const Edit = () => {
             ifErrors = true;
         }
         if (formData.price === '' ||
-        !(Number(formData.price) && formData.price > 0)) {
+            !(Number(formData.price) && formData.price > 0)) {
             setFormValidations(state => ({ ...state, price: true }))
             ifErrors = true;
         }
         if (formData.description === '' ||
-        (formData.description.length < 10 || formData.description.length > 200)) {
+            (formData.description.length < 10 || formData.description.length > 200)) {
             setFormValidations(state => ({ ...state, description: true }))
             ifErrors = true;
         }
@@ -81,7 +96,14 @@ export const Edit = () => {
             return;
         }
 
-        console.log(e.target);
+        const response = await listingService.editListing(formData, user.accessToken);
+        console.log(response);
+        if (response?.message) {
+            return setServerErrors(response.message.split(":")[2]);
+        }
+        if (response?._id) {
+            navigate(`/details/${listingId}`)
+        }
     }
 
     return (
@@ -116,9 +138,10 @@ export const Edit = () => {
                         onBlur={onBlurHandler}
                     >
                         <option value="">Choose option..</option>
-                        <option value="vehicles">Vehicles</option>
-                        <option value="computers">Computers</option>
-                        <option value="home-appliances">Home Appliances</option>
+                        <option value="Vehicles">Vehicles</option>
+                        <option value="Computers">Computers</option>
+                        <option value="Home Appliances">Home Appliances</option>
+                        <option value="Others">Others</option>
                     </select>
                     {formValidations.category && (
                         <p className='err-msg'>You must choose an option!</p>

@@ -44,7 +44,8 @@
 .catalog .card img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: aliceblue;
 }
 .catalog .card p {
     margin: 0 0 5px 10px;

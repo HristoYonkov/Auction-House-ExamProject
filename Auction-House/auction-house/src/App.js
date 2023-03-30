@@ -31,7 +31,7 @@ function App() {
             setErrors('');
         }, 3000)
     }
-    
+
     return (
         <>
             <AuthContext.Provider value={{ setUserSession, user, setServerErrors }}>
@@ -48,7 +48,7 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/catalog' element={<Catalog />} />
                         <Route path='/create' element={<Create />} />
-                        <Route path='/edit' element={<Edit />} />
+                        <Route path='/edit/:listingId' element={<Edit />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/details/:listingId' element={<Details />} />
@@ -56,9 +56,9 @@ function App() {
                     </Routes>
 
                 </main>
-            </AuthContext.Provider>
 
-            <Footer />
+                <Footer />
+            </AuthContext.Provider>
         </>
     );
 }
