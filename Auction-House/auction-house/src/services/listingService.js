@@ -32,3 +32,9 @@ export const create = async (listing, token) => {
         return error
     }
 };
+
+export const getOneListing = async (listingId) => {
+    const response = await fetch(`${baseUrl}/listing/${listingId}`);
+    const result = await response.json();
+    return result
+};
