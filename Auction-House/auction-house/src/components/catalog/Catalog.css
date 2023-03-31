@@ -74,3 +74,36 @@
 .catalog .card a {
     all: unset;
 }
+
+/* for no Listings */
+.no-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.no-content h1 {
+    font-size: 30px;
+    font-weight: 400;
+    font-style: oblique;
+}
+
+.no-content button:hover {
+    background-color: green;
+    scale: 1.1;
+    transition: ease-in-out 300ms;
+}
+.no-content button {
+    padding: 0;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    width: 120px;
+    background-color: brown;
+    font-size: 18px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+.no-content a {
+    all: unset;
+}

@@ -7,16 +7,18 @@
 }
 
 .err-box {
-    position: absolute;
-    top: 63px;
+    position: sticky;
+    top: 70px;
     left: 50%;
     transform: translate(-50%);
-    background-color: red;
+    background-color: darkred;
     color: antiquewhite;
-    min-width: 200px;
+    width: 300px;
     padding: 20px;
     border-radius: 10px;
+    border: 5px solid gold;
     z-index: 1;
+    box-shadow: rgba(100, 100, 111, 0.2) 5px 7px 29px 5px;  
 }
 .err-box h1 {
     text-align: center;

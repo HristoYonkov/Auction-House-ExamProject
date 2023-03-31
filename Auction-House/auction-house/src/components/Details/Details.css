@@ -40,10 +40,12 @@
 }
 .details-content-header h2 {
     font-weight: 500;
+    color: chocolate;
 }
 
 .details-content-header span {
-    font-weight: 700;
+    font-weight: 600;
+    color: black;
 }
 
 .details-content-middle {
@@ -84,7 +86,7 @@
     align-self: center;
 }
 .details-content-middle-inner p .span-bold {
-    font-weight: 700;
+    font-weight: 600;
     font-size: 20px;
 }
 
@@ -109,12 +111,12 @@
 /* Buttons */
 .details-footer {
     background-color: antiquewhite;
+    height: 15%;
 }
 
 .details-button-wrapper {
     display: flex;
     width: 50%;
-    /* flex-wrap: wrap; */
     justify-content: space-around;
     padding-bottom: 20px;
 }
@@ -135,4 +137,25 @@
 }
 .details-button-wrapper a {
     all: unset;
+}
+
+.details-alert-wrapper {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+p.details-alert {
+    font-size: 25px;
+    color: red;
+}
+.details-alert-wrapper a {
+    all: unset;
+    align-self: center;
+}
+.details-content-middle-inner input {
+    width: 50%;
+    align-self: center;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
 }

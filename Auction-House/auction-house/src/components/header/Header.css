@@ -5,7 +5,7 @@ header {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    padding: 0 100px;
+    padding: 0 50px;
     position: sticky;
     top: 0px;
     z-index: 2;
@@ -16,23 +16,27 @@ header .img-holder {
     height: 63px;
     overflow: hidden;
     display: flex;
-    gap: 10%;
-    padding-right: 50px;
-}
-header .img-holder img {
-    transform: scale(1.5);
-}
-header .img-holder img:hover {
-    transform: scale(2);
+    align-items: center;
 }
 header h1 {
     font-weight: 400;
     letter-spacing: 5px;
     margin: 10px;
+    z-index: 1;
 }
 header h1 span {
     color: purple;
     font-weight: 700;
+}
+.image {
+    display: flex;
+    height: 100%;
+}
+header .image img {
+    transform: scale(1.5);
+}
+header .image img:hover {
+    transform: scale(2);
 }
 
 .greetings {
@@ -51,7 +55,7 @@ header h1 span {
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 30px;
 }
 
 a:hover{

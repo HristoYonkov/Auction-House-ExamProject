@@ -21,11 +21,13 @@ export const Header = () => {
             <NavLink className="header" to="/" >
                 <div className="img-holder">
                     <h1>Auction<span>House</span></h1>
-                    <img src="https://static.vecteezy.com/system/resources/thumbnails/000/626/825/small/031218-28.jpg" alt="hammer" />
+                    <div className="image">
+                        <img src="https://static.vecteezy.com/system/resources/thumbnails/000/626/825/small/031218-28.jpg" alt="hammer" />
+                    </div>
                 </div>
             </NavLink>
             {user.username && (
-                <h4 className="greetings"><span>Hi there</span>: {user.username}</h4>
+                <h4 className="greetings"><span>Hi there:</span> {user.username}</h4>
             )}
             <nav>
                 <ul className="header-list">
@@ -49,7 +51,7 @@ export const Header = () => {
                     {user.username && (
                         <>
                             <li className="header-list-item">
-                                <NavLink to="/create" >Create</NavLink>
+                                <NavLink to="/create" >add-Listing</NavLink>
                             </li>
                             <li className="header-list-item">
                                 <Link className="redLink" to="/" onClick={onLogout} >Log-Out</Link>

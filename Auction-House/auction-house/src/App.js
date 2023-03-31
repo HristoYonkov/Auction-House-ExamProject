@@ -40,7 +40,7 @@ function App() {
                 <main id='main'>
                     {errors.length > 0 &&
                         <article className='err-box'>
-                            <h1>Server Error</h1>
+                            <h1>Server Error:</h1>
                             <p>{errors}</p>
                         </article>
                     }

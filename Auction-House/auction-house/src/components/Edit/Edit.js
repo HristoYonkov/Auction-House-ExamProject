@@ -29,7 +29,6 @@ export const Edit = () => {
     useEffect(() => {
         listingService.getOneListing(listingId)
             .then(result => {
-                console.log(result);
                 setFormData(result);
             })
     }, [listingId]);
@@ -97,7 +96,7 @@ export const Edit = () => {
         }
 
         const response = await listingService.editListing(formData, user.accessToken);
-        console.log(response);
+        
         if (response?.message) {
             return setServerErrors(response.message.split(":")[2]);
         }
