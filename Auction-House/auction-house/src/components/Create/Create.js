@@ -88,7 +88,7 @@ export const Create = () => {
         }
         
         const response = await listingService.create(formData, user.accessToken);
-
+        
         if (response?.message) {
             return setServerErrors(response?.message);
             

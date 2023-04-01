@@ -27,7 +27,7 @@ export const Header = () => {
                 </div>
             </NavLink>
             {user.username && (
-                <h4 className="greetings"><span>Hi there:</span> {user.username}</h4>
+                <h4 className="greetings"><span>Welcome:</span> {user.username}</h4>
             )}
             <nav>
                 <ul className="header-list">
