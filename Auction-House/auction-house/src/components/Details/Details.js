@@ -74,7 +74,7 @@ export const Details = () => {
                             )}
                             {!user._id && (
                                 <div className='details-alert-wrapper'>
-                                    <p className='details-alert'>You must be Loged-In to be able to bid!</p>
+                                    <p className='details-alert'>You must be Logged-In to be able to bid!</p>
                                     <Link to={'/login'}><button>Log-In</button></Link>
                                 </div>
                             )}
@@ -116,7 +116,9 @@ export const Details = () => {
                         </div>
 
                         {listing?.bidder?._id && (
-                            <h2>Highest bidder: <span>{listing.bidder.username}</span></h2>
+                            <div className='hightes-bidder'>
+                                <h2>Highest bidder: <span>{listing.bidder.username}</span></h2>
+                            </div>
                         )}
                     </div>
                 </article>

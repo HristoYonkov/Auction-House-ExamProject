@@ -113,8 +113,8 @@
     background-color: antiquewhite;
     height: 15%;
     display: flex;
+    gap: 50px;
 }
-
 .details-button-wrapper {
     display: flex;
     width: 50%;
@@ -138,6 +138,10 @@
 }
 .details-button-wrapper a {
     all: unset;
+}
+
+.hightes-bidder {
+    width: 50%;
 }
 
 .details-alert-wrapper {
