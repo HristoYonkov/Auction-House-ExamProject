@@ -10,7 +10,7 @@ async function create(data) {
 };
 
 async function getById(id) {
-    return Listing.findById(id).populate('_ownerId');
+    return Listing.findById(id).populate('_ownerId').populate('bidder');
 };
 
 async function update(id, listing) {
@@ -22,9 +22,18 @@ async function update(id, listing) {
     existing.description = listing.description;
     return existing.save()
 }
+
+async function bidListing(listingId, userId, listing) {
+    const existing = await Listing.findById(listingId)
+    existing.bidder = userId;
+    existing.price = listing.price
+    return existing.save()
+}
+
+// ------------------------------------------------------------------------------------------------
+
 async function getByUserId(userId) {
     return Listing.find({ _ownerId: userId })
-
 };
 
 async function getMyLikes(id) {
@@ -47,11 +56,6 @@ async function deleteById(id) {
 //     return await Listing.find({ _ownerId: id })
 // }
 
-async function likeListing(listingId, userId) {
-    const existing = await Listing.findById(listingId)
-    existing.likes.push(userId);
-    return existing.save()
-}
 module.exports = {
     getAll,
     getByUserId,
@@ -61,5 +65,5 @@ module.exports = {
     getMyLikes,
     deleteById,
     // getMyListing,
-    likeListing
+    bidListing,
 };

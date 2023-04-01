@@ -46,3 +46,26 @@ export const onLogin = async (data) => {
         return error;
     }
 }
+
+export const getUser = async (userId) => {
+    try {
+        const response = await fetch(`${baseUrl}/user`, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userId)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            return result;
+        } else {
+            throw new Error(result.error);
+        }
+
+    } catch (error) {
+        return error;
+    }
+}

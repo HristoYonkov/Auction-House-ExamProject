@@ -91,12 +91,12 @@ export const Create = () => {
 
         if (response?.message) {
             return setServerErrors(response?.message);
-
+            
             // return setErrors(state => ({ ...state, ["serverError"]: response.message.split(": ")[2].split(", ")[0] }));
         };
 
         if (response?._id) {
-            navigate(`/details/${response._id}`);
+            navigate(`/catalog`);
             // navigate('/catalog');
         }
     }

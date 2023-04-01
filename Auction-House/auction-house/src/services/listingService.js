@@ -10,6 +10,12 @@ export const getAll = async () => {
     }
 };
 
+export const getOneListing = async (listingId) => {
+    const response = await fetch(`${baseUrl}/listing/${listingId}`);
+    const result = await response.json();
+    return result
+};
+
 export const create = async (listing, token) => {
 
     try {
@@ -54,8 +60,23 @@ export const editListing = async (listing, token) => {
     }
 };
 
-export const getOneListing = async (listingId) => {
-    const response = await fetch(`${baseUrl}/listing/${listingId}`);
-    const result = await response.json();
-    return result
+export const bidListing = async (listingId, token, price) => {
+    try {
+        const response = await fetch(`${baseUrl}/listing/bid/${listingId}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                'x-authorization': token
+            },
+            body: JSON.stringify(price)
+        });
+        const result = await response.json();
+        if (response.ok) {
+            return result
+        } else {
+            throw new Error(result.err);
+        }
+    } catch (error) {
+        return error
+    }
 };

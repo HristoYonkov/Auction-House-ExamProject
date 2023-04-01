@@ -1,5 +1,5 @@
 .details {
-    min-height: 50vh;
+    min-height: 60vh;
     background-color: whitesmoke;
     display: flex;
     flex-wrap: wrap;
@@ -38,12 +38,12 @@
     background-color: antiquewhite;
     height: 15%;
 }
-.details-content-header h2 {
+.details-content-header h2, .details-footer h2 {
     font-weight: 500;
     color: chocolate;
 }
 
-.details-content-header span {
+.details-content-header span, .details-footer h2 span {
     font-weight: 600;
     color: black;
 }
@@ -112,6 +112,7 @@
 .details-footer {
     background-color: antiquewhite;
     height: 15%;
+    display: flex;
 }
 
 .details-button-wrapper {
@@ -159,3 +160,18 @@ p.details-alert {
     border: 1px solid black;
     border-radius: 5px;
 }
+.details-content-middle-inner .err-msg {
+    color: red;
+    margin: 0;
+}
+
+/* .details-footer p {
+    font-weight: 500;
+    color: chocolate;
+    font-size: 25px;
+    margin: 0;
+    align-self: center;
+}
+.details-footer p span {
+    color: black;
+} */
