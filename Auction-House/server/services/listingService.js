@@ -39,8 +39,6 @@ async function followListing(listingId, userId) {
     existing.follows.push(userId);
     return existing.save()
 }
-// ------------------------------------------------------------------------------------------------
-
 
 async function getUserFollows(id) {
     const listings = await Listing.find({})
@@ -52,6 +50,18 @@ async function getUserFollows(id) {
     })
     return arr;
 }
+
+async function unfollowListing(id, userId) {
+    const existing = await Listing.findById(id);
+    existing.follows = existing.follows.filter(x => x != userId);
+    console.log(existing);
+
+    return existing.save();
+}
+
+// ------------------------------------------------------------------------------------------------
+
+
 
 async function deleteById(id) {
     return Pizza.findByIdAndDelete(id)
@@ -71,5 +81,6 @@ module.exports = {
     deleteById,
     bidListing,
     followListing,
+    unfollowListing,
     // getMyListing,
 };

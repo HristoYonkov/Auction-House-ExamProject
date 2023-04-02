@@ -25,7 +25,7 @@ export const Details = () => {
                 setisFollowed(result?.follows.includes(user?._id));
             })
             .catch(err => console.log(err))
-    }, [listingId, navigate]);
+    }, [listingId, navigate, user?._id]);
 
     const onChangeHandler = (e) => {
         setPriceError(false)
@@ -54,6 +54,16 @@ export const Details = () => {
         const response = await listingService.followListing(listing._id, user.accessToken);
         if (response._id) {
             setisFollowed(true);
+            navigate('/catalog')
+        }
+    }
+
+    const unfollowHandler = async () => {
+        try {
+            await listingService.unfollowListing(listing._id, user.accessToken)
+            navigate(`/my-auctions`);
+        } catch (error) {
+            console.log(error);
         }
     }
 
@@ -71,7 +81,7 @@ export const Details = () => {
                             <button onClick={followHandler}>Follow</button>
                         )}
                         {user?._id && user._id !== listing?._ownerId?._id && isFollowed && (
-                            <button onClick={followHandler}>Unfollow</button>
+                            <button onClick={unfollowHandler}>Unfollow</button>
                         )}
                         <h2>Listed by: <span>{listing?._ownerId?.username}</span></h2>
                     </div>

@@ -13,7 +13,7 @@ export const MyAuctions = () => {
     const { user } = useContext(AuthContext);
     useEffect(() => {
         listingService.getUserListings(user.accessToken)
-            .then(myListings => setMyListings([]))
+            .then(myListings => setMyListings(myListings))
     }, [user.accessToken]);
 
     useEffect(() => {
@@ -27,7 +27,7 @@ export const MyAuctions = () => {
                     // setLoaded(false)
                     // setIsEmpty(true)
                 }
-                setUserFollows([])
+                setUserFollows(data)
             });
     }, [user.accessToken]);
 
@@ -50,6 +50,7 @@ export const MyAuctions = () => {
 
                     </div>
                 </div>
+                
                 <div className='my-listings'>
                     <h2 className='my-listings-header'>My Follows</h2>
                     <div className='my-listings-wrapper'>

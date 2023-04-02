@@ -1,6 +1,7 @@
 const listingController = require("express").Router();
 
-const { getAll, create, getById, getByUserId, getUserFollows, bidListing, update, followListing } = require("../services/listingService");
+const { getAll, create, getById, getByUserId,
+    getUserFollows, bidListing, update, followListing, unfollowListing } = require("../services/listingService");
 
 listingController.get("/", async (req, res) => {
     try {
@@ -113,27 +114,19 @@ listingController.get('/:id', async (req, res) => {
     }
 });
 
+listingController.get('/unfollow/:id', async (req, res) => {
+    try {
+        const listing = await getById(req.params.id);
+        const result = await unfollowListing(listing._id, req.user._id);
+        return res.status(200).json(result);
+    } catch (error) {
+        res.status(400).json({ err: error.message });
+        console.log(error);
+    }
+});
+
 // ----------------------------------------------------------------------------------------
 
-
-// listingController.get('/bid/:id', async (req, res) => {
-//     try {
-//         const listing = await getById(req.params.id)
-//         if (listing._ownerId._id != req.user._id &&
-//             listing.likes.map(x => x.includes(req.user?._id) == false)) {
-//             try {
-//                 await likelisting(req.params.id, req.user._id);
-//                 const listing = await getById(req.params.id)
-//                 return res.status(200).json(listing)
-//             } catch (error) {
-//                 res.status(400).json({ err: error.message })
-//             }
-//         }
-//     } catch (error) {
-//         res.status(400).json({ err: error.message })
-
-//     }
-// });
 
 listingController.delete('/:id', async (req, res) => {
     try {
