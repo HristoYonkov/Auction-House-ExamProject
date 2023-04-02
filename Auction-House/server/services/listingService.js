@@ -30,11 +30,17 @@ async function bidListing(listingId, userId, listing) {
     return existing.save()
 }
 
-// ------------------------------------------------------------------------------------------------
-
 async function getByUserId(userId) {
     return Listing.find({ _ownerId: userId })
 };
+
+async function followListing(listingId, userId) {
+    const existing = await Listing.findById(listingId)
+    existing.follows.push(userId);
+    return existing.save()
+}
+// ------------------------------------------------------------------------------------------------
+
 
 async function getMyLikes(id) {
     const listings = await Listing.find({})
@@ -64,6 +70,7 @@ module.exports = {
     update,
     getMyLikes,
     deleteById,
-    // getMyListing,
     bidListing,
+    followListing,
+    // getMyListing,
 };

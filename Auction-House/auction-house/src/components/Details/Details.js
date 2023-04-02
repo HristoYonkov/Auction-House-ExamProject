@@ -8,6 +8,7 @@ import './Details.css'
 export const Details = () => {
     const [listing, setListing] = useState({});
     const [price, changePrice] = useState({ price: '' });
+    const [isFollowed, setisFollowed] = useState(false);
     const [priceError, setPriceError] = useState(false);
 
     const { listingId } = useParams();
@@ -18,9 +19,10 @@ export const Details = () => {
         listingService.getOneListing(listingId)
             .then(result => {
                 if (!result._id) {
-                    navigate('/catalog')
+                    navigate('/catalog');
                 }
                 setListing(result);
+                setisFollowed(result?.follows.includes(user?._id));
             })
             .catch(err => console.log(err))
     }, [listingId, navigate]);
@@ -50,7 +52,12 @@ export const Details = () => {
 
     const followHandler = async () => {
         console.log('follow')
+        const response = await listingService.followListing(listing._id, user.accessToken);
+        if (response._id) {
+            setisFollowed(true);
+        }
     }
+
     return (
 
         <div>
@@ -61,7 +68,7 @@ export const Details = () => {
                 <article className='details-content'>
                     <div className='details-content-header'>
                         <h2>{listing.title}</h2>
-                        {user?._id && user._id !== listing?._ownerId?._id && (
+                        {user?._id && user._id !== listing?._ownerId?._id && !isFollowed && (
                             <button onClick={followHandler}>Follow</button>
                         )}
                         <h2>Listed by: <span>{listing?._ownerId?.username}</span></h2>

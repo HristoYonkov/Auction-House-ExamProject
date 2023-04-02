@@ -1,6 +1,6 @@
 const listingController = require("express").Router();
 
-const { getAll, create, getById, getByUserId, getMyLikes, bidListing, update } = require("../services/listingService");
+const { getAll, create, getById, getByUserId, getMyLikes, bidListing, update, followListing } = require("../services/listingService");
 
 listingController.get("/", async (req, res) => {
     try {
@@ -19,7 +19,7 @@ listingController.post("/", async (req, res) => {
         res.json(listing)
     } catch (error) {
         // const message = parseError(err)
-        
+
         res.status(400).json({ error: error.message })
     }
     res.end()
@@ -28,11 +28,11 @@ listingController.post("/", async (req, res) => {
 listingController.put('/:id', async (req, res) => {
     try {
         const listing = await getById(req.params.id);
-        
+
         if (listing.bidder) {
             return res.status(403).json({ message: 'This Listing has a bidder!' })
         }
-        
+
         if (req.user._id != listing._ownerId._id) {
             return res.status(403).json({ message: 'You cannot modify this record' })
         }
@@ -45,58 +45,77 @@ listingController.put('/:id', async (req, res) => {
 });
 
 listingController.put('/bid/:id', async (req, res) => {
-    
     try {
         const listing = await getById(req.params.id);
-        
-        if (listing._ownerId._id != req.user._id &&
-            listing.bidder != req.user._id && 
-            req.body.price > listing.price) {
-                try {
-                    await bidListing(req.params.id, req.user._id, req.body);
-                    const listing = await getById(req.params.id);
-                    return res.status(200).json(listing);
-                } catch (error) {
-                    res.status(400).json({ err: error.message });
-                }
-            }
-            throw new Error('You cannot place your bid!');
-        } catch (error) {
-            res.status(400).json({ err: error.message })
-            
-        }
-    });
-    
-    listingController.get('/my-listings', async (req, res) => {
-        const listings = await getByUserId(req.user._id);
-        res.status(200).json(listings)
-    });
-    
-    listingController.get('/:id', async (req, res) => {
-        try {
-            const listing = await getById(req.params.id)
-            
-            if (!listing) {
-                throw new Error('listing does not exist')
-            }
-            return res.status(200).json(listing)
-        } catch (error) {
-            res.status(400).json({ error })
-            
-        }
-    });
 
-    // ----------------------------------------------------------------------------------------
-    
-    listingController.get('/my-likes', async (req, res) => {
-        try {
-            const listings = await getMyLikes(req.user._id)
-            return res.status(200).json(listings)
-        } catch (error) {
-            console.log(error);
-            res.status(400).json({ error: error.message })
+        if (listing._ownerId._id != req.user._id &&
+            listing.bidder != req.user._id &&
+            req.body.price > listing.price) {
+            try {
+                await bidListing(req.params.id, req.user._id, req.body);
+                const listing = await getById(req.params.id);
+                return res.status(200).json(listing);
+            } catch (error) {
+                res.status(400).json({ err: error.message });
+            }
         }
-    });
+        throw new Error('You cannot place your bid!');
+    } catch (error) {
+        res.status(400).json({ err: error.message })
+
+    }
+});
+
+listingController.get('/my-listings', async (req, res) => {
+    const listings = await getByUserId(req.user._id);
+    res.status(200).json(listings)
+});
+
+listingController.get('/follow/:id', async (req, res) => {
+    try {
+        const listing = await getById(req.params.id)
+        if (listing._ownerId._id != req.user._id
+            && listing.follows.map(x => x.includes(req.user?._id) == false)) {
+            try {
+                await followListing(req.params.id, req.user._id);
+                const listing = await getById(req.params.id)
+                return res.status(200).json(listing)
+            } catch (error) {
+                res.status(400).json({ err: error.message })
+            }
+        }
+    } catch (error) {
+        res.status(400).json({ err: error.message })
+
+    }
+});
+
+listingController.get('/my-follows', async (req, res) => {
+    try {
+        const listings = await getMyLikes(req.user._id)
+        return res.status(200).json(listings)
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ error: error.message })
+    }
+});
+
+listingController.get('/:id', async (req, res) => {
+    try {
+        const listing = await getById(req.params.id)
+
+        if (!listing) {
+            throw new Error('listing does not exist')
+        }
+        return res.status(200).json(listing)
+    } catch (error) {
+        res.status(400).json({ error })
+
+    }
+});
+
+// ----------------------------------------------------------------------------------------
+
 
 // listingController.get('/bid/:id', async (req, res) => {
 //     try {

@@ -91,3 +91,22 @@ export const getUserListings = async (token) => {
     const result = await response.json();
     return result;
 }
+
+export const followListing = async (listingId, token) => {
+    try {
+        const response = await fetch(`${baseUrl}/listing/follow/${listingId}`, {
+            headers: {
+                'content-type': 'application/json',
+                'x-authorization': token
+            }
+        });
+        const result = await response.json();
+        if (response.ok) {
+            return result
+        } else {
+            throw new Error(result.error);
+        }
+    } catch (error) {
+        return error
+    }
+}
