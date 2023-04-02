@@ -1,8 +1,12 @@
-.my-auctions {
+.my-section {
     min-height: 75vh;
+}
+
+.my-auctions {
     display: flex;
     padding: 50px;
     gap: 5px;
+    /* margin-bottom: 20vh; */
 }
 
 .myAuctions-header {
@@ -18,9 +22,9 @@
 
 /* my-listing section */
 .my-listings {
+    min-height: 30vh;
     width: 50%;
     background-color: white;
-    min-height: 30vh;
     position: relative;
     display: flex;
     flex-direction: column;

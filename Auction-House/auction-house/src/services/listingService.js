@@ -148,3 +148,42 @@ export const unfollowListing = async (listingId, token) => {
         return error
     }
 };
+
+export const endAuction = async (listingId, token) => {
+    try {
+        const response = await fetch(`${baseUrl}/listing/end-auction/${listingId}`, {
+            headers: {
+                'content-type': 'application/json',
+                'x-authorization': token
+            }
+        });
+        const result = await response.json();
+        if (response.ok) {
+            return result
+        } else {
+            throw new Error(result.error);
+        }
+    } catch (error) {
+        return error
+    }
+}
+
+export const deleteListing = async (listingId, token) => {
+    try {
+        const response = await fetch(`${baseUrl}/listing/${listingId}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'x-authorization': token
+            }
+        });
+        const result = await response.json();
+        if (response.ok) {
+            return result
+        } else {
+            throw new Error(result.error);
+        }
+    } catch (error) {
+        return error
+    }
+}

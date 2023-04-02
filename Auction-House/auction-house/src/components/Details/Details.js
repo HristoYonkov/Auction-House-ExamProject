@@ -18,7 +18,7 @@ export const Details = () => {
     useEffect(() => {
         listingService.getOneListing(listingId)
             .then(result => {
-                if (!result._id) {
+                if (!result._id || result.isClosed) {
                     navigate('/catalog');
                 }
                 setListing(result);
@@ -54,7 +54,7 @@ export const Details = () => {
         const response = await listingService.followListing(listing._id, user.accessToken);
         if (response._id) {
             setisFollowed(true);
-            navigate('/catalog')
+            navigate('/catalog');
         }
     }
 
@@ -65,6 +65,17 @@ export const Details = () => {
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const endAuctionHandler = async () => {
+        
+        try {
+            await listingService.endAuction(listing._id, user.accessToken);
+            navigate(`/my-auctions`);
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     return (
@@ -132,9 +143,8 @@ export const Details = () => {
 
                     <div className='details-footer'>
                         <div className='details-button-wrapper'>
-                            {user?._id === listing?._ownerId?._id && (
-                                <Link to="/catalog"><button>End Auction</button></Link>
-
+                            {user?._id === listing?._ownerId?._id && !listing.isClosed &&(
+                                <button onClick={endAuctionHandler}>Close Auction</button>
                             )}
                             {user?._id === listing?._ownerId?._id && !listing?.bidder && (
                                 <Link to={`/edit/${listingId}`}><button>Edit</button></Link>

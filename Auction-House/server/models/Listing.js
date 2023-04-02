@@ -36,6 +36,7 @@ const listingSchema = new Schema({
         minlength: [10, "Description must be minimum one characters!"],
         maxlength: [200, "Description must be maximum hundred characters!"],
     },
+    isClosed: {type: Boolean, default: false},
     bidder: { type: ObjectId, ref: "User", required: false },
     _ownerId: { type: ObjectId, ref: "User", required: true },
     follows: { type: Array, default: [], required: false },

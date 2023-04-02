@@ -1,16 +1,31 @@
 import { useEffect, useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import './MyAuctions.css';
 import { ListingItem } from './ListingItem/ListingItem';
 import * as listingService from '../../services/listingService';
 import { AuthContext } from '../../context/AuthContext';
-import { Link } from 'react-router-dom';
 
 export const MyAuctions = () => {
     const [myListings, setMyListings] = useState([]);
     const [userFollows, setUserFollows] = useState([]);
 
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const deleteHandler = async (listing, user) => {
+        const result = await listingService.deleteListing(listing, user.accessToken);
+        navigate('/my-auctions');
+
+        if (result?.message) {
+
+        }
+    }
+
+    const takeListing = (listing) => {
+        deleteHandler(listing, user);
+    }
+
     useEffect(() => {
         listingService.getUserListings(user.accessToken)
             .then(myListings => setMyListings(myListings))
@@ -32,7 +47,7 @@ export const MyAuctions = () => {
     }, [user.accessToken]);
 
     return (
-        <div>
+        <div className='my-section'>
             <h1 className='myAuctions-header'>My Auctions</h1>
             <section className='my-auctions'>
 
@@ -40,7 +55,10 @@ export const MyAuctions = () => {
                     <h2 className='my-listings-header'>My Published Auctions</h2>
                     <div className='my-listings-wrapper'>
 
-                        {myListings.map(x => <ListingItem key={x._id} listing={x} />)}
+                        {myListings.map(x => <ListingItem key={x._id} listing={x} user={user}
+                            deleteHandler={deleteHandler}
+                            takeListing={takeListing} />)}
+
                         {myListings.length === 0 && (
                             <div className='no-content'>
                                 <h1>You dont have posted auctions!</h1>
@@ -50,7 +68,7 @@ export const MyAuctions = () => {
 
                     </div>
                 </div>
-                
+
                 <div className='my-listings'>
                     <h2 className='my-listings-header'>My Follows</h2>
                     <div className='my-listings-wrapper'>

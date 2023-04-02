@@ -59,13 +59,20 @@ async function unfollowListing(id, userId) {
     return existing.save();
 }
 
+async function endAuction(id) {
+    const existing = await Listing.findById(id);
+    existing.isClosed = true;
+    return existing.save();
+}
+
+async function deleteById(id) {
+    return Listing.findByIdAndDelete(id)
+};
+
 // ------------------------------------------------------------------------------------------------
 
 
 
-async function deleteById(id) {
-    return Pizza.findByIdAndDelete(id)
-};
 
 // async function getMyListing(id) {
 //     return await Listing.find({ _ownerId: id })
@@ -82,5 +89,6 @@ module.exports = {
     bidListing,
     followListing,
     unfollowListing,
+    endAuction,
     // getMyListing,
 };

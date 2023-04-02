@@ -1,6 +1,6 @@
 const listingController = require("express").Router();
 
-const { getAll, create, getById, getByUserId,
+const { getAll, create, getById, getByUserId, endAuction, deleteById,
     getUserFollows, bidListing, update, followListing, unfollowListing } = require("../services/listingService");
 
 listingController.get("/", async (req, res) => {
@@ -91,6 +91,25 @@ listingController.get('/follow/:id', async (req, res) => {
     }
 });
 
+listingController.get('/end-auction/:id', async (req, res) => {
+    try {
+        const listing = await getById(req.params.id)
+        if (listing._ownerId._id == req.user._id &&
+            listing.isClosed == false) {
+            try {
+                await endAuction(req.params.id);
+                const listing = await getById(req.params.id)
+                return res.status(200).json(listing)
+            } catch (error) {
+                res.status(400).json({ err: error.message })
+            }
+        }
+    } catch (error) {
+        res.status(400).json({ err: error.message })
+
+    }
+});
+
 listingController.get('/my-follows', async (req, res) => {
     try {
         const listings = await getUserFollows(req.user._id)
@@ -125,9 +144,6 @@ listingController.get('/unfollow/:id', async (req, res) => {
     }
 });
 
-// ----------------------------------------------------------------------------------------
-
-
 listingController.delete('/:id', async (req, res) => {
     try {
         const listing = await getById(req.params.id);
@@ -140,6 +156,10 @@ listingController.delete('/:id', async (req, res) => {
         res.status(400).json({ err: err.message })
     }
 });
+
+// ----------------------------------------------------------------------------------------
+
+
 
 
 
