@@ -1,5 +1,5 @@
 .details {
-    min-height: 60vh;
+    min-height: 70vh;
     background-color: whitesmoke;
     display: flex;
     flex-wrap: wrap;
@@ -167,4 +167,22 @@ p.details-alert {
 .details-content-middle-inner .err-msg {
     color: red;
     margin: 0;
+}
+
+.details-content-header button:hover {
+    background-color: green;
+}
+.details-content-header button {
+    padding: 0;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    width: 160px;
+    background-color: brown;
+    font-size: 18px;
+    margin-top: 15px;
+    cursor: pointer;
+    margin: 0;
+    align-self: center;
 }

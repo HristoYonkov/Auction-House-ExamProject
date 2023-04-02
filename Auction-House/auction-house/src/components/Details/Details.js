@@ -24,6 +24,7 @@ export const Details = () => {
             })
             .catch(err => console.log(err))
     }, [listingId, navigate]);
+
     const onChangeHandler = (e) => {
         setPriceError(false)
         changePrice(state => ({ ...state, price: e.target.value }));
@@ -47,6 +48,9 @@ export const Details = () => {
 
     }
 
+    const followHandler = async () => {
+        console.log('follow')
+    }
     return (
 
         <div>
@@ -57,6 +61,9 @@ export const Details = () => {
                 <article className='details-content'>
                     <div className='details-content-header'>
                         <h2>{listing.title}</h2>
+                        {user?._id && user._id !== listing?._ownerId?._id && (
+                            <button onClick={followHandler}>Follow</button>
+                        )}
                         <h2>Listed by: <span>{listing?._ownerId?.username}</span></h2>
                     </div>
 
@@ -110,7 +117,7 @@ export const Details = () => {
                                 <Link to="/catalog"><button>End Auction</button></Link>
 
                             )}
-                            {!listing?.bidder && (
+                            {user?._id === listing?._ownerId?._id && !listing?.bidder && (
                                 <Link to={`/edit/${listingId}`}><button>Edit</button></Link>
                             )}
                         </div>

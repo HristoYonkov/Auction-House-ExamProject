@@ -51,7 +51,10 @@ export const Header = () => {
                     {user.username && (
                         <>
                             <li className="header-list-item">
-                                <NavLink to="/create" >add-Listing</NavLink>
+                                <NavLink to="/my-auctions" >My-Auctions</NavLink>
+                            </li>
+                            <li className="header-list-item">
+                                <NavLink to="/create" >Add-Auction</NavLink>
                             </li>
                             <li className="header-list-item">
                                 <Link className="redLink" to="/" onClick={onLogout} >Log-Out</Link>

@@ -15,6 +15,7 @@ import { Details } from './components/Details/Details';
 import { Create } from './components/Create/Create';
 import { Edit } from './components/Edit/Edit';
 import { AuthContext } from './context/AuthContext';
+import { MyAuctions } from './components/MyAuctions/MyAuctions';
 
 
 function App() {
@@ -48,9 +49,10 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/catalog' element={<Catalog />} />
                         <Route path='/create' element={<Create />} />
-                        <Route path='/edit/:listingId' element={<Edit />} />
+                        <Route path='/my-auctions' element={<MyAuctions />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
+                        <Route path='/edit/:listingId' element={<Edit />} />
                         <Route path='/details/:listingId' element={<Details />} />
                         <Route path='*' element={<NotFound />} />
                     </Routes>

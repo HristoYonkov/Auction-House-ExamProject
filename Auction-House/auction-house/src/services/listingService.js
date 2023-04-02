@@ -80,3 +80,14 @@ export const bidListing = async (listingId, token, price) => {
         return error
     }
 };
+
+export const getUserListings = async (token) => {
+    const response = await fetch(`${baseUrl}/listing/my-listings`, {
+        headers: {
+            'content-type': 'application/json',
+            'x-authorization': token
+        },
+    });
+    const result = await response.json();
+    return result;
+}
