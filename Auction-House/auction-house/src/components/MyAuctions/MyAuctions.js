@@ -9,14 +9,14 @@ import { AuthContext } from '../../context/AuthContext';
 export const MyAuctions = () => {
     const [myListings, setMyListings] = useState([]);
     const [userFollows, setUserFollows] = useState([]);
+    const [onDelete, setOnDelete] = useState([])
 
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const deleteHandler = async (listing, user) => {
         const result = await listingService.deleteListing(listing, user.accessToken);
-        navigate('/my-auctions');
-
+        setOnDelete([]);
         if (result?.message) {
 
         }
@@ -29,7 +29,7 @@ export const MyAuctions = () => {
     useEffect(() => {
         listingService.getUserListings(user.accessToken)
             .then(myListings => setMyListings(myListings))
-    }, [user.accessToken]);
+    }, [user.accessToken, onDelete]);
 
     useEffect(() => {
         listingService.getUserFollows(user.accessToken)
