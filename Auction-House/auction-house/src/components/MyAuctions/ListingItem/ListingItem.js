@@ -4,9 +4,9 @@ import './ListingItem.css';
 export const ListingItem = ({ listing }) => {
 
     return (
-        <article className='card'>
+        <article className='auctions-card'>
             <h3>{listing.title}</h3>
-            <div className="card-image-holder">
+            <div className="auctions-card-image-holder">
                 <img src={listing.imageUrl} alt="someImage" />
             </div>
             <p>Category: <span>{listing.category}</span></p>

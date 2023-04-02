@@ -1,15 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import './Catalog.css'
 import * as listingService from '../../services/listingService';
 import { OneListing } from './OneListing';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 export const Catalog = () => {
     const [allListings, setListing] = useState([]);
+
+    const { user } = useContext(AuthContext);
+
     useEffect(() => {
         listingService.getAll()
-        .then(listings => setListing(listings));
+        .then(listings => {
+            const filtered = listings.filter(x => x._ownerId !== user._id)
+            setListing(filtered)
+        });
     }, []);
 
     return (
