@@ -1,6 +1,6 @@
 const listingController = require("express").Router();
 
-const { getAll, create, getById, getByUserId, getMyLikes, bidListing, update, followListing } = require("../services/listingService");
+const { getAll, create, getById, getByUserId, getUserFollows, bidListing, update, followListing } = require("../services/listingService");
 
 listingController.get("/", async (req, res) => {
     try {
@@ -92,10 +92,9 @@ listingController.get('/follow/:id', async (req, res) => {
 
 listingController.get('/my-follows', async (req, res) => {
     try {
-        const listings = await getMyLikes(req.user._id)
+        const listings = await getUserFollows(req.user._id)
         return res.status(200).json(listings)
     } catch (error) {
-        console.log(error);
         res.status(400).json({ error: error.message })
     }
 });

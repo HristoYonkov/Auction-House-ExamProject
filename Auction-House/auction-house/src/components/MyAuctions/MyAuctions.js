@@ -8,12 +8,27 @@ import { Link } from 'react-router-dom';
 
 export const MyAuctions = () => {
     const [myListings, setMyListings] = useState([]);
-    // const [followedListings, setFollowedListings] = useState([]);
+    const [userFollows, setUserFollows] = useState([]);
 
     const { user } = useContext(AuthContext);
     useEffect(() => {
         listingService.getUserListings(user.accessToken)
-            .then(myListings => setMyListings(myListings))
+            .then(myListings => setMyListings([]))
+    }, [user.accessToken]);
+
+    useEffect(() => {
+        listingService.getUserFollows(user.accessToken)
+            .then(data => {
+                if (data.length > 0) {
+                    // setLoaded(false)
+                    // setHasItems(true)
+                    // setIsEmpty(false)
+                } else {
+                    // setLoaded(false)
+                    // setIsEmpty(true)
+                }
+                setUserFollows([])
+            });
     }, [user.accessToken]);
 
     return (
@@ -35,8 +50,19 @@ export const MyAuctions = () => {
 
                     </div>
                 </div>
-                <div className='followed-listings'>
-                    asd
+                <div className='my-listings'>
+                    <h2 className='my-listings-header'>My Follows</h2>
+                    <div className='my-listings-wrapper'>
+
+                        {userFollows.map(x => <ListingItem key={x._id} listing={x} />)}
+                        {userFollows.length === 0 && (
+                            <div className='no-content'>
+                                <h1>You dont have followed auctions!</h1>
+                                <Link type='button' to={`/catalog`}><button>Browse</button></Link>
+                            </div>
+                        )}
+
+                    </div>
                 </div>
 
             </section>

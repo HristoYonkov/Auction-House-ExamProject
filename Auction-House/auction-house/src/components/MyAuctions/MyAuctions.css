@@ -15,6 +15,7 @@
 
 /* my-listing section */
 .my-listings {
+    min-height: 30vh;
     position: relative;
     display: flex;
     flex-direction: column;

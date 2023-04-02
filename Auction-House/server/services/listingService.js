@@ -42,16 +42,15 @@ async function followListing(listingId, userId) {
 // ------------------------------------------------------------------------------------------------
 
 
-async function getMyLikes(id) {
+async function getUserFollows(id) {
     const listings = await Listing.find({})
     let arr = [];
     listings.map(x => {
-        if (!!(x.likes.includes(id))) {
+        if (!!(x.follows.includes(id))) {
             arr.push(x)
         }
     })
     return arr;
-
 }
 
 async function deleteById(id) {
@@ -68,7 +67,7 @@ module.exports = {
     getById,
     create,
     update,
-    getMyLikes,
+    getUserFollows,
     deleteById,
     bidListing,
     followListing,

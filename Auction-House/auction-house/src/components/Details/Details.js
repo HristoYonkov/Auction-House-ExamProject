@@ -51,7 +51,6 @@ export const Details = () => {
     }
 
     const followHandler = async () => {
-        console.log('follow')
         const response = await listingService.followListing(listing._id, user.accessToken);
         if (response._id) {
             setisFollowed(true);
@@ -70,6 +69,9 @@ export const Details = () => {
                         <h2>{listing.title}</h2>
                         {user?._id && user._id !== listing?._ownerId?._id && !isFollowed && (
                             <button onClick={followHandler}>Follow</button>
+                        )}
+                        {user?._id && user._id !== listing?._ownerId?._id && isFollowed && (
+                            <button onClick={followHandler}>Unfollow</button>
                         )}
                         <h2>Listed by: <span>{listing?._ownerId?.username}</span></h2>
                     </div>
