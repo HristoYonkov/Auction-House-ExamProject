@@ -68,14 +68,14 @@ export const Details = () => {
     }
 
     const endAuctionHandler = async () => {
-        
-        try {
-            await listingService.endAuction(listing._id, user.accessToken);
-            navigate(`/my-auctions`);
-        } catch (error) {
-            console.log(error);
+        if (window.confirm('Are you sure you want to "CLOSE" the auction?')) {
+            try {
+                await listingService.endAuction(listing._id, user.accessToken);
+                navigate(`/my-auctions`);
+            } catch (error) {
+                console.log(error);
+            }
         }
-
     }
 
     return (
@@ -115,9 +115,9 @@ export const Details = () => {
                                     <Link to={'/login'}><button>Log-In</button></Link>
                                 </div>
                             )}
-                            {user?._id && user._id === listing?._ownerId?._id && (
+                            {/* {user?._id && user._id === listing?._ownerId?._id && (
                                 <p className='details-alert'>This is your listing!</p>
-                            )}
+                            )} */}
                             {user?._id && user._id !== listing?._ownerId?._id &&
                                 user._id !== listing?.bidder?._id && (
                                     <>
