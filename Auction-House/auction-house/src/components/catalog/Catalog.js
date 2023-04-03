@@ -17,7 +17,7 @@ export const Catalog = () => {
             const filtered = listings.filter(x => x._ownerId !== user._id)
             setListing(filtered)
         });
-    }, []);
+    }, [user._id]);
 
     return (
         <>

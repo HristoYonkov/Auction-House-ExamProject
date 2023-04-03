@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './MyAuctions.css';
 import { ListingItem } from './ListingItem/ListingItem';
@@ -12,7 +12,6 @@ export const MyAuctions = () => {
     const [onDelete, setOnDelete] = useState([])
 
     const { user } = useContext(AuthContext);
-    const navigate = useNavigate();
 
     const deleteHandler = async (listing, user) => {
         const result = await listingService.deleteListing(listing, user.accessToken);
@@ -83,7 +82,6 @@ export const MyAuctions = () => {
 
                     </div>
                 </div>
-
             </section>
         </div>
     );
