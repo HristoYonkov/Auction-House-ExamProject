@@ -16,6 +16,7 @@ import { Create } from './components/Create/Create';
 import { Edit } from './components/Edit/Edit';
 import { AuthContext } from './context/AuthContext';
 import { MyAuctions } from './components/MyAuctions/MyAuctions';
+import { Search } from './components/Search/Search';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
                     <Routes>
                         <Route path='/' element={<Home />} />
                         <Route path='/catalog' element={<Catalog />} />
+                        <Route path='/search' element={<Search />} />
                         <Route path='/create' element={<Create />} />
                         <Route path='/my-auctions' element={<MyAuctions />} />
                         <Route path='/login' element={<Login />} />

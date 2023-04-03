@@ -54,8 +54,6 @@ async function getUserFollows(id) {
 async function unfollowListing(id, userId) {
     const existing = await Listing.findById(id);
     existing.follows = existing.follows.filter(x => x != userId);
-    console.log(existing);
-
     return existing.save();
 }
 
