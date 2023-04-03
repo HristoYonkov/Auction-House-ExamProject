@@ -52,7 +52,7 @@ export const MyAuctions = () => {
             <section className='my-auctions'>
 
                 <div className='my-listings'>
-                    <h2 className='my-listings-header'>My Published Auctions</h2>
+                    <h2 className='my-listings-header'>Published Auctions</h2>
                     <div className='my-listings-wrapper'>
 
                         {myListings.map(x => <ListingItem key={x._id} listing={x} user={user}
