@@ -29,18 +29,18 @@ listingController.post("/", async (req, res) => {
 listingController.put('/:id', async (req, res) => {
     try {
         const listing = await getById(req.params.id);
+        
+        if (req.user._id != listing._ownerId._id) {
+            throw new Error('You cannot modify this record!');
+        }
 
         if (listing.bidder) {
-            return res.status(403).json({ message: 'This Listing has a bidder!' })
+            throw new Error('This Listing has a bidder!');
         }
-
-        if (req.user._id != listing._ownerId._id) {
-            return res.status(403).json({ message: 'You cannot modify this record' })
-        }
+        
         const result = await update(req.params.id, req.body);
         res.status(200).json(result)
     } catch (err) {
-        // const message = parseError(err)
         res.status(400).json({ error: err.message })
     }
 });
@@ -63,7 +63,6 @@ listingController.put('/bid/:id', async (req, res) => {
         throw new Error('You cannot place your bid!');
     } catch (error) {
         res.status(400).json({ err: error.message })
-
     }
 });
 

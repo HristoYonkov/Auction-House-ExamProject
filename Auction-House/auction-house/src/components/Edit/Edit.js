@@ -96,9 +96,9 @@ export const Edit = () => {
         }
 
         const response = await listingService.editListing(formData, user.accessToken);
-        
+        console.log(response.message);
         if (response?.message) {
-            return setServerErrors(response.message.split(":")[2]);
+            return setServerErrors(response.message);
         }
         if (response?._id) {
             navigate(`/details/${listingId}`)

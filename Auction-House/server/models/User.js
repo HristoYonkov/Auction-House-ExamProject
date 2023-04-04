@@ -14,7 +14,6 @@ const userSchema = new Schema({
         type: String, required: true, unique: true, validate: {
             validator: (value) => emailRegex.test(value),
             message: "Invalid email",
-
         }
     },
     hashedPassword: { type: String, required: true },

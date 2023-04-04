@@ -24,7 +24,8 @@ authController.post('/register', async (req, res) => {
 
 authController.post('/login', async (req, res) => {
     try {
-        const token = await login(req.body.email, req.body.password)
+        const token = await login(req.body.email, req.body.password);
+
         if (!token) {
             throw new Error('Unable to login with this credential!!!')
         }
