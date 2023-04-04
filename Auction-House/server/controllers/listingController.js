@@ -104,7 +104,6 @@ listingController.get('/end-auction/:id', async (req, res) => {
         }
     } catch (error) {
         res.status(400).json({ err: error.message })
-
     }
 });
 
