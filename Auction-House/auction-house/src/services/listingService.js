@@ -50,7 +50,7 @@ export const editListing = async (listing, token) => {
             body: JSON.stringify(listing)
         });
         const result = await response.json();
-        console.log(result.error);
+        
         if (response.ok) {
             return result
         } else {

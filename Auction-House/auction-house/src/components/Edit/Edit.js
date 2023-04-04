@@ -96,7 +96,7 @@ export const Edit = () => {
         }
 
         const response = await listingService.editListing(formData, user.accessToken);
-        // console.log(response);
+        
         if (response?.message) {
             return setServerErrors(response.message);
         }
