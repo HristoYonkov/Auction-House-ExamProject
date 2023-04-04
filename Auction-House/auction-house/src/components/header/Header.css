@@ -63,6 +63,7 @@ a:hover{
 a.active {
     border-bottom: 2px solid lightgreen;
     color: rgb(255, 176, 72);
+    font-size: 25px;
 }
 a.header {
     border: none;

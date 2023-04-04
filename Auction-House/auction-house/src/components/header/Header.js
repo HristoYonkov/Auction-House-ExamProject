@@ -18,14 +18,14 @@ export const Header = () => {
 
     return (
         <header>
-            <NavLink className="header" to="/" >
+            <Link className="header" to="/" >
                 <div className="img-holder">
                     <h1>Auction<span>House</span></h1>
                     <div className="image">
                         <img src="https://static.vecteezy.com/system/resources/thumbnails/000/626/825/small/031218-28.jpg" alt="hammer" />
                     </div>
                 </div>
-            </NavLink>
+            </Link>
             {user.username && (
                 <h4 className="greetings"><span>Welcome:</span> {user.username}</h4>
             )}

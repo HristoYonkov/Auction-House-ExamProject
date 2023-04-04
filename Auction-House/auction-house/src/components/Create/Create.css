@@ -10,6 +10,8 @@
     border-radius: 50%;
     padding: 20px;
     width: 300px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
 }
 .create-form {
     display: flex;
@@ -23,6 +25,10 @@
     border-radius: 8px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     background-color: white;
+    border-bottom: 5px solid burlywood;
+    border-right: 3px solid burlywood;
+    border-left: 3px solid burlywood;
+    border-top: 1px solid burlywood;
 }
 
 .create-input-wrapper {
