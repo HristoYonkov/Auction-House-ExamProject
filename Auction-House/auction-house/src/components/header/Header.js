@@ -38,7 +38,7 @@ export const Header = () => {
                         <NavLink to="/search" >Search</NavLink>
                     </li>
                     <li className="header-list-item">
-                        <NavLink to="/catalog" >Browse</NavLink>
+                        <NavLink to="/catalog" >Auctions</NavLink>
                     </li>
                     {!user.username && (
                         <>

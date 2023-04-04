@@ -50,10 +50,14 @@ export const editListing = async (listing, token) => {
             body: JSON.stringify(listing)
         });
         const result = await response.json();
+        console.log(result.error);
         if (response.ok) {
             return result
         } else {
-            throw new Error(result.error);
+            if (result.error) {
+                throw new Error(result.message = result.error);
+            }
+            throw new Error(result.message);
         }
     } catch (error) {
         return error

@@ -24,6 +24,7 @@
 .details-content {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: space-between;
     width: 1000px;
     height: 500px;
@@ -67,7 +68,6 @@
 .details-content-middle-inner {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     justify-content: space-around;
     align-items: left;
     width: 50%;
