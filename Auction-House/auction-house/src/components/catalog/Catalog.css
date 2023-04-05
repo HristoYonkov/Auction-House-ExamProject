@@ -1,5 +1,5 @@
 
-.catalog {
+.catalog-view {
     min-height: 60vh;
     display: flex;
     flex-wrap: wrap;
@@ -7,6 +7,7 @@
     justify-content: center;
     padding: 50px;
     background-color: whitesmoke;
+
 }
 .catalog-header {
     letter-spacing: 5px;
@@ -20,10 +21,31 @@
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
+.catalog {
+    min-height: 30vh;
+    width: 80%;
+    background-color: white;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 20px;
+    border: 5px solid woo;
+    border-radius: 20px;
+    padding: 80px 0px 0px 0px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    border-bottom: 5px solid burlywood;
+    border-right: 3px solid burlywood;
+    border-left: 3px solid burlywood;
+    border-top: 1px solid burlywood;
+}
 /* Card */
 .card:hover {
     scale: 1.1;
     transition: ease-in-out 300ms;
+    position: relative;
+    bottom: 30px;
 }
 .card {
     display: flex;
@@ -81,6 +103,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    align-self: flex-start;
 }
 .no-content h1 {
     font-size: 30px;
