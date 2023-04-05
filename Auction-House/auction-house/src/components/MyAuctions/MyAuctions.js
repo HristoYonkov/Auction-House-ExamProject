@@ -5,11 +5,20 @@ import './MyAuctions.css';
 import { ListingItem } from './ListingItem/ListingItem';
 import * as listingService from '../../services/listingService';
 import { AuthContext } from '../../context/AuthContext';
+import { Loader } from '../Loader/Loader';
 
 export const MyAuctions = () => {
     const [myListings, setMyListings] = useState([]);
     const [userFollows, setUserFollows] = useState([]);
     const [onDelete, setOnDelete] = useState([])
+
+    const [listingLoad, setLisingLoad] = useState(true);
+    const [listingFilled, setLisingFilled] = useState(false);
+    const [listingEmpty, setLisingEmpty] = useState(false);
+
+    const [followsLoad, setFollowsLoad] = useState(true);
+    const [followsFilled, setFollowsFilled] = useState(false);
+    const [followsEmpty, setFollowsEmpty] = useState(false);
 
     const { user } = useContext(AuthContext);
 
@@ -27,19 +36,31 @@ export const MyAuctions = () => {
 
     useEffect(() => {
         listingService.getUserListings(user.accessToken)
-            .then(myListings => setMyListings(myListings))
+            .then(myListings => {
+                if (myListings.length > 0) {
+                    setLisingLoad(false);
+                    setLisingFilled(true);
+                    setLisingEmpty(false);
+                } else {
+                    setLisingLoad(false);
+                    setLisingFilled(false);
+                    setLisingEmpty(true);
+                }
+                setMyListings(myListings)
+            })
     }, [user.accessToken, onDelete]);
 
     useEffect(() => {
         listingService.getUserFollows(user.accessToken)
             .then(data => {
                 if (data.length > 0) {
-                    // setLoaded(false)
-                    // setHasItems(true)
-                    // setIsEmpty(false)
+                    setFollowsLoad(false);
+                    setFollowsFilled(true);
+                    setFollowsEmpty(false);
                 } else {
-                    // setLoaded(false)
-                    // setIsEmpty(true)
+                    setFollowsLoad(false);
+                    setFollowsFilled(false);
+                    setFollowsEmpty(true);
                 }
                 setUserFollows(data)
             });
@@ -53,33 +74,39 @@ export const MyAuctions = () => {
                 <div className='my-listings'>
                     <h2 className='my-listings-header'>Published Auctions</h2>
                     <div className='my-listings-wrapper'>
-
-                        {myListings.map(x => <ListingItem key={x._id} listing={x} user={user}
-                            deleteHandler={deleteHandler}
-                            takeListing={takeListing} />)}
-
-                        {myListings.length === 0 && (
+                        {listingLoad && (
+                            <Loader />
+                        )}
+                        {listingFilled && (
+                            myListings.map(x => <ListingItem key={x._id} listing={x} user={user}
+                                deleteHandler={deleteHandler}
+                                takeListing={takeListing} />
+                            )
+                        )}
+                        {listingEmpty && (
                             <div className='no-content'>
                                 <h1>You dont have posted auctions!</h1>
                                 <Link type='button' to={`/create`}><button>add-Listing</button></Link>
                             </div>
                         )}
-
                     </div>
                 </div>
 
                 <div className='my-listings'>
                     <h2 className='my-listings-header'>My Follows</h2>
                     <div className='my-listings-wrapper'>
-
-                        {userFollows.map(x => <ListingItem key={x._id} listing={x} />)}
-                        {userFollows.length === 0 && (
+                        {followsLoad && (
+                            <Loader />
+                        )}
+                        {followsFilled && (
+                            userFollows.map(x => <ListingItem key={x._id} listing={x} />)
+                        )}
+                        {followsEmpty && (
                             <div className='no-content'>
                                 <h1>You dont have followed auctions!</h1>
                                 <Link type='button' to={`/catalog`}><button>Browse</button></Link>
                             </div>
                         )}
-
                     </div>
                 </div>
             </section>
