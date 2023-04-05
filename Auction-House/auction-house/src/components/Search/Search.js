@@ -27,7 +27,7 @@ export const Search = () => {
         
         if (response.length > 0 && category === '' && value !== '') {
             response.filter(l => {
-                if (l.title.toLowerCase().startsWith(value.toLowerCase())) {
+                if (l.title.toLowerCase().includes(value.toLowerCase())) {
                     result.push(l);
                 }
             })
@@ -45,7 +45,7 @@ export const Search = () => {
                 // result.filter(l => !l.title.includes(value))
                 let newResult = [];
                 result.forEach(l => {
-                    if (l.title.toLowerCase().startsWith(value.toLowerCase())) {
+                    if (l.title.toLowerCase().includes(value.toLowerCase())) {
                         newResult.push(l);
                     }
                 })
