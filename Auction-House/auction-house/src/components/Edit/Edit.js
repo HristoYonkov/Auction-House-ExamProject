@@ -34,7 +34,7 @@ export const Edit = () => {
                 }
                 setFormData(result);
             })
-    }, [listingId]);
+    }, [listingId, user._id, navigate]);
 
     const onChangeHandler = (e) => {
         setFormData(state => ({ ...state, [e.target.name]: e.target.value }));

@@ -16,6 +16,8 @@ import { Create } from './components/Create/Create';
 import { Edit } from './components/Edit/Edit';
 import { AuthContext } from './context/AuthContext';
 import { MyAuctions } from './components/MyAuctions/MyAuctions';
+import { UserGuard } from './guards/UserGuard';
+import { GuestGuard } from './guards/GuestGuard';
 import { Search } from './components/Search/Search';
 
 
@@ -50,12 +52,18 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/catalog' element={<Catalog />} />
                         <Route path='/search' element={<Search />} />
-                        <Route path='/create' element={<Create />} />
-                        <Route path='/my-auctions' element={<MyAuctions />} />
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/register' element={<Register />} />
-                        <Route path='/edit/:listingId' element={<Edit />} />
                         <Route path='/details/:listingId' element={<Details />} />
+
+                        <Route element={<UserGuard />}>
+                            <Route path='/login' element={<Login />} />
+                            <Route path='/register' element={<Register />} />
+                        </Route>
+
+                        <Route element={<GuestGuard />}>
+                            <Route path='/create' element={<Create />} />
+                            <Route path='/my-auctions' element={<MyAuctions />} />
+                            <Route path='/edit/:listingId' element={<Edit />} />
+                        </Route>
                         <Route path='*' element={<NotFound />} />
                     </Routes>
 
