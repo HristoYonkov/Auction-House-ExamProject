@@ -1,15 +1,18 @@
 .lds-facebook {
     display: inline-block;
-    position: relative;
+    position: absolute;
+    top: 100px;
     width: 80px;
     height: 80px;
+    transform: scale(1.5);
   }
   .lds-facebook div {
     display: inline-block;
     position: absolute;
     left: 8px;
     width: 16px;
-    background: #fff;
+    background: burlywood;
+    /* background: #fff; */
     animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
   }
   .lds-facebook div:nth-child(1) {

@@ -96,7 +96,7 @@ export const Create = () => {
         };
 
         if (response?._id) {
-            navigate(`/catalog`);
+            navigate(`/my-auctions`);
             // navigate('/catalog');
         }
     }
