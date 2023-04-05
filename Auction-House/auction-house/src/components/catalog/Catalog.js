@@ -11,7 +11,7 @@ export const Catalog = () => {
     const [allListings, setListing] = useState([]);
     const [loading, setLoading] = useState(true);
     const [empty, setEmpty] = useState(false);
-    const [filling, setFilling] = useState(false);
+    const [filled, setFilled] = useState(false);
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
@@ -19,11 +19,11 @@ export const Catalog = () => {
             .then(listings => {
                 if (listings.length > 0) {
                     setLoading(false);
-                    setFilling(true);
+                    setFilled(true);
                     setEmpty(false);
                 } else {
                     setLoading(false);
-                    setFilling(false);
+                    setFilled(false);
                     setEmpty(true);
                 }
                 const filtered = listings.filter(x => x._ownerId !== user._id)
@@ -34,22 +34,24 @@ export const Catalog = () => {
     return (
         <>
             <h1 className='catalog-header'>Catalog</h1>
-            <section className="catalog">
-                {filling && (
-                    allListings.map(listing =>
-                        <OneListing key={listing._id} listing={listing} />
-                    )
-                )}
-                {loading && (
-                    <Loader />
-                )}
-                {empty && (
-                    <div className='no-content'>
-                        <h1>There is no listings yet! Be the first one to List!</h1>
-                        <Link type='button' to={`/create`}><button>add-Listing</button></Link>
-                    </div>
-                )}
-            </section>
+            <div className='catalog-view'>
+                <section className="catalog">
+                    {loading && (
+                        <Loader />
+                    )}
+                    {filled && (
+                        allListings.map(listing =>
+                            <OneListing key={listing._id} listing={listing} />
+                        )
+                    )}
+                    {empty && (
+                        <div className='no-content'>
+                            <h1>There is no listings yet! Be the first one to List!</h1>
+                            <Link type='button' to={`/create`}><button>add-Listing</button></Link>
+                        </div>
+                    )}
+                </section>
+            </div>
         </>
     );
 }
