@@ -8,7 +8,7 @@ Informaton:
 
 The app works as platform for post auction sales with basic functionality.
 Every user(not logged in) have access to: Home , catalog , Search, Details, Register and Login.
-Evry logged in user have acces to: Home, catalog, Search, Create Listing, Edit (if has own auction for edit, and no one bids the listing) and Logout.
+Evry logged in user have acces to: Home, catalog, Search, Create Listing, Edit (if has own auction for edit, and no one bids the listing), My-Auctions and Logout.
 
 
 TechStack
