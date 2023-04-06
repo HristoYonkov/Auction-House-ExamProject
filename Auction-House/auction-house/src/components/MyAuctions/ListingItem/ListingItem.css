@@ -41,6 +41,9 @@
 .auctions-card button:hover {
     background-color: green;
 }
+.auctions-card button:active {
+    scale: 0.95;
+}
 .auctions-card button {
     padding: 0;
     color: white;

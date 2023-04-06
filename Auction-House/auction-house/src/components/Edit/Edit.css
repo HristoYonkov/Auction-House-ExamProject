@@ -67,6 +67,9 @@
 .edit-form button:hover {
     background-color: green;
 }
+.edit-form button:active {
+    scale: 0.95;
+}
 .edit-form button {
     padding: 0;
     color: white;

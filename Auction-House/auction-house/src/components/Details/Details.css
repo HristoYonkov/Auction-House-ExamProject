@@ -98,7 +98,9 @@
 .details-content-middle-inner button:hover {
     background-color: green;
 }
-
+.details-content-middle-inner button:active {
+    scale: 0.95;
+}
 .details-content-middle-inner button {
     padding: 0;
     color: white;
@@ -128,6 +130,9 @@
 }
 .details-button-wrapper button:hover {
     background-color: green;
+}
+.details-button-wrapper button:active {
+    scale: 0.95;
 }
 .details-button-wrapper button {
     padding: 0;
@@ -176,6 +181,9 @@ p.details-alert {
 
 .details-content-header button:hover {
     background-color: green;
+}
+.details-content-header button:active {
+    scale: 0.95;
 }
 .details-content-header button {
     padding: 0;

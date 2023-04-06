@@ -60,6 +60,9 @@
 .register-form button:hover {
     background-color: green;
 }
+.register-form button:active {
+    scale: 0.95;
+}
 .register-form button {
     padding: 0;
     color: white;

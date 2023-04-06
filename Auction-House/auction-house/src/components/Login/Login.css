@@ -59,6 +59,9 @@
 .login-form button:hover {
     background-color: green;
 }
+.login-form button:active {
+    scale: 0.95;
+}
 .login-form button {
     padding: 0;
     color: white;

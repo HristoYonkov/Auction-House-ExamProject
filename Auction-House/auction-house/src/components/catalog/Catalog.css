@@ -82,6 +82,9 @@
 .catalog .card button:hover {
     background-color: green;
 }
+.catalog .card button:active {
+    scale: 0.95;
+}
 .catalog .card button {
     padding: 0;
     color: white;
@@ -110,7 +113,9 @@
     font-weight: 400;
     font-style: oblique;
 }
-
+.no-content button:active {
+    scale: 0.95;
+}
 .no-content button:hover {
     background-color: green;
     scale: 1.1;

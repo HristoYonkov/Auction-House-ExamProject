@@ -74,6 +74,9 @@
 .create-form button:hover {
     background-color: green;
 }
+.create-form button:active {
+    scale: 0.95;
+}
 .create-form button {
     padding: 0;
     color: white;
