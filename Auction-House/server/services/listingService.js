@@ -52,7 +52,7 @@ async function getUserFollows(id) {
 }
 
 async function getUserWons(userId) {
-    const listings = await Listing.find({})
+    const listings = await Listing.find({});
     let arr = [];
     listings.map(x => {
         if (x.bidder == userId && x.isClosed) {

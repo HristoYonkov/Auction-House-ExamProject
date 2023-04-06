@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './ListingItem.css';
 
 export const ListingItem = ({ listing, user, takeListing }) => {
-    
+
     return (
         <article className='auctions-card'>
             <h3>{listing.title}</h3>
@@ -12,6 +12,12 @@ export const ListingItem = ({ listing, user, takeListing }) => {
             </div>
             <p>Category: <span>{listing.category}</span></p>
             <p>Current price: <span>${listing.price}</span></p>
+            {listing?.bidder === user?._id && listing?.isClosed && (
+                <>
+                    <h4 className='closed-auction'>Won!!!</h4>
+                    <Link type='button' to={`/details/${listing._id}`}><button>Details</button></Link>
+                </>
+            )}
             {listing?._ownerId === user?._id && listing?.isClosed && (
                 <>
                     <h4 className='closed-auction'>Closed!!!</h4>

@@ -63,7 +63,7 @@ export const MyAuctions = () => {
                     setFollowsFilled(false);
                     setFollowsEmpty(true);
                 }
-                setUserFollows(data)
+                setUserFollows(data.filter(x => x.isClosed === false))
             });
 
     }, [user.accessToken]);
@@ -71,7 +71,6 @@ export const MyAuctions = () => {
     useEffect(() => {
         listingService.getMyWons(user.accessToken)
             .then(data => {
-                console.log(data);
                 setUserWons(data);
             });
     }, [user.accessToken]);
@@ -103,10 +102,13 @@ export const MyAuctions = () => {
                 </div>
 
                 <div className='my-listings'>
-                    <h2 className='my-listings-header'>My Follows</h2>
+                    <h2 className='my-listings-header'>My Follows / Wons</h2>
                     <div className='my-listings-wrapper'>
                         {followsLoad && (
                             <Loader />
+                        )}
+                        {userWons.length > 0 && (
+                            userWons.map(x => <ListingItem key={x._id} listing={x} user={user} />)
                         )}
                         {followsFilled && (
                             userFollows.map(x => <ListingItem key={x._id} listing={x} />)

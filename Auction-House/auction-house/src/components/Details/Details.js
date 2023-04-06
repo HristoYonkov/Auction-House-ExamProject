@@ -18,8 +18,9 @@ export const Details = () => {
     useEffect(() => {
         listingService.getOneListing(listingId)
             .then(result => {
-                if (!result._id || result.isClosed) {
-                    navigate('/catalog');
+                if (!result._id || (result.isClosed && result.bidder?._id !== user._id)) {
+                   navigate('/catalog');
+                   return;
                 }
                 setListing(result);
                 setisFollowed(result?.follows.includes(user?._id));
@@ -89,10 +90,10 @@ export const Details = () => {
                 <article className='details-content'>
                     <div className='details-content-header'>
                         <h2>{listing.title}</h2>
-                        {user?._id && user._id !== listing?._ownerId?._id && !isFollowed && (
+                        {user?._id && user._id !== listing?._ownerId?._id && !isFollowed && !listing.isClosed && (
                             <button onClick={followHandler}>Follow</button>
                         )}
-                        {user?._id && user._id !== listing?._ownerId?._id && isFollowed && (
+                        {user?._id && user._id !== listing?._ownerId?._id && isFollowed && !listing.isClosed && (
                             <button onClick={unfollowHandler}>Unfollow</button>
                         )}
                         <h2>Listed by: <span>{listing?._ownerId?.username}</span></h2>
