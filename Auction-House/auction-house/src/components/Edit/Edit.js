@@ -29,7 +29,7 @@ export const Edit = () => {
     useEffect(() => {
         listingService.getOneListing(listingId)
             .then(result => {
-                if (result._ownerId !== user._id) {
+                if (result._ownerId._id !== user._id) {
                     navigate(`/details/${result._id}`)
                 }
                 setFormData(result);
