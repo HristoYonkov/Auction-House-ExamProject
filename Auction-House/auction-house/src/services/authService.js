@@ -1,4 +1,5 @@
-const baseUrl = 'http://localhost:3030/auth';
+// const baseUrl = 'http://localhost:3030/auth'; 
+const baseUrl = 'https://auction-house-app-api.onrender.com/auth';
 
 export const onRegister = async (data) => {
     try {

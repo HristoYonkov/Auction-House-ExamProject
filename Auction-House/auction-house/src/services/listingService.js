@@ -1,4 +1,5 @@
-const baseUrl = 'http://localhost:3030';
+// const baseUrl = 'http://localhost:3030';
+const baseUrl = 'https://auction-house-app-api.onrender.com';
 
 export const getAll = async () => {
     try {
