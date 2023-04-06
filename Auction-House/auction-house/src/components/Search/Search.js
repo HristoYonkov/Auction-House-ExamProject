@@ -7,6 +7,7 @@ export const Search = () => {
     const [searchResult, setSearchResult] = useState([]);
     const [value, setValue] = useState('');
     const [category, setCategory] = useState('');
+    const [isFoundResults, setIsFoundResults] = useState(false);
 
     const onChangeTypeHandler = (e) => {
         setCategory(e.target.value)
@@ -17,8 +18,9 @@ export const Search = () => {
     }
 
     const resetHandler = () => {
-        setCategory('')
-        setValue('')
+        setCategory('');
+        setValue('');
+        setIsFoundResults(false);
     }
 
     const searchHandler = async () => {
@@ -54,9 +56,11 @@ export const Search = () => {
         }
         if (category === '' && value === '') {
             setSearchResult(response);
+            setIsFoundResults(true);
             
         } else {
             setSearchResult(result);
+            setIsFoundResults(true);
         }
     }
 
@@ -93,6 +97,11 @@ export const Search = () => {
                 {searchResult.length > 0 &&
                     searchResult.map(x => <SingleSearch key={x._id} listing={x} />)
                 }
+                {searchResult.length === 0 && isFoundResults && (
+                    <div className='no-content'>
+                    <h1>There is no found results!</h1>
+                </div>
+                )}
             </section>
         </div>
     )

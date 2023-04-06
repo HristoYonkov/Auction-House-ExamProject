@@ -89,3 +89,15 @@
     border-top: 1px solid burlywood;
     margin-bottom: 50px;
 }
+
+.no-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-start;
+}
+.no-content h1 {
+    font-size: 30px;
+    font-weight: 400;
+    font-style: oblique;
+}
