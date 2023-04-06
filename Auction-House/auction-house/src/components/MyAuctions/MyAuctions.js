@@ -10,6 +10,7 @@ import { Loader } from '../Loader/Loader';
 export const MyAuctions = () => {
     const [myListings, setMyListings] = useState([]);
     const [userFollows, setUserFollows] = useState([]);
+    const [userWons, setUserWons] = useState([]);
     const [onDelete, setOnDelete] = useState([])
 
     const [listingLoad, setLisingLoad] = useState(true);
@@ -63,6 +64,15 @@ export const MyAuctions = () => {
                     setFollowsEmpty(true);
                 }
                 setUserFollows(data)
+            });
+
+    }, [user.accessToken]);
+
+    useEffect(() => {
+        listingService.getMyWons(user.accessToken)
+            .then(data => {
+                console.log(data);
+                setUserWons(data);
             });
     }, [user.accessToken]);
 

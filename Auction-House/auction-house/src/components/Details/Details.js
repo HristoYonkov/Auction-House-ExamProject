@@ -54,14 +54,15 @@ export const Details = () => {
         const response = await listingService.followListing(listing._id, user.accessToken);
         if (response._id) {
             setisFollowed(true);
-            navigate('/catalog');
+            navigate(`/details/${listingId}`);
         }
     }
 
     const unfollowHandler = async () => {
         try {
             await listingService.unfollowListing(listing._id, user.accessToken)
-            navigate(`/my-auctions`);
+            navigate(`/details/${listingId}`);
+            setisFollowed(false);
         } catch (error) {
             console.log(error);
         }

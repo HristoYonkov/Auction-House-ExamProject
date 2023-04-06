@@ -51,6 +51,17 @@ async function getUserFollows(id) {
     return arr;
 }
 
+async function getUserWons(userId) {
+    const listings = await Listing.find({})
+    let arr = [];
+    listings.map(x => {
+        if (x.bidder == userId && x.isClosed) {
+            arr.push(x)
+        }
+    })
+    return arr;
+}
+
 async function unfollowListing(id, userId) {
     const existing = await Listing.findById(id);
     existing.follows = existing.follows.filter(x => x != userId);
@@ -88,5 +99,6 @@ module.exports = {
     followListing,
     unfollowListing,
     endAuction,
+    getUserWons
     // getMyListing,
 };

@@ -134,6 +134,25 @@ export const getUserFollows = async (token) => {
     }
 }
 
+export const getMyWons = async (token) => {
+    try {
+        const response = await fetch(`${baseUrl}/listing/my-wons`, {
+            headers: {
+                'content-type': 'application/json',
+                'x-authorization': token
+            }
+        });
+        const result = await response.json();
+        if (response.ok) {
+            return result
+        } else {
+            throw new Error(result.error);
+        }
+    } catch (error) {
+        return error;
+    }
+}
+
 export const unfollowListing = async (listingId, token) => {
     try {
         const response = await fetch(`${baseUrl}/listing/unfollow/${listingId}`, {
