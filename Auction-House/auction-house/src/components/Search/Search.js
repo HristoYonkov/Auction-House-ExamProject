@@ -3,11 +3,14 @@ import { useState } from 'react';
 import './Search.css';
 import * as listingSerive from '../../services/listingService';
 import { SingleSearch } from './SingleSearch/SingleSearch';
+import { Loader } from '../Loader/Loader';
+
 export const Search = () => {
     const [searchResult, setSearchResult] = useState([]);
     const [value, setValue] = useState('');
     const [category, setCategory] = useState('');
     const [isFoundResults, setIsFoundResults] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const onChangeTypeHandler = (e) => {
         setCategory(e.target.value)
@@ -24,6 +27,7 @@ export const Search = () => {
     }
 
     const searchHandler = async () => {
+        setLoading(true);
         const response = await listingSerive.getAll();
         let result = [];
         
@@ -57,10 +61,11 @@ export const Search = () => {
         if (category === '' && value === '') {
             setSearchResult(response);
             setIsFoundResults(true);
-            
+            setLoading(false);
         } else {
             setSearchResult(result);
             setIsFoundResults(true);
+            setLoading(false);
         }
     }
 
@@ -94,6 +99,9 @@ export const Search = () => {
             </div>
 
             <section className='search-result'>
+                {loading && (
+                    <Loader />
+                )}
                 {searchResult.length > 0 &&
                     searchResult.map(x => <SingleSearch key={x._id} listing={x} />)
                 }
