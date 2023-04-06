@@ -17,7 +17,7 @@ export const Search = () => {
     }
 
     const onChangeValueHandler = (e) => {
-        setValue(e.target.value)
+        setValue(e.target.value);
     }
 
     const resetHandler = () => {
@@ -32,13 +32,13 @@ export const Search = () => {
         let response = await listingSerive.getAll();
         let resResult = [];
         let result = [];
-        response.filter(x => {
+        response.forEach(x => {
             if (x.isClosed === false) {
                 resResult.push(x);
             }
         })
         if (resResult.length > 0 && category === '' && value !== '') {
-            resResult.filter(l => {
+            resResult.forEach(l => {
                 if (l.title.toLowerCase().includes(value.toLowerCase())) {
                     result.push(l);
                 }
@@ -46,7 +46,7 @@ export const Search = () => {
         }
 
         if (resResult.length > 0 && category !== '') {
-            resResult.filter(l => {
+            resResult.forEach(l => {
                 if (l.category === category) {
                     result.push(l)
                 }
