@@ -24,23 +24,29 @@ export const Search = () => {
         setCategory('');
         setValue('');
         setIsFoundResults(false);
+        // setSearchResult([]);
     }
 
     const searchHandler = async () => {
         setLoading(true);
-        const response = await listingSerive.getAll();
+        let response = await listingSerive.getAll();
+        let resResult = [];
         let result = [];
-        
-        if (response.length > 0 && category === '' && value !== '') {
-            response.filter(l => {
+        response.filter(x => {
+            if (x.isClosed === false) {
+                resResult.push(x);
+            }
+        })
+        if (resResult.length > 0 && category === '' && value !== '') {
+            resResult.filter(l => {
                 if (l.title.toLowerCase().includes(value.toLowerCase())) {
                     result.push(l);
                 }
             })
         }
 
-        if (response.length > 0 && category !== '') {
-            response.filter(l => {
+        if (resResult.length > 0 && category !== '') {
+            resResult.filter(l => {
                 if (l.category === category) {
                     result.push(l)
                 }
@@ -59,7 +65,7 @@ export const Search = () => {
             }
         }
         if (category === '' && value === '') {
-            setSearchResult(response);
+            setSearchResult(resResult);
             setIsFoundResults(true);
             setLoading(false);
         } else {
