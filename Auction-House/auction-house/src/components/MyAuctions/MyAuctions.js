@@ -21,13 +21,13 @@ export const MyAuctions = () => {
     const [followsFilled, setFollowsFilled] = useState(false);
     const [followsEmpty, setFollowsEmpty] = useState(false);
 
-    const { user } = useContext(AuthContext);
+    const { user, setServerErrors } = useContext(AuthContext);
 
     const deleteHandler = async (listing, user) => {
         const result = await listingService.deleteListing(listing, user.accessToken);
         setOnDelete([]);
         if (result?.message) {
-
+            return setServerErrors(result.message);
         }
     }
 
@@ -113,9 +113,9 @@ export const MyAuctions = () => {
                         {followsFilled && (
                             userFollows.map(x => <ListingItem key={x._id} listing={x} />)
                         )}
-                        {followsEmpty && (
+                        {followsEmpty && userWons.length === 0 && (
                             <div className='no-content'>
-                                <h1>You dont have followed auctions!</h1>
+                                <h1>You don't have followed auctions!</h1>
                                 <Link type='button' to={`/catalog`}><button>Browse</button></Link>
                             </div>
                         )}
