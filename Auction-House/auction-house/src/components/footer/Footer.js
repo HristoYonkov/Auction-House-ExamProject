@@ -1,17 +1,25 @@
+import {useState} from 'react';
+
 import './Footer.css';
 // import { Link } from 'react-router-dom';
 
-
 export const Footer = () => {
+const [email, setEmail] = useState('');
 
+    // TODO future functionality for sending emails!
+
+    const onChangeHandler = (e) => {
+        setEmail(e.target.value);
+    }
+    
     return (
         <div className='footer'>
             <section className="input">
                 <h1>SUBSCRIBE TO OUR NEWSLETTER</h1>
                 <p>Sign up for our mailing list to get latest updates and offers.</p>
                 <div className="inputs">
-                    <input type="text" placeholder="Email Address.." />
-                    <button>SUBSCRIBE</button>
+                    <input type="text" value={email} onChange={onChangeHandler} placeholder="Email Address.." />
+                    <button onClick={() => setEmail('')}>SUBSCRIBE</button>
                 </div>
             </section>
 
