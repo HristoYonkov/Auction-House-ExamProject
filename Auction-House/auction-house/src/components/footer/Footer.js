@@ -1,25 +1,50 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 import './Footer.css';
 // import { Link } from 'react-router-dom';
 
 export const Footer = () => {
-const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('');
+    const [error, setError] = useState(false);
 
     // TODO future functionality for sending emails!
 
     const onChangeHandler = (e) => {
         setEmail(e.target.value);
+        setError(false);
     }
-    
+
+    const onBlurHandler = (e) => {
+        const validRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
+        if (!e.target.value.match(validRegex) && e.target.value !== '') {
+            setError(true);
+            return;
+        }
+    }
+
+    const onSubmitHandler = () => {
+        const validRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+
+        if (!email.match(validRegex)) {
+            setError(true);
+            return;
+        }
+
+        setEmail('');
+    }
+
     return (
         <div className='footer'>
             <section className="input">
                 <h1>SUBSCRIBE TO OUR NEWSLETTER</h1>
                 <p>Sign up for our mailing list to get latest updates and offers.</p>
+                {error && (
+                    <p className='err-msg'>Invalid E-mail!</p>
+                )}
                 <div className="inputs">
-                    <input type="text" value={email} onChange={onChangeHandler} placeholder="Email Address.." />
-                    <button onClick={() => setEmail('')}>SUBSCRIBE</button>
+                    <input type="text" value={email} onChange={onChangeHandler} onBlur={onBlurHandler} placeholder="Email Address.." />
+                    <button onClick={onSubmitHandler}>SUBSCRIBE</button>
                 </div>
             </section>
 
