@@ -64,29 +64,21 @@ describe("Register Component", () => {
                 </AuthContext.Provider>
             </Router>
         );
+        
         const passwordInput = screen.getByTestId("password");
+
         fireEvent.change(passwordInput, { target: { value: 12345 } });
         fireEvent.blur(passwordInput);
         expect(
             screen.getByText("Password must be between 6 and 15 character's long!")
         ).toBeInTheDocument();
-    });
 
-    // it("renders error for password longer than 10 characters", () => {
-    //     render(
-    //         <Router>
-    //             <AuthContext.Provider value={mockedUser}>
-    //                 <Login />
-    //             </AuthContext.Provider>
-    //         </Router>
-    //     );
-    //     const passwordInput = screen.getByTestId("password");
-    //     fireEvent.change(passwordInput, { target: { value: 12345678910 } });
-    //     fireEvent.blur(passwordInput);
-    //     expect(
-    //         screen.getByText("Password must be between 3 and 10 characters!")
-    //     ).toBeInTheDocument();
-    // });
+        fireEvent.change(passwordInput, { target: { value: 1234567890123456 } });
+        fireEvent.blur(passwordInput);
+        expect(
+            screen.getByText("Password must be between 6 and 15 character's long!")
+        ).toBeInTheDocument();
+    });
 
     // it("renders error for invalid email", () => {
     //     render(
