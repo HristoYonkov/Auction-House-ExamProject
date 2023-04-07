@@ -19,8 +19,12 @@ export const Footer = () => {
 
         if (!e.target.value.match(validRegex) && e.target.value !== '') {
             setError(true);
-            return;
         }
+
+        setTimeout(() => {
+            setError(false);
+            setEmail('');
+        }, 3000)
     }
 
     const onSubmitHandler = () => {
