@@ -2,7 +2,6 @@ import { Link } from "react-router-dom"
 
 
 export const OneListing = ({ listing }) => {
-
     return (
         <article className='card'>
             <h3>{listing.title}</h3>

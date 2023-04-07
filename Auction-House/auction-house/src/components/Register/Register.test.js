@@ -1,26 +1,26 @@
 import { render, screen, fireEvent, } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { Login } from './Login'
+import { Register } from './Register';
 import { AuthContext } from "../../context/AuthContext";
 
-describe("Login Component", () => {
+describe("Register Component", () => {
 
     const mockedUser = {
         user: false,
     };
 
-    it("renders without crashing", () => {
+    it("Register rendering checking!", () => {
         render(
             <Router>
                 <AuthContext.Provider value={mockedUser}>
-                    <Login />
+                    <Register />
                 </AuthContext.Provider>
             </Router>
         );
 
-        const loginTestId = screen.getByTestId("email");
-        expect(loginTestId).toBeInTheDocument();
+        const registerTestId = screen.getByTestId("email");
+        expect(registerTestId).toBeInTheDocument();
     });
 
     // it("updates the email state when email input is changed", () => {

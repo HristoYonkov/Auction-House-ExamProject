@@ -5,7 +5,7 @@ const { connectionString } = require("./connectionString");
 const { mongoose } = require("mongoose");
 const router = require("./routes");
 const session = require("./middlewares/session");
-
+mongoose.set('strictQuery', true);
 const initDB = () => mongoose.connect(connectionString);
 
 startServer();
