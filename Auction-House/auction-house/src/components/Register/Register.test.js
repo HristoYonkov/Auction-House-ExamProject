@@ -19,8 +19,15 @@ describe("Register Component", () => {
             </Router>
         );
 
-        const registerTestId = screen.getByTestId("email");
-        expect(registerTestId).toBeInTheDocument();
+        const regTestIdUsername = screen.getByTestId("username");
+        const regTestIdEmail = screen.getByTestId("email");
+        const regTestIdPassword = screen.getByTestId("password");
+        const regTestIdRepass = screen.getByTestId("repass");
+        
+        expect(regTestIdUsername).toBeInTheDocument();
+        expect(regTestIdEmail).toBeInTheDocument();
+        expect(regTestIdPassword).toBeInTheDocument();
+        expect(regTestIdRepass).toBeInTheDocument();
     });
 
     // it("updates the email state when email input is changed", () => {

@@ -101,6 +101,7 @@ export const Register = () => {
                     <div className='input-wrapper'>
                         <label htmlFor="username">Username</label>
                         <input
+                            data-testid="username"
                             type="text" name="username"
                             id='username'
                             placeholder='username'
@@ -116,6 +117,7 @@ export const Register = () => {
                     <div className='input-wrapper'>
                         <label htmlFor="email">Email</label>
                         <input
+                            data-testid="email"
                             type="email"
                             name="email"
                             id='email'
@@ -132,6 +134,7 @@ export const Register = () => {
                     <div className='input-wrapper'>
                         <label htmlFor="password">Password</label>
                         <input
+                            data-testid="password"
                             type="password"
                             name="password"
                             id='password'
@@ -148,6 +151,7 @@ export const Register = () => {
                     <div className='input-wrapper'>
                         <label htmlFor="repass">Confirm Password</label>
                         <input
+                            data-testid="repass"
                             type="password"
                             name="repass"
                             id='repass'
