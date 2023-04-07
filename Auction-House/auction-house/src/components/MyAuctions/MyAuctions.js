@@ -54,7 +54,8 @@ export const MyAuctions = () => {
     useEffect(() => {
         listingService.getUserFollows(user.accessToken)
             .then(data => {
-                if (data.length > 0) {
+                let filtered = data.filter(x => x.isClosed === false)
+                if (filtered.length > 0) {
                     setFollowsLoad(false);
                     setFollowsFilled(true);
                     setFollowsEmpty(false);
@@ -63,17 +64,18 @@ export const MyAuctions = () => {
                     setFollowsFilled(false);
                     setFollowsEmpty(true);
                 }
-                setUserFollows(data.filter(x => x.isClosed === false))
+                setUserFollows(filtered);
             });
 
     }, [user.accessToken]);
 
     useEffect(() => {
         listingService.getMyWons(user.accessToken)
-            .then(data => {
+        .then(data => {
                 setUserWons(data);
             });
     }, [user.accessToken]);
+
 
     return (
         <div className='my-section'>
