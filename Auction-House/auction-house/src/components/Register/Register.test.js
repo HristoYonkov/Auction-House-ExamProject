@@ -19,60 +19,58 @@ describe("Register Component", () => {
             </Router>
         );
 
-        const regTestIdUsername = screen.getByTestId("username");
-        const regTestIdEmail = screen.getByTestId("email");
-        const regTestIdPassword = screen.getByTestId("password");
-        const regTestIdRepass = screen.getByTestId("repass");
-        
-        expect(regTestIdUsername).toBeInTheDocument();
-        expect(regTestIdEmail).toBeInTheDocument();
-        expect(regTestIdPassword).toBeInTheDocument();
-        expect(regTestIdRepass).toBeInTheDocument();
+        const usernameInput = screen.getByTestId("username");
+        const emailInput = screen.getByTestId("email");
+        const passwordInput = screen.getByTestId("password");
+        const repassInput = screen.getByTestId("repass");
+
+        expect(usernameInput).toBeInTheDocument();
+        expect(emailInput).toBeInTheDocument();
+        expect(passwordInput).toBeInTheDocument();
+        expect(repassInput).toBeInTheDocument();
     });
 
-    // it("updates the email state when email input is changed", () => {
-    //     render(
-    //         <Router>
-    //             <AuthContext.Provider value={mockedUser}>
-    //                 <Login />
-    //             </AuthContext.Provider>
-    //         </Router>
-    //     );
+    it("Updates the email and password when inputs are changed!", () => {
+        render(
+            <Router>
+                <AuthContext.Provider value={mockedUser}>
+                    <Register />
+                </AuthContext.Provider>
+            </Router>
+        );
 
-    //     const emailInput = screen.getByTestId("email");
-    //     fireEvent.change(emailInput, { target: { value: "test@abv.bg" } });
-    //     expect(emailInput.value).toBe("test@abv.bg");
-    // });
+        const usernameInput = screen.getByTestId("username");
+        fireEvent.change(usernameInput, { target: { value: "Pencho" } });
+        expect(usernameInput.value).toBe("Pencho");
 
-    // it("updates the password state when password input is changed", () => {
-    //     render(
-    //         <Router>
-    //             <AuthContext.Provider value={mockedUser}>
-    //                 <Login />
-    //             </AuthContext.Provider>
-    //         </Router>
-    //     );
+        const emailInput = screen.getByTestId("email");
+        fireEvent.change(emailInput, { target: { value: "test@abv.bg" } });
+        expect(emailInput.value).toBe("test@abv.bg");
 
-    //     const passwordInput = screen.getByTestId("password");
-    //     fireEvent.change(passwordInput, { target: { value: 123 } });
-    //     expect(passwordInput.value).toBe("123");
-    // });
+        const passwordInput = screen.getByTestId("password");
+        fireEvent.change(passwordInput, { target: { value: 'asdasd' } });
+        expect(passwordInput.value).toBe("asdasd");
 
-    // it("renders error for password shorter than 3 characters", () => {
-    //     render(
-    //         <Router>
-    //             <AuthContext.Provider value={mockedUser}>
-    //                 <Login />
-    //             </AuthContext.Provider>
-    //         </Router>
-    //     );
-    //     const passwordInput = screen.getByTestId("password");
-    //     fireEvent.change(passwordInput, { target: { value: 12 } });
-    //     fireEvent.blur(passwordInput);
-    //     expect(
-    //         screen.getByText("Password must be between 3 and 10 characters!")
-    //     ).toBeInTheDocument();
-    // });
+        const repassInput = screen.getByTestId("repass");
+        fireEvent.change(repassInput, { target: { value: 'asdasd' } });
+        expect(repassInput.value).toBe("asdasd");
+    });
+
+    it("Renders error for both password and repass if shortern than 6 characters", () => {
+        render(
+            <Router>
+                <AuthContext.Provider value={mockedUser}>
+                    <Register />
+                </AuthContext.Provider>
+            </Router>
+        );
+        const passwordInput = screen.getByTestId("password");
+        fireEvent.change(passwordInput, { target: { value: 12345 } });
+        fireEvent.blur(passwordInput);
+        expect(
+            screen.getByText("Password must be between 6 and 15 character's long!")
+        ).toBeInTheDocument();
+    });
 
     // it("renders error for password longer than 10 characters", () => {
     //     render(
