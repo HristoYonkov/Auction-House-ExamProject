@@ -105,3 +105,11 @@ footer span {
 footer span#sf-logo {
     color: #fff200;
 }
+
+.footer-err-msg {
+    position: absolute;
+    color: red;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%);
+}

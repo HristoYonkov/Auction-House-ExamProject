@@ -20,10 +20,11 @@ export const Footer = () => {
         if (!e.target.value.match(validRegex) && e.target.value !== '') {
             setError(true);
         }
+        
+        setEmail('');
 
         setTimeout(() => {
             setError(false);
-            setEmail('');
         }, 3000)
     }
 
@@ -32,10 +33,13 @@ export const Footer = () => {
 
         if (!email.match(validRegex)) {
             setError(true);
-            return;
         }
-
+        
         setEmail('');
+        
+        setTimeout(() => {
+            setError(false);
+        }, 3000)
     }
 
     return (
@@ -44,7 +48,7 @@ export const Footer = () => {
                 <h1>SUBSCRIBE TO OUR NEWSLETTER</h1>
                 <p>Sign up for our mailing list to get latest updates and offers.</p>
                 {error && (
-                    <p className='err-msg'>Invalid E-mail!</p>
+                    <p className='footer-err-msg'>Invalid E-mail!</p>
                 )}
                 <div className="inputs">
                     <input type="text" value={email} onChange={onChangeHandler} onBlur={onBlurHandler} placeholder="Email Address.." />

@@ -36,3 +36,8 @@
       height: 32px;
     }
   }
+
+  .lds-p {
+    position: absolute;
+    top: 25px;
+  }
