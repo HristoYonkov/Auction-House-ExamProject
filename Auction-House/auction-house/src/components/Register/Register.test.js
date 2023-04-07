@@ -44,8 +44,8 @@ describe("Register Component", () => {
         expect(usernameInput.value).toBe("Pencho");
 
         const emailInput = screen.getByTestId("email");
-        fireEvent.change(emailInput, { target: { value: "test@abv.bg" } });
-        expect(emailInput.value).toBe("test@abv.bg");
+        fireEvent.change(emailInput, { target: { value: "test@mail.bg" } });
+        expect(emailInput.value).toBe("test@mail.bg");
 
         const passwordInput = screen.getByTestId("password");
         fireEvent.change(passwordInput, { target: { value: 'asdasd' } });
@@ -55,6 +55,50 @@ describe("Register Component", () => {
         fireEvent.change(repassInput, { target: { value: 'asdasd' } });
         expect(repassInput.value).toBe("asdasd");
     });
+    
+    it("Render erros for invalid email", () => {
+        render(
+            <Router>
+                <AuthContext.Provider value={mockedUser}>
+                    <Register />
+                </AuthContext.Provider>
+            </Router>
+        );
+        const emailInput = screen.getByTestId("email");
+        const usernameInput = screen.getByTestId("username");
+
+        fireEvent.change(emailInput, { target: { value: "test" } });
+        fireEvent.blur(emailInput);
+        expect(screen.getByText("Invalid E-mail!"))
+            .toBeInTheDocument();
+
+        fireEvent.change(usernameInput, { target: { value: "a" } });
+        fireEvent.blur(usernameInput);
+        expect(screen.getByText("Username must be between 2 and 10 characters long!"))
+            .toBeInTheDocument();
+    });
+
+    it("Check on blur if passwords don't match!", () => {
+        render(
+            <Router>
+                <AuthContext.Provider value={mockedUser}>
+                    <Register />
+                </AuthContext.Provider>
+            </Router>
+        );
+
+        const passwordInput = screen.getByTestId("password");
+        const repassInput = screen.getByTestId("repass");
+
+        fireEvent.change(passwordInput, {target: {value: "123456"}});
+        fireEvent.blur(passwordInput);
+
+        fireEvent.change(repassInput, {target: {value: "123"}});
+        fireEvent.blur(repassInput);
+
+        expect(screen.getByText("Password's must match!"))
+            .toBeInTheDocument();
+    })
 
     it("Renders error for both password and repass if shortern than 6 characters", () => {
         render(
@@ -64,56 +108,43 @@ describe("Register Component", () => {
                 </AuthContext.Provider>
             </Router>
         );
-        
+
         const passwordInput = screen.getByTestId("password");
 
         fireEvent.change(passwordInput, { target: { value: 12345 } });
         fireEvent.blur(passwordInput);
-        expect(
-            screen.getByText("Password must be between 6 and 15 character's long!")
-        ).toBeInTheDocument();
+        expect(screen.getByText("Password must be between 6 and 15 character's long!"))
+            .toBeInTheDocument();
 
         fireEvent.change(passwordInput, { target: { value: 1234567890123456 } });
         fireEvent.blur(passwordInput);
-        expect(
-            screen.getByText("Password must be between 6 and 15 character's long!")
-        ).toBeInTheDocument();
+        expect(screen.getByText("Password must be between 6 and 15 character's long!"))
+            .toBeInTheDocument();
     });
 
-    // it("renders error for invalid email", () => {
-    //     render(
-    //         <Router>
-    //             <AuthContext.Provider value={mockedUser}>
-    //                 <Login />
-    //             </AuthContext.Provider>
-    //         </Router>
-    //     );
-    //     const emailInput = screen.getByTestId("email");
-    //     fireEvent.change(emailInput, { target: { value: "test" } });
-    //     fireEvent.blur(emailInput);
-    //     expect(
-    //         screen.getByText("Invalid email!")
-    //     ).toBeInTheDocument();
-    // });
 
-    // it("it redirects after successful login", () => {
-    //     render(
-    //         <Router>
-    //             <AuthContext.Provider value={mockedUser}>
-    //                 <Login />
-    //             </AuthContext.Provider>
-    //         </Router>
-    //     );
-    //     const emailInput = screen.getByTestId("email");
-    //     const passwordInput = screen.getByTestId("password");
+    it("it redirects after successful login", () => {
+        render(
+            <Router>
+                <AuthContext.Provider value={mockedUser}>
+                    <Register />
+                </AuthContext.Provider>
+            </Router>
+        );
 
-    //     const loginButton = screen.getByTestId('loginButton');
+        const usernameInput = screen.getByTestId("username");
+        const emailInput = screen.getByTestId("email");
+        const passwordInput = screen.getByTestId("password");
+        const repassInput = screen.getByTestId("repass");
 
-    //     fireEvent.change(emailInput, { target: { value: "test@abv.bg" } });
-    //     // fireEvent.blur(emailInput);
-    //     fireEvent.change(passwordInput, { target: { value: 1234 } });
-    //     // fireEvent.blur(passwordInput);
-    //     fireEvent.submit(loginButton);
-    //     expect(window.location.href).toEqual("http://localhost/");
-    // });
+        const regButton = screen.getByTestId('regButton');
+
+        fireEvent.change(usernameInput, { target: { value: "Test" } });
+        fireEvent.change(emailInput, { target: { value: "test@mail.bg" } });
+        fireEvent.change(passwordInput, { target: { value: 123456 } });
+        fireEvent.change(repassInput, { target: { value: 123456 } });
+        
+        fireEvent.submit(regButton);
+        expect(window.location.href).toEqual("http://localhost/");
+    });
 });

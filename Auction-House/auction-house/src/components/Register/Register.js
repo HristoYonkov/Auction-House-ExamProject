@@ -167,7 +167,7 @@ export const Register = () => {
 
                     <p>If you have an account go to <Link to="/login">LOGIN</Link> page!</p>
 
-                    <button>Register</button>
+                    <button data-testid="regButton">Register</button>
                 </form>
 
             </section>
