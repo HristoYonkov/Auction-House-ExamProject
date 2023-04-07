@@ -1,5 +1,7 @@
 // const baseUrl = 'http://localhost:3030/auth'; 
-const baseUrl = 'https://auction-house-app-api.onrender.com/auth';
+const baseUrl = process.env.NODE_ENV === "production"
+? 'https://auction-house-app-api.onrender.com/auth'
+: 'http://localhost:3030/auth';
 
 export const onRegister = async (data) => {
     try {

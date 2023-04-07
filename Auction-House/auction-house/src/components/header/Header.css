@@ -9,7 +9,6 @@ header {
     top: 0px;
     z-index: 2;
     background-color: white;
-    border-bottom: 1px solid antiquewhite;
 }
 header .img-holder {
     height: 63px;
@@ -31,13 +30,9 @@ header h1 span {
     display: flex;
     height: 100%;
 }
-header .image img {
-    transform: scale(1.5);
+header .image:hover {
+    transform: scale(1.2);
 }
-header .image img:hover {
-    transform: scale(2);
-}
-
 .greetings {
     color: black;
     font-size: 25px;
@@ -54,7 +49,7 @@ header .image img:hover {
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 20px;
 }
 
 a:hover{

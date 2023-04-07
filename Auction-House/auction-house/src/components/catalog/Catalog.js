@@ -26,8 +26,8 @@ export const Catalog = () => {
                     setFilled(false);
                     setEmpty(true);
                 }
-                const filtered = listings.filter(x => x._ownerId !== user._id && !x.isClosed)
-                setListing(filtered);
+                // const filtered = listings.filter(x => x._ownerId !== user._id && !x.isClosed)
+                setListing(listings);
             });
     }, [user._id]);
 

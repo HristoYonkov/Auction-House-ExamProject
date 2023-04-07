@@ -22,7 +22,7 @@ export const Header = () => {
                 <div className="img-holder">
                     <h1>Auction<span>House</span></h1>
                     <div className="image">
-                        <img src="https://static.vecteezy.com/system/resources/thumbnails/000/626/825/small/031218-28.jpg" alt="hammer" />
+                        <img src='/assets/cloudHammer.png' alt="hammer" />
                     </div>
                 </div>
             </Link>
@@ -54,10 +54,10 @@ export const Header = () => {
                     {user.username && (
                         <>
                             <li className="header-list-item">
-                                <NavLink to="/my-auctions" >My-Auctions</NavLink>
+                                <NavLink to="/my-auctions" >MyAuctions</NavLink>
                             </li>
                             <li className="header-list-item">
-                                <NavLink to="/create" >Add-Auction</NavLink>
+                                <NavLink to="/create" >AddAuction</NavLink>
                             </li>
                             <li className="header-list-item">
                                 <Link className="redLink" to="/" onClick={onLogout} >Log-Out</Link>

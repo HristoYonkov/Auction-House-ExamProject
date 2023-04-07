@@ -1,5 +1,7 @@
 // const baseUrl = 'http://localhost:3030';
-const baseUrl = 'https://auction-house-app-api.onrender.com';
+const baseUrl = process.env.NODE_ENV === "production"
+? 'https://auction-house-app-api.onrender.com'
+: 'http://localhost:3030';
 
 export const getAll = async () => {
     try {

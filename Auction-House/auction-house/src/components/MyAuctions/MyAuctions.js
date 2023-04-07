@@ -47,7 +47,7 @@ export const MyAuctions = () => {
                     setLisingFilled(false);
                     setLisingEmpty(true);
                 }
-                setMyListings(myListings)
+                setMyListings(myListings);
             })
     }, [user.accessToken, onDelete]);
 
