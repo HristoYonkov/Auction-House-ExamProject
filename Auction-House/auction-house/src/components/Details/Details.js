@@ -8,7 +8,7 @@ import './Details.css'
 export const Details = () => {
     const [listing, setListing] = useState({});
     const [price, changePrice] = useState({ price: '' });
-    const [isFollowed, setisFollowed] = useState(false);
+    const [isFollowed, setIsFollowed] = useState(false);
     const [priceError, setPriceError] = useState(false);
 
     const { listingId } = useParams();
@@ -23,7 +23,7 @@ export const Details = () => {
                    return;
                 }
                 setListing(result);
-                setisFollowed(result?.follows.includes(user?._id));
+                setIsFollowed(result?.follows.includes(user?._id));
             })
             .catch(err => console.log(err))
     }, [listingId, navigate, user?._id]);
@@ -54,7 +54,7 @@ export const Details = () => {
     const followHandler = async () => {
         const response = await listingService.followListing(listing._id, user.accessToken);
         if (response._id) {
-            setisFollowed(true);
+            setIsFollowed(true);
             navigate(`/details/${listingId}`);
         }
     }
@@ -62,8 +62,8 @@ export const Details = () => {
     const unfollowHandler = async () => {
         try {
             await listingService.unfollowListing(listing._id, user.accessToken)
-            navigate(`/details/${listingId}`);
-            setisFollowed(false);
+            navigate(`/my-auctions`);
+            setIsFollowed(false);
         } catch (error) {
             console.log(error);
         }
