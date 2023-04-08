@@ -90,9 +90,9 @@ export const Footer = () => {
 
             <footer>
                 <div className="footer-icons">
-                    <Link to="https://www.facebook.com/profile.php?id=100010592597191"><i class="fa-brands fa-facebook-f"></i></ Link>
-                    <Link to="https://github.com/2HEADSs"><i className="fa-brands fa-square-github"></i></Link>
-                    <Link to="https://www.linkedin.com/in/pavel-dimitrov-b6a503229/"><i className="fa-brands fa-linkedin"></i></Link>
+                    <Link to="https://www.facebook.com/hristopturs"><i class="fa-brands fa-facebook-f"></i></ Link>
+                    <Link to="https://github.com/HristoYonkov/Auction-House-ExamProject"><i className="fa-brands fa-square-github"></i></Link>
+                    <Link to="https://www.linkedin.com/in/hristo-yonkov-444156260/"><i className="fa-brands fa-linkedin"></i></Link>
                 </div>
                 <div>
                     Copyright © 2023 AuctionHouse. <span>Hristo Yonkov@</span><span id='sf-logo'>SoftUni</span> - All Rights Reserved.

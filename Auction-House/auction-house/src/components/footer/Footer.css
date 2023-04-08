@@ -108,14 +108,13 @@ footer span#sf-logo {
     color: #fff200;
 }
 
-<<<<<<< Updated upstream
 .footer-err-msg {
     position: absolute;
     color: red;
     bottom: 0px;
     left: 50%;
     transform: translate(-50%);
-=======
+}
 .footer-divider {
     width: 100px;
 }
@@ -130,5 +129,4 @@ footer span#sf-logo {
 }
 .footer-icons i {
     font-size: 20px;
->>>>>>> Stashed changes
 }
