@@ -51,7 +51,7 @@ And the server will start listening at http://localhost:3030.
 
 # Tests!
 
-If you want to use some tests.
+If you want to use some tests, to run it enter in "C:\Users\Hristo\Desktop\Auction-House-ExamProject\Auction-House\auction-house"
 Open a new terminal and type..
 
 $ npm test
