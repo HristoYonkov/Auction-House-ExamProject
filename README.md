@@ -8,7 +8,10 @@ Informaton:
 
 The app works as platform for post auction sales with basic functionality.
 Every user(not logged in) have access to: Home , catalog , Search, Details, Register and Login.
-Evry logged in user have acces to: Home, catalog, Search, Create Listing, Edit (if has own auction for edit, and no one bids the listing), My-Auctions and Logout.
+Evry logged in user have acces to: Home, catalog, details, Search, AddAuction, Edit (if current auction is owned by the user, and no one bids the auction). My-Auctions and Logout.
+
+In details users (logged in and auction is not their own) can follow the current auction unfollow and bid it. In theit private page (MyAuctions) users can se wich auctions they are created wich are followed and wich they are won.
+From MyAuctions logged in users can also delete the closed auctions iwch is opt-in in details page when they closed the auction. Closed auctions are appearred in published auctions with button delete!
 
 
 TechStack
@@ -28,7 +31,7 @@ TechStack
     mongoose: 6.7.4,
     nodemon: 2.0.20
 
-Setup
+# Setup
 
 To run app, in directory "C:\Users\Hristo\Desktop\Auction-House-ExamProject\Auction-House\auction-house",  open inside cmd and run:
 
@@ -46,3 +49,9 @@ $ npm start
 
 And the server will start listening at http://localhost:3030.
 
+# Tests!
+
+If you want to use some tests.
+Open a new terminal and type..
+
+$ npm test
