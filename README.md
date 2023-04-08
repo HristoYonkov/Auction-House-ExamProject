@@ -55,3 +55,5 @@ If you want to use some tests, to run it enter in "C:\Users\Hristo\Desktop\Aucti
 Open a new terminal and type..
 
 $ npm test
+
+# Deployed Version at: https://react-auction-house.web.app/
