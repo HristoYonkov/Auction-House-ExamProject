@@ -14,11 +14,18 @@ listingController.get("/", async (req, res) => {
 
 listingController.post("/", async (req, res) => {
     try {
+        if (req.body.price.toString().length > 10) {
+            throw new Error('Price must be no longer than 10 characters!');
+        }
+        if (req.body.price < 0) {
+            throw new Error('Price must be positive number!');
+        }
         const data = Object.assign({ _ownerId: req.user._id }, req.body)
         const listing = await create(data);
         //todo error
         res.json(listing)
     } catch (error) {
+        
         // const message = parseError(err)
 
         res.status(400).json({ error: error.message })
@@ -32,9 +39,14 @@ listingController.put('/:id', async (req, res) => {
         if (req.user._id === undefined || req.user._id != listing._ownerId._id) {
             throw new Error('You cannot modify this record!');
         }
-
         if (listing.bidder) {
             throw new Error('This Listing has a bidder!');
+        }
+        if (req.body.price < 0) {
+            throw new Error('Price must be positive number!');
+        }
+        if (req.body.price.toString().length > 10) {
+            throw new Error('Price must be no longer than 10 characters!');
         }
 
         const result = await update(req.params.id, req.body);

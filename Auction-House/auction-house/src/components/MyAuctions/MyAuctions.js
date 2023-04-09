@@ -21,7 +21,7 @@ export const MyAuctions = () => {
     const [followsFilled, setFollowsFilled] = useState(false);
     const [followsEmpty, setFollowsEmpty] = useState(false);
 
-    const { user, setServerErrors } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const deleteHandler = async (listing, user) => {
         const result = await listingService.deleteListing(listing, user.accessToken);
