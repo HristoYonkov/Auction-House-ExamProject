@@ -57,3 +57,4 @@ Open a new terminal and type..
 $ npm test
 
 # Deployed Version at: https://react-auction-house.web.app/
+If you want to check the deployed version, you must wait a minute to start the deployed version of the server!
