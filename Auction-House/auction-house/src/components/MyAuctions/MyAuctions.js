@@ -27,7 +27,7 @@ export const MyAuctions = () => {
         const result = await listingService.deleteListing(listing, user.accessToken);
         setOnDelete([]);
         if (result?.message) {
-            return setServerErrors(result.message);
+            // return setServerErrors(result.message);
         }
     }
 

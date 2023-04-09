@@ -90,7 +90,7 @@ export const Footer = () => {
 
             <footer>
                 <div className="footer-icons">
-                    <Link to="https://www.facebook.com/hristopturs"><i class="fa-brands fa-facebook-f"></i></ Link>
+                    <Link to="https://www.facebook.com/hristopturs"><i className="fa-brands fa-facebook-f"></i></ Link>
                     <Link to="https://github.com/HristoYonkov/Auction-House-ExamProject"><i className="fa-brands fa-square-github"></i></Link>
                     <Link to="https://www.linkedin.com/in/hristo-yonkov-444156260/"><i className="fa-brands fa-linkedin"></i></Link>
                 </div>

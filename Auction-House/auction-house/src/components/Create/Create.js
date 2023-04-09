@@ -45,10 +45,16 @@ export const Create = () => {
         } else if (e.target.name === 'price' &&
             !(Number(formData.price) && formData.price > 0)) {
             setFormValidations(state => ({ ...state, [e.target.name]: true }))
-
+            
         } else if (e.target.name === 'description' &&
             (e.target.value.length < 10 || e.target.value.length > 200)) {
             setFormValidations(state => ({ ...state, [e.target.name]: true }))
+
+        } 
+        if (e.target.name === 'price' && e.target.value.length > 10) {
+            setFormValidations(state => ({
+                ...state, [e.target.name]: true
+            }))
         }
     }
 
@@ -83,15 +89,28 @@ export const Create = () => {
             setFormValidations(state => ({ ...state, description: true }))
             ifErrors = true;
         }
+        if (formData.price.length > 10) {
+            setFormValidations(state => ({
+                ...state, [e.target.name]: true
+            }))
+            ifErrors = true;
+        }
+        // if (e.target.name === 'price' && e.target.value.length > 10) {
+        //     console.log(typeof e.target.value);
+        //     setFormValidations(state => ({
+        //         ...state, [e.target.name]: true
+        //     }))
+        // }
+
         if (ifErrors) {
             return;
         }
-        
+
         const response = await listingService.create(formData, user.accessToken);
-        
+
         if (response?.message) {
             return setServerErrors(response?.message);
-            
+
             // return setErrors(state => ({ ...state, ["serverError"]: response.message.split(": ")[2].split(", ")[0] }));
         };
 
@@ -170,8 +189,11 @@ export const Create = () => {
                         onChange={onChangeHandler}
                         onBlur={onBlurHandler}
                     />
-                    {formValidations.price && (
+                    {formValidations.price && formData.price.length <= 10 && (
                         <p className='err-msg'>Price should be a positive number!</p>
+                    )}
+                    {formValidations.price && formData.price.length > 10 && (
+                        <p className='err-msg'>Price should be no longer than 10 characters!</p>
                     )}
                 </div>
 

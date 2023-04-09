@@ -64,6 +64,11 @@ export const Edit = () => {
             (e.target.value.length < 10 || e.target.value.length > 200)) {
             setFormValidations(state => ({ ...state, [e.target.name]: true }))
         }
+        if (e.target.name === 'price' && e.target.value.length > 10) {
+            setFormValidations(state => ({
+                ...state, [e.target.name]: true
+            }))
+        }
     }
 
     const submitHandler = async (e) => {
@@ -92,6 +97,12 @@ export const Edit = () => {
         if (formData.description === '' ||
             (formData.description.length < 10 || formData.description.length > 200)) {
             setFormValidations(state => ({ ...state, description: true }))
+            ifErrors = true;
+        }
+        if (formData.price.length > 10) {
+            setFormValidations(state => ({
+                ...state, [e.target.name]: true
+            }))
             ifErrors = true;
         }
         if (ifErrors) {
@@ -177,8 +188,11 @@ export const Edit = () => {
                         onChange={onChangeHandler}
                         onBlur={onBlurHandler}
                     />
-                    {formValidations.price && (
+                    {formValidations.price && formData.price.length <= 10 && (
                         <p className='err-msg'>Price should be a positive number!</p>
+                    )}
+                    {formValidations.price && formData.price.length > 10 && (
+                        <p className='err-msg'>Price should be no longer than 10 characters!</p>
                     )}
                 </div>
 
