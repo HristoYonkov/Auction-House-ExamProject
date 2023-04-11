@@ -14,7 +14,7 @@ export const Details = () => {
     const { listingId } = useParams();
     const navigate = useNavigate();
     const { user, setServerErrors } = useContext(AuthContext);
-    
+
     useEffect(() => {
         listingService.getOneListing(listingId)
             .then(result => {
@@ -142,10 +142,10 @@ export const Details = () => {
 
                     <div className='details-footer'>
                         <div className='details-button-wrapper'>
-                            {!listing.isClosed && user?._id === listing?._ownerId?._id && (
+                            {user?._id && user?._id === listing?._ownerId?._id && !listing.isClosed && (
                                 <button onClick={endAuctionHandler}>Close Auction</button>
                             )}
-                            {!listing?.bidder && user?._id === listing?._ownerId?._id && (
+                            {user?._id && user?._id === listing?._ownerId?._id && !listing?.bidder && (
                                 <Link to={`/edit/${listingId}`}><button>Edit</button></Link>
                             )}
                         </div>
