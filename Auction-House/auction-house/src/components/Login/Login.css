@@ -45,7 +45,7 @@
 }
 .input-wrapper input {
     all: revert;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     height: 5vh;
     width: 20vw;
     border: 1px solid;
