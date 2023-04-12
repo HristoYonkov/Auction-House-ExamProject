@@ -1,8 +1,8 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 
 import './MyAuctions.css';
-import { ListingItem } from './ListingItem/ListingItem';
+import ListingItem from './ListingItem/ListingItem';
 import * as listingService from '../../services/listingService';
 import { AuthContext } from '../../context/AuthContext';
 import { Loader } from '../Loader/Loader';
@@ -23,17 +23,18 @@ export const MyAuctions = () => {
 
     const { user } = useContext(AuthContext);
 
-    const deleteHandler = async (listing, user) => {
+    const deleteHandler = useCallback(async (listing, user) => {
+        // useCallback() => Every component use same referent to this function (it is for optimization).
         const result = await listingService.deleteListing(listing, user.accessToken);
         setOnDelete([]);
         if (result?.message) {
             // return setServerErrors(result.message);
         }
-    }
+    }, [])
 
-    const takeListing = (listing) => {
+    const takeListing = useCallback((listing) => {
         deleteHandler(listing, user);
-    }
+    }, [deleteHandler, user])
 
     useEffect(() => {
         listingService.getUserListings(user.accessToken)

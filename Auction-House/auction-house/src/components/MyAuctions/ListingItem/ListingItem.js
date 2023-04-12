@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
 
 import './ListingItem.css';
 
-export const ListingItem = ({ listing, user, takeListing }) => {
+const ListingItem = ({ listing, user, takeListing }) => {
 
     return (
         <article className='auctions-card'>
@@ -30,3 +31,11 @@ export const ListingItem = ({ listing, user, takeListing }) => {
         </article>
     );
 }
+
+export default memo(ListingItem);
+// memo(): Is HOC! => Only if you want to rerender single component if only his props are changed!
+
+// const result = useMemo(() => {
+//     // useMemo(): => Used for slow calculations and remmember the result.
+//     return 42;
+// })
