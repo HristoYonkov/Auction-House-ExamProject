@@ -39,6 +39,11 @@ export const Details = () => {
             return;
         }
 
+        if (price.price.length > 11) {
+            setPriceError(true);
+            return;
+        }
+
         const response = await listingService.bidListing(listingId, user.accessToken, price);
 
         if (response.message) {
@@ -108,8 +113,11 @@ export const Details = () => {
                             <p className='description-p'>Category: <span className='span-bold'>{listing.category}</span></p>
                             <p>Description: <br /> <span>{listing.description}</span></p>
                             <p>Current price: <span className='span-bold'>${listing.price}</span></p>
-                                {priceError && (
+                                {priceError && price.price.length <= 11 &&(
                                     <p className='err-msg'>Your price must be higher than current price!</p>
+                                )}
+                                {priceError && price.price.length > 11 && (
+                                    <p className='err-msg'>Pice must be no longer than 11 characters!</p>
                                 )}
                                 {!user._id && (
                                     <div className='details-alert-wrapper'>
