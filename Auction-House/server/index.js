@@ -6,6 +6,7 @@ const { mongoose } = require("mongoose");
 const router = require("./routes");
 const session = require("./middlewares/session");
 mongoose.set('strictQuery', true);
+
 const initDB = () => mongoose.connect(connectionString);
 
 startServer();
@@ -14,7 +15,7 @@ startServer();
 async function startServer() {
     initDB();
     app.use(express.json());
-    // app.use(express.urlencoded({ extended: false }));
+    app.use(express.urlencoded({ extended: false }));
     app.use(cors());
     app.use(session());
     // trimbody
