@@ -5,6 +5,7 @@ const { connectionString } = require("./connectionString");
 const { mongoose } = require("mongoose");
 const router = require("./routes");
 const session = require("./middlewares/session");
+const trimBody = require("./middlewares/trimBody");
 mongoose.set('strictQuery', true);
 
 const initDB = () => mongoose.connect(connectionString);
@@ -17,7 +18,7 @@ async function startServer() {
     app.use(express.urlencoded({ extended: false }));
     app.use(cors());
     app.use(session());
-    // trimbody
+    // app.use(trimBody());
     app.use(router);
     app.listen("3030", () => console.log("REST listening on port 3030"));
 }
