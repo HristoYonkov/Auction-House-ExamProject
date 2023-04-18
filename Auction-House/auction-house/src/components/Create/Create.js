@@ -58,7 +58,7 @@ export const Create = () => {
         }
     }
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const { user, setServerErrors } = useContext(AuthContext);
 
     const submitHandler = async (e) => {
