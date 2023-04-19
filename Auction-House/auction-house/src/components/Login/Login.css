@@ -50,6 +50,7 @@
     width: 20vw;
     border: 1px solid;
     font-size: 17px;
+    padding-left: 10px;
 }
 .err-msg {
     color: red;

@@ -49,14 +49,16 @@
     width: 20vw;
     border: 1px solid;
     font-size: 17px;
+    padding-left: 10px;
 }
 .create-input-wrapper select {
     all: revert;
     border-radius: 8px;
-    height: 5vh;
-    width: 20vw;
+    height: 6vh;
+    width: 21vw;
     border: 1px solid;
     font-size: 17px;
+    padding-left: 10px;
 }
 .create-input-wrapper textarea {
     all: revert;
