@@ -1,123 +1,159 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import './Edit.css';
 import * as listingService from '../../services/listingService';
 import { AuthContext } from '../../context/AuthContext';
+import { useEditCreateForm } from '../../hooks/useEditCreateForm';
 
 export const Edit = () => {
-    const [formData, setFormData] = useState({
+    // const [formData, setFormData] = useState({
+    //     title: '',
+    //     category: '',
+    //     imageUrl: '',
+    //     price: '',
+    //     description: '',
+    // });
+
+    // const [formValidations, setFormValidations] = useState({
+    //     title: false,
+    //     category: false,
+    //     imageUrl: false,
+    //     price: false,
+    //     description: false,
+    // });
+
+    // const { listingId } = useParams();
+    // const { user, setServerErrors } = useContext(AuthContext);
+    // const navigate = useNavigate();
+
+    // useEffect(() => {
+    //     listingService.getOneListing(listingId)
+    //         .then(result => {
+    //             if (result._ownerId._id !== user._id) {
+    //                 navigate(`/details/${result._id}`)
+    //             }
+    //             setFormData(result);
+    //         })
+    // }, [listingId, user._id, navigate]);
+
+    // const onChangeHandler = (e) => {
+    //     setFormData(state => ({ ...state, [e.target.name]: e.target.value }));
+    //     setFormValidations(state => ({ ...state, [e.target.name]: false }));
+    // }
+
+    // const onBlurHandler = (e) => {
+    //     if (e.target.name === 'title' &&
+    //         (e.target.value.length < 2 || e.target.value.length > 25)) {
+    //         setFormValidations(state => ({ ...state, [e.target.name]: true }))
+
+    //     } else if (e.target.name === 'category') {
+    //         if (e.target.value === '') {
+    //             setFormValidations(state => ({ ...state, [e.target.name]: true }))
+    //         }
+
+    //     } else if (e.target.name === 'imageUrl' &&
+    //         !(e.target.value.startsWith('http://') ||
+    //             e.target.value.startsWith('https://'))) {
+    //         setFormValidations(state => ({ ...state, [e.target.name]: true }))
+
+    //     } else if (e.target.name === 'price' &&
+    //         !(Number(formData.price) && formData.price > 0)) {
+    //         setFormValidations(state => ({ ...state, [e.target.name]: true }))
+
+    //     } else if (e.target.name === 'description' &&
+    //         (e.target.value.length < 10 || e.target.value.length > 200)) {
+    //         setFormValidations(state => ({ ...state, [e.target.name]: true }))
+    //     }
+    //     if (e.target.name === 'price' && e.target.value.length > 10) {
+    //         setFormValidations(state => ({
+    //             ...state, [e.target.name]: true
+    //         }))
+    //     }
+    // }
+
+    // const submitHandler = async (e) => {
+    //     e.preventDefault();
+    //     let ifErrors = false;
+    //     if (formData.title === '' ||
+    //         (formData.title.length < 2 || formData.title.length > 25)) {
+    //         setFormValidations(state => ({ ...state, title: true }))
+    //         ifErrors = true;
+    //     }
+    //     if (formData.category === '') {
+    //         setFormValidations(state => ({ ...state, category: true }))
+    //         ifErrors = true;
+    //     }
+    //     if (formData.imageUrl === '' ||
+    //         !(formData.imageUrl.startsWith('http://') ||
+    //             formData.imageUrl.startsWith('https://'))) {
+    //         setFormValidations(state => ({ ...state, imageUrl: true }))
+    //         ifErrors = true;
+    //     }
+    //     if (formData.price === '' ||
+    //         !(Number(formData.price) && formData.price > 0)) {
+    //         setFormValidations(state => ({ ...state, price: true }))
+    //         ifErrors = true;
+    //     }
+    //     if (formData.description === '' ||
+    //         (formData.description.length < 10 || formData.description.length > 200)) {
+    //         setFormValidations(state => ({ ...state, description: true }))
+    //         ifErrors = true;
+    //     }
+    //     if (formData.price.length > 10) {
+    //         setFormValidations(state => ({
+    //             ...state, [e.target.name]: true
+    //         }))
+    //         ifErrors = true;
+    //     }
+    //     if (ifErrors) {
+    //         return;
+    //     }
+
+    //     const response = await listingService.editListing(formData, user.accessToken);
+
+    //     if (response?.message) {
+    //         return setServerErrors(response.message);
+    //     }
+    //     if (response?._id) {
+    //         navigate(`/details/${listingId}`)
+    //     }
+    // }
+
+    const isEdit = true;
+
+    const {
+        formData,
+        formValidations,
+        onChangeHandler,
+        onBlurHandler,
+        submitHandler,
+        editValues
+    } = useEditCreateForm({
         title: '',
         category: '',
         imageUrl: '',
         price: '',
         description: '',
-    });
-
-    const [formValidations, setFormValidations] = useState({
-        title: false,
-        category: false,
-        imageUrl: false,
-        price: false,
-        description: false,
-    });
+    }, isEdit);
 
     const { listingId } = useParams();
-    const { user, setServerErrors } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const navigate = useNavigate();
 
     useEffect(() => {
         listingService.getOneListing(listingId)
             .then(result => {
-                if (result._ownerId._id !== user._id) {
-                    navigate(`/details/${result._id}`)
+                if (result?._id === undefined) {
+                    navigate(`/catalog`);
                 }
-                setFormData(result);
+                if (result._ownerId?._id !== user._id) {
+                    navigate(`/details/${result?._id}`)
+                }
+
+                editValues(result);
             })
     }, [listingId, user._id, navigate]);
-
-    const onChangeHandler = (e) => {
-        setFormData(state => ({ ...state, [e.target.name]: e.target.value }));
-        setFormValidations(state => ({ ...state, [e.target.name]: false }));
-    }
-
-    const onBlurHandler = (e) => {
-        if (e.target.name === 'title' &&
-            (e.target.value.length < 2 || e.target.value.length > 25)) {
-            setFormValidations(state => ({ ...state, [e.target.name]: true }))
-
-        } else if (e.target.name === 'category') {
-            if (e.target.value === '') {
-                setFormValidations(state => ({ ...state, [e.target.name]: true }))
-            }
-
-        } else if (e.target.name === 'imageUrl' &&
-            !(e.target.value.startsWith('http://') ||
-                e.target.value.startsWith('https://'))) {
-            setFormValidations(state => ({ ...state, [e.target.name]: true }))
-
-        } else if (e.target.name === 'price' &&
-            !(Number(formData.price) && formData.price > 0)) {
-            setFormValidations(state => ({ ...state, [e.target.name]: true }))
-
-        } else if (e.target.name === 'description' &&
-            (e.target.value.length < 10 || e.target.value.length > 200)) {
-            setFormValidations(state => ({ ...state, [e.target.name]: true }))
-        }
-        if (e.target.name === 'price' && e.target.value.length > 10) {
-            setFormValidations(state => ({
-                ...state, [e.target.name]: true
-            }))
-        }
-    }
-
-    const submitHandler = async (e) => {
-        e.preventDefault();
-        let ifErrors = false;
-        if (formData.title === '' ||
-            (formData.title.length < 2 || formData.title.length > 25)) {
-            setFormValidations(state => ({ ...state, title: true }))
-            ifErrors = true;
-        }
-        if (formData.category === '') {
-            setFormValidations(state => ({ ...state, category: true }))
-            ifErrors = true;
-        }
-        if (formData.imageUrl === '' ||
-            !(formData.imageUrl.startsWith('http://') ||
-                formData.imageUrl.startsWith('https://'))) {
-            setFormValidations(state => ({ ...state, imageUrl: true }))
-            ifErrors = true;
-        }
-        if (formData.price === '' ||
-            !(Number(formData.price) && formData.price > 0)) {
-            setFormValidations(state => ({ ...state, price: true }))
-            ifErrors = true;
-        }
-        if (formData.description === '' ||
-            (formData.description.length < 10 || formData.description.length > 200)) {
-            setFormValidations(state => ({ ...state, description: true }))
-            ifErrors = true;
-        }
-        if (formData.price.length > 10) {
-            setFormValidations(state => ({
-                ...state, [e.target.name]: true
-            }))
-            ifErrors = true;
-        }
-        if (ifErrors) {
-            return;
-        }
-
-        const response = await listingService.editListing(formData, user.accessToken);
-        
-        if (response?.message) {
-            return setServerErrors(response.message);
-        }
-        if (response?._id) {
-            navigate(`/details/${listingId}`)
-        }
-    }
 
     return (
         <section className="edit">
