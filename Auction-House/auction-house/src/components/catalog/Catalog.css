@@ -41,51 +41,52 @@
     border-top: 1px solid burlywood;
 }
 /* Card */
-.card:hover {
+.catalog-card:hover {
     scale: 1.1;
     transition: ease-in-out 300ms;
     position: relative;
-    bottom: 30px;
+    transform: translateY(-30px);
 }
-.card {
+.catalog-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 370px;
     width: 250px;
+    margin-top: 30px;
     border-radius: 8px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     background-color: antiquewhite;
 }
-.catalog .card h3 {
+.catalog .catalog-card h3 {
     letter-spacing: 1px;
 }
-.card-image-holder {
+.catalog-card-image-holder {
     height: 50%;
     width: 100%;
 }
-.catalog .card img {
+.catalog .catalog-card img {
     height: 100%;
     width: 100%;
     object-fit: contain;
     background-color: aliceblue;
 }
-.catalog .card p {
+.catalog .catalog-card p {
     margin: 0 0 5px 10px;
     align-self: start;
     font-weight: 500;
 }
-.catalog .card p span {
+.catalog .catalog-card p span {
     font-weight: 700;
 }
 
-.catalog .card button:hover {
+.catalog .catalog-card button:hover {
     background-color: green;
 }
-.catalog .card button:active {
+.catalog .catalog-card button:active {
     scale: 0.95;
 }
-.catalog .card button {
+.catalog .catalog-card button {
     padding: 0;
     color: white;
     border-radius: 5px;
@@ -97,7 +98,7 @@
     margin-top: 15px;
     cursor: pointer;
 }
-.catalog .card a {
+.catalog .catalog-card a {
     all: unset;
 }
 
