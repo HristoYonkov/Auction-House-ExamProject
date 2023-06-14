@@ -24,6 +24,7 @@ import { Search } from './components/Search/Search';
 function App() {
     const [user, setUser] = useLocalStorage('user', {})
     const [errors, setErrors] = useState('');
+    const [firstVisit, setFirstVisit] = useState(true);
 
     const setUserSession = (data) => {
         setUser({ ...data })
@@ -34,6 +35,11 @@ function App() {
         setTimeout(() => {
             setErrors('');
         }, 3000)
+    }
+
+    if (firstVisit) {
+        alert('You must wait around a minute, for the server to start. Cause the hosting is free!')
+        setFirstVisit(state => !state);
     }
 
     return (
