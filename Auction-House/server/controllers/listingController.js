@@ -1,7 +1,7 @@
 const listingController = require("express").Router();
 
 const { getAll, create, getById, getByUserId, endAuction, deleteById, getUserWons,
-    getUserFollows, bidListing, update, followListing, unfollowListing } = require("../services/listingService");
+    getUserFollows, bidListing, update, followListing, unfollowListing, createWon } = require("../services/listingService");
 
 listingController.get("/", async (req, res) => {
     try {
@@ -165,6 +165,21 @@ listingController.get('/unfollow/:id', async (req, res) => {
 listingController.delete('/:id', async (req, res) => {
     try {
         const listing = await getById(req.params.id);
+        const data = Object.assign({ _ownerId: req.user._id }, {
+            _id: listing._id.valueOf(),
+            title: listing.title,
+            category: listing.category,
+            imageUrl: listing.imageUrl,
+            price: listing.price,
+            description: listing.description,
+            isClosed: true,
+            _ownerId: listing._ownerId._id.valueOf(),
+            follows: listing.follows,
+            bidder: listing.bidder._id.valueOf()
+        });
+
+        const wonAuction = await createWon(data);
+        console.log('asdasdasd');
         if (req.user._id != listing._ownerId._id) {
             return res.status(403).json({ err: err.message })
         }
