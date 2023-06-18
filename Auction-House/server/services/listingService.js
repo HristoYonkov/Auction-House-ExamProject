@@ -1,12 +1,17 @@
 const Listing = require("../models/Listing");
+const WonAuction = require("../models/WonAuction");
 
 async function getAll() {
     return Listing.find({});
 }
 
 async function create(data) {
-    //TODO add user(creator) to pizza
+    console.log('First',data);
     return Listing.create(data);
+};
+
+async function createWon(data) {
+    return WonAuction.create(data);
 };
 
 async function getById(id) {
@@ -53,12 +58,21 @@ async function getUserFollows(id) {
 
 async function getUserWons(userId) {
     const listings = await Listing.find({});
+    const wonAuctions = await WonAuction.find({});
+
     let arr = [];
+
     listings.map(x => {
         if (x.bidder == userId && x.isClosed) {
             arr.push(x)
         }
     })
+    wonAuctions.map(x => {
+        if (x.bidder == userId && x.isClosed) {
+            arr.push(x)
+        }
+    })
+    
     return arr;
 }
 
@@ -99,6 +113,7 @@ module.exports = {
     followListing,
     unfollowListing,
     endAuction,
-    getUserWons
+    getUserWons,
+    createWon
     // getMyListing,
 };
