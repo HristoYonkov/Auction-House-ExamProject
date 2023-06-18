@@ -2,7 +2,7 @@
     scale: 1.1;
     transition: ease-in-out 300ms;
     position: relative;
-    bottom: 30px;
+    transform: translateY(-25px);
 }
 .auctions-card {
     position: relative;
