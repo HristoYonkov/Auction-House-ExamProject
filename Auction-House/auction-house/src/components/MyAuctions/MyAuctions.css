@@ -46,11 +46,11 @@
     margin: 0 0 50px;
     position: absolute;
     top: -5px;
-    border-radius:5px;
+    border-radius: 5px;
     padding: 0px 10px 0px 10px;
     font-size: 40px;
     background-color: whitesmoke;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: lighter;
     font-style: italic;
 }
@@ -60,4 +60,18 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+}
+
+@media screen and (max-width: 900px) {
+    .my-auctions {
+        flex-direction: column;
+        padding: 50px 0 50px 0;
+        gap: 50px;
+    }
+    .my-listings {
+        width: 98%;
+    }
+    .my-listings-header {
+        font-size: 25px;
+    }
 }
