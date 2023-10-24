@@ -137,3 +137,12 @@
 .no-content a {
     all: unset;
 }
+
+@media screen and (max-width: 900px) {
+    .catalog-view {
+        padding: 50px 0 50px 0;
+    }
+    .catalog {
+        width: 100%;
+    }
+}
