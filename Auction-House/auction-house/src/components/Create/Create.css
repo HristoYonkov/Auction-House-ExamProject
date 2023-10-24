@@ -3,6 +3,7 @@
     justify-content: center;
     background-color: whitesmoke;
 }
+
 .create-form h1 {
     letter-spacing: 3px;
     font-size: 30px;
@@ -13,6 +14,7 @@
     box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 
 }
+
 .create-form {
     display: flex;
     flex-direction: column;
@@ -32,16 +34,18 @@
 }
 
 .create-input-wrapper {
-    display: flex;  
+    display: flex;
     flex-direction: column;
     align-self: center;
-    max-width: min-content; 
+    max-width: min-content;
 }
+
 .create-input-wrapper label {
     margin-bottom: 10px;
     font-size: 20px;
     color: black;
 }
+
 .create-input-wrapper input {
     all: revert;
     border-radius: 8px;
@@ -51,6 +55,7 @@
     font-size: 17px;
     padding-left: 10px;
 }
+
 .create-input-wrapper select {
     all: revert;
     border-radius: 8px;
@@ -60,6 +65,7 @@
     font-size: 17px;
     padding-left: 10px;
 }
+
 .create-input-wrapper textarea {
     all: revert;
     border-radius: 8px;
@@ -68,6 +74,7 @@
     border: 1px solid;
     font-size: 17px;
 }
+
 .err-msg {
     color: red;
     margin: 0;
@@ -76,9 +83,11 @@
 .create-form button:hover {
     background-color: green;
 }
+
 .create-form button:active {
     scale: 0.95;
 }
+
 .create-form button {
     padding: 0;
     color: white;
@@ -89,4 +98,30 @@
     background-color: brown;
     font-size: 18px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+    .create-form {
+        width: 100%;
+        margin: 50px 0 50px 0;
+        padding: 0 0 20px 0;
+    }
+    .create-form h1 {
+        width: 80%;
+        letter-spacing: 2px;
+        font-size: 25px;
+        text-align: center;
+    }
+    .create-input-wrapper {
+        min-width: 90%;
+    }
+    .create-input-wrapper input {
+        width: 98%;
+    }
+    .create-input-wrapper select {
+        min-width: 100%;
+    }
+    .create-input-wrapper textarea {
+        min-width: 100%;
+    }
 }
