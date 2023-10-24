@@ -76,3 +76,16 @@ a {
 .redLink {
     color: red;
 }
+
+@media screen and (max-width: 900px) {
+    .image {
+        display: none;
+    }
+
+    header h1 {
+        font-size: 30px;
+    }
+    .greetings {
+        font-size: 20px;
+    }
+}
