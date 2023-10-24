@@ -58,6 +58,7 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/catalog' element={<Catalog />} />
                         <Route path='/search' element={<Search />} />
+                        {/* TODO: to fix responsive from here to bottom! */}
                         <Route path='/details/:listingId' element={<Details />} />
 
                         <Route element={<UserGuard />}>
