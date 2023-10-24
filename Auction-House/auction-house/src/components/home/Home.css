@@ -97,3 +97,14 @@
 /* .flying-create:hover, .flying-browse:hover {
     scale: 1.5;
 } */
+
+
+@media screen and (max-width: 900px) {
+    .home-boxes {
+        display: none;
+    }
+    .home-img-holder h1 {
+        font-size: 200%;
+        width: 80%;
+    }
+}
