@@ -77,7 +77,7 @@
 }
 
 @media screen and (max-width: 1200px) {
-    .login-form {
+    .register-form {
         width:  80%;
     }
     .input-wrapper input {
@@ -86,7 +86,7 @@
 }
 
 @media screen and (max-width: 600px) {
-    .login-form {
+    .register-form {
         width:  100%;
         padding: 0px 0px 50px 0px;
         margin: 50px 0px 100px;
